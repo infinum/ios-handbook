@@ -1,5 +1,3 @@
-# RxSwift Resource Tracking
-
 ## Prequisites
 
 ### Main project - DEBUG flag
@@ -36,21 +34,13 @@ end
 - use this view controller as your base class
 
 ```swift
-//
-//  ViewController.swift
-//  ProxyPics
-//
-//  Created by Ivan Dikic on 23/08/2017.
-//  Copyright © 2017 Ivan Dikic. All rights reserved.
-//
-
 import UIKit
 import RxSwift
 
 class ViewController: UIViewController {
 
     #if DEBUG
-    private let startResourceCount = Resources.total
+        private let startResourceCount = Resources.total
     #endif
 
     // MARK: - Public -
