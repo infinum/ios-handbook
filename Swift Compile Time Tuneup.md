@@ -105,8 +105,8 @@ end
 
 * Open text editor and paste copied log, save to the ~/Desktop
 * Wait a bit because it can be well over 100MB
-* Copy Ruby script [iOS Compile Time Review](/resources/review.rb) to ~/Desktop
+* Copy Ruby script [iOS Compile Time Review](/resources/compile_time_review.rb) to ~/Desktop
 * Run script in terminal
-  `$ ruby review.rb YOUR_FILE_NAME > out.txt`
+  `$ ruby compile_time_review.rb YOUR_FILE_NAME > out.txt`
 * Open out.txt and look at the results
 * Fix da shit, clean build, and run again to see if improved.
