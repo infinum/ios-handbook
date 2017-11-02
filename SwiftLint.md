@@ -119,3 +119,4 @@ By default, Xcode won't remove trailing whitespace if the line is empty. SwiftLi
 *NOTE: This will not automatically fix your SwiftLint warnings you already have, but will prevent it's happening again.*
 
 That's it. Install SwiftLint, add the configuration file to your root directory and lint up your project!
+
