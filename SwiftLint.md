@@ -108,7 +108,7 @@ let noWarning3 = NSNumber() as! Int
 
 ### iOS SwiftLint rules
 
-In accordance to our Swift Style Guide and our rules discussion, the configured file can be downloaded here: [SwiftLint configuration.](/resources/.swiftlint.yml)
+In accordance to our Swift Style Guide and our rules discussion, the configured file can be downloaded here: [SwiftLint configuration.](/resources/swiftlint.yml)
 
 ### Xcode trailing whitespace
 
