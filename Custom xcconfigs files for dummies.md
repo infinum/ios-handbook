@@ -2,9 +2,9 @@
 
 ## Intro
 
-Usually when working in multi team enviroment, and/or when you need to use multiple configurations, xCode project settings UI can quickly get really messy, and it is hard to track changes.
+Usually when working in multi team environment, and/or when you need to use multiple configurations, Xcode project settings UI can quickly get really messy, and it is hard to track changes.
 
-git log is not really usefull with that amount of noise you get by changing one simple *bool*.
+`git log` is not really useful with that amount of noise you get by changing one simple *bool*.
 
 ### Proposed project structure (xcconfig files, build targets, build configurations)
 
@@ -15,8 +15,8 @@ git log is not really usefull with that amount of noise you get by changing one 
 	- qa build
 	- test build
 	- production build
-- use **target** to define a **single product** 
-	- it organizes the inputs into the build system 
+- use **target** to define a **single product**
+	- it organizes the inputs into the build system
 	- the source files and instructions for processing those source files required to build that product.
 	- it usually doesn't make sense to use targets in place of of build configurations
 
@@ -24,36 +24,37 @@ git log is not really usefull with that amount of noise you get by changing one 
 
 - two targets (and a project)
 - three build configurations
-- each build configuration (debug, relelase, qa)
+- each build configuration (debug, release, qa)
 
-		Configurations
-			|
-			|------------> Shared (Project settings - Inherited from xCode and custom (e.g. extra CLANG warnings))
-			|					|
-			|					|------------> Project - Shared.xcconfig
-			|					|------------> Project - Debug.xcconfig
-			|					|------------> Project - Release.xcconfig
-			|					|------------> Project - QA.xcconfig
-			|
-			|------------> Target0
-			|					|
-			|					|------------> Target0 - Shared.xcconfig
-			|					|------------> Target0 - Debug.xcconfig
-			|					|------------> Target0 - Release.xcconfig
-			|					|------------> Target0 - QA.xcconfig
-			|
-			|------------> Target1
-			|					|
-			|					|------------> Target1 - Shared.xcconfig
-			|					|------------> Target2 - Debug.xcconfig
-			|					|------------> Target3 - Release.xcconfig
-			|					|------------> Target4 - QA.xcconfig
-			
+```
+Configurations
+	|
+	|------------> Shared (Project settings - Inherited from xCode and custom (e.g. extra CLANG warnings))
+	|					|
+	|					|------------> Project - Shared.xcconfig
+	|					|------------> Project - Debug.xcconfig
+	|					|------------> Project - Release.xcconfig
+	|					|------------> Project - QA.xcconfig
+	|
+	|------------> Target0
+	|					|
+	|					|------------> Target0 - Shared.xcconfig
+	|					|------------> Target0 - Debug.xcconfig
+	|					|------------> Target0 - Release.xcconfig
+	|					|------------> Target0 - QA.xcconfig
+	|
+	|------------> Target1
+	|					|
+	|					|------------> Target1 - Shared.xcconfig
+	|					|------------> Target2 - Debug.xcconfig
+	|					|------------> Target3 - Release.xcconfig
+	|					|------------> Target4 - QA.xcconfig
+```
 
 #### Shared
 
 - will contain all the settings that are inherited for specific type of project (e.g. iOS)
-- you will want to have this included in eveything else
+- you will want to have this included in everything else
 - usually compiler flags and friends ... :)
 
 		//  Clang Warnings
@@ -65,7 +66,7 @@ git log is not really usefull with that amount of noise you get by changing one 
 #### Target
 
 - specific target settings would be
-	- custom Info.plist 
+	- custom Info.plist
 	- developer profile for signing the app
 	- app icon
 	- analytics key
@@ -76,47 +77,48 @@ git log is not really usefull with that amount of noise you get by changing one 
 
 - key/value file for storing build settings and user defined keys
 
-		// Asset Catalog App Icon Set Name
-		// 
-		// Name of the asset catalog app icon set whose contents will be merged into the
-		// Info.plist.
-		
-		ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
-		
-		
-		// Code Signing Identity
-		// 
-		// The name ("common name") of a valid code-signing certificate in a keychain within your
-		// keychain path.   A missing or invalid certificate will cause a build error.
-		
-		CODE_SIGN_IDENTITY = iPhone Developer
-		
-		
-		// Info.plist File
-		// 
-		// This is the project-relative path to the plist file that contains the Info.plist
-		// information used by bundles.
-		
-		INFOPLIST_FILE = Park-AAA copy-Info.plist
-		
-		
-		// Runpath Search Paths
-		// 
-		// This is a list of paths to be added to the runpath search path list for the image
-		// being created.  At runtime, dyld uses the runpath when searching for dylibs whose load
-		// path begins with '@rpath/'. [-rpath]
-		
-		LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks
-		
-		
-		PRODUCT_BUNDLE_IDENTIFIER = infinum.co.Park-BBB
-		
-		
-		// Product Name
-		// 
-		// This is the basename of the product generated.
-		
-		PRODUCT_NAME = $(TARGET_NAME)
+```
+// Asset Catalog App Icon Set Name
+//
+// Name of the asset catalog app icon set whose contents will be merged into the
+// Info.plist.
+
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
+
+// Code Signing Identity
+//
+// The name ("common name") of a valid code-signing certificate in a keychain within your
+// keychain path.   A missing or invalid certificate will cause a build error.
+
+CODE_SIGN_IDENTITY = iPhone Developer
+
+
+// Info.plist File
+//
+// This is the project-relative path to the plist file that contains the Info.plist
+// information used by bundles.
+
+INFOPLIST_FILE = Park-AAA copy-Info.plist
+
+
+// Runpath Search Paths
+//
+// This is a list of paths to be added to the runpath search path list for the image
+// being created.  At runtime, dyld uses the runpath when searching for dylibs whose load
+// path begins with '@rpath/'. [-rpath]
+
+LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/Frameworks
+
+
+PRODUCT_BUNDLE_IDENTIFIER = infinum.co.Park-BBB
+
+
+// Product Name
+// 
+// This is the basename of the product generated.
+
+PRODUCT_NAME = $(TARGET_NAME)
+```
 
 - we will leverage this to make our project settings cleaner and easier to understand.
 
@@ -127,23 +129,23 @@ git log is not really usefull with that amount of noise you get by changing one 
 	- basically whole new project except code can be shared between targets more easily
 
 ### Build configurations
-- use when we need to fine tune certificats, third party SDK keys, versioning API's ...
+
+- use when we need to fine tune certificates, third party SDK keys, versioning API's ...
 
 ### User defined keys
 
-	[[NSBundle mainBundle] objectForInfoDictionaryKey:@"HockeyKey"]];
- 
-## Resources
-
-http://www.jontolof.com/cocoa/using-xcconfig-files-for-you-xcode-project/
-http://jamesdempsey.net/2015/01/31/generating-xcode-build-configuration-files-with-buildsettingextractor-xcodeproj-to-xcconfig/
+```
+[[NSBundle mainBundle] objectForInfoDictionaryKey:@"HockeyKey"]];
+```
 
 ## Custom xcconfigs
 
 ### Step 0 - empty project
+
 ![](/img/xcconfig_tutorial/step_0.png)
 
 ### Step 1 - targets
+
 - add new target
 	- **CMD + D**
 
@@ -176,7 +178,7 @@ http://jamesdempsey.net/2015/01/31/generating-xcode-build-configuration-files-wi
 			- always use All and Levels
 		- Settings will be resolved from **right to left**
 			- **iOS Default - Project - Resolved**
-		- **iOS Default** - default settings defined by Apple (compiler flags, arhitecture etc ...)
+		- **iOS Default** - default settings defined by Apple (compiler flags, architecture etc ...)
 		- **Project** - user defined using UI
 		- **Resolved** - by combining previous two
 
@@ -195,7 +197,7 @@ http://jamesdempsey.net/2015/01/31/generating-xcode-build-configuration-files-wi
 ### Step 4 - custom xcconfig
 
 - custom xCconfig files
-	- for all above, we want to use _xCconfig_ files to make it easier for us in the long run
+	- for all above, we want to use _xcconfig_ files to make it easier for us in the long run
 		- it is much easier to add something when in text file that in the xCode
 	- but manually copying keys from xcode to xcconfig files is cumbersome and error prone
 	- we will use this handy tool for automatic creation [BuildSettingsExtractor](https://github.com/dempseyatgithub/BuildSettingExtractor)
@@ -252,7 +254,7 @@ http://jamesdempsey.net/2015/01/31/generating-xcode-build-configuration-files-wi
 	- open **Target0-Shared.xcconfig**
 	- find **INFOPLIST_FILE**
 	- change to **INFOPLIST_FILE = CustomConfiguration/Info - Target0.plist** (your newly created)
-	- check that everythig is ok by clicking on
+	- check that everything is ok by clicking on
 		- _Project_
 		- _Target_
 		- _General_
@@ -262,26 +264,30 @@ http://jamesdempsey.net/2015/01/31/generating-xcode-build-configuration-files-wi
 
 ### Step 7 - Cocoapods
 
-- be carefull when installing pods in the project with multiple targets
-	
-		platform :ios, '8.0'
-	
-		use_frameworks!
-	
-		link_with 'Target0', 'Target1'
-	
-		pod 'Alamofire'
-	
-		target 'Target0' do
-	
-		end
-	
-		target 'Target1' do
-	
-		end
+- be careful when installing _Pods_ in the project with multiple targets
+
+```
+platform :ios, '8.0'
+
+use_frameworks!
+
+link_with 'Target0', 'Target1'
+
+pod 'Alamofire'
+
+target 'Target0' do
+
+end
+
+target 'Target1' do
+
+end
+```
 
 - pod install will probably give you a warning
+
 ![](/img/xcconfig_tutorial/step_7.png)
+
 - this is normal, because as you know by know we are using custom configuration files :), so in order for pods to work, we need to edit our xcconfig file's, to also include pods custom xcconfig files;
 
 - open Target1-Debug.xcconfig
@@ -296,3 +302,11 @@ http://jamesdempsey.net/2015/01/31/generating-xcode-build-configuration-files-wi
 - repeat this process for Target0.
 
 __Build a project :)__
+
+## Resources
+
+- [Using xcconfig files for your Xcode Project][1]
+- [Generating Xcode Build Configuration Files with BuildSettingExtractor (xcodeproj → xcconfig)][2]
+
+[1]:	http://www.jontolof.com/cocoa/using-xcconfig-files-for-you-xcode-project/
+[2]:	http://jamesdempsey.net/2015/01/31/generating-xcode-build-configuration-files-with-buildsettingextractor-xcodeproj-to-xcconfig/
