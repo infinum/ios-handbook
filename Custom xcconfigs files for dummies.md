@@ -267,7 +267,7 @@ Resolved | Target0 | Config.File (Target Build) | Project | Config.File (Project
 		- _Target_
 		- _General_
 
-_Nice thing about custom Info.plist is that you can easily setup custom AppIcon, Assets Catalog...__
+_Nice thing about custom Info.plist is that you can easily setup custom AppIcon, Assets Catalog..._
 
 ### Step 7 - Cocoapods
 
@@ -304,7 +304,7 @@ end
 - and change to
 	
 	![](/img/xcconfig_tutorial/step_7_2.png)
-	
+
 - open Target1-Release.xcconfig
 	
 	![](/img/xcconfig_tutorial/step_7_3.png)
