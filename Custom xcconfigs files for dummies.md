@@ -153,89 +153,87 @@ PRODUCT_NAME = $(TARGET_NAME)
 	
 ![](/img/xcconfig_tutorial/step_1_1.png)
 
-### Step 2 - build configurations
+### Step 2 - add new build configurations
 
-- add new configurations
-	- select _project_
-	- _Info tab_
-	- _Configurations_
-	- always duplicate existing one (choose between __debug__ and __release__)
-		- current use case is that the we are using our enterprise account for develop
-		but the client want's to use their account for release to the store
-		- so basically we would have to change certificates, provisioning profiles and bundle identifiers before
-		each submission. This is both cumbersome and error prone!
-		- that is why we will create copies of both __debug__ and __release__ build configurations
+- select _project_
+- _Info tab_
+- _Configurations_
+- always duplicate existing one (choose between __debug__ and __release__)
+	- current use case is that the we are using our enterprise account for develop
+	but the client want's to use their account for release to the store
+	- so basically we would have to change certificates, provisioning profiles and bundle identifiers before
+	each submission. This is both cumbersome and error prone!
+	- that is why we will create copies of both __debug__ and __release__ build configurations
 
 ![](/img/xcconfig_tutorial/step_2.png)
 
 ### Step 3 - build settings
 
-- build settings
-	- _select project_
-		- _Build Settings_
-			- always use `All` and `Levels`
-		- Settings will be resolved from __right to left__
-			- __iOS Default - Project - Resolved__
-		- __iOS Default__ - default settings defined by Apple (compiler flags, architecture, etc...)
-		- __Project__ - user defined using UI
-		- __Resolved__ - by combining previous two
+#### Project
+
+- _Build Settings_
+	- always use `All` and `Levels`
+- Settings will be resolved from __right to left__
+	- __iOS Default - Project - Resolved__
+- __iOS Default__ - default settings defined by Apple (compiler flags, architecture, etc...)
+- __Project__ - user defined using UI
+- __Resolved__ - by combining previous two
 
 ![](/img/xcconfig_tutorial/step_3.png)
 
-- select _build target_
-	- _Build Settings_
-		- always use `All` and `Levels`
-	- Settings will be resolved from __right to left__
-		- __iOS Default -> Project -> Target0 -> Resolved__
-	- same as above, only difference here is that you can define custom settings per target
-		- user profiles, bundle identifiers, user defined keys (e.g. analytics)
+#### Target
+
+- _Build Settings_
+	- always use `All` and `Levels`
+- Settings will be resolved from __right to left__
+	- __iOS Default -> Project -> Target0 -> Resolved__
+- same as _project_, only difference here is that you can define custom settings per target
+	- user profiles, bundle identifiers, user defined keys (e.g. analytics)
 
 ![](/img/xcconfig_tutorial/step_3_1.png)
 
 ### Step 4 - custom xcconfig
 
-- custom xCconfig files
-	- for all above, we want to use _xcconfig_ files to make it easier for us in the long run
-		- it is much easier to add something when in text file that in the xCode
-	- but manually copying keys from xcode to xcconfig files is cumbersome and error prone
-	- we will use this handy tool for automatic creation [BuildSettingsExtractor](https://github.com/dempseyatgithub/BuildSettingExtractor)
-		- just drop you xcode project on top of it, and it will _autogenerate_ all the files you need
-	- the nice thing about this tool is that it __will not do anything__ to __your project__, you need to do it manually!
+- for all above, we want to use _xcconfig_ files to make it easier for us in the long run
+	- it is much easier to add something when in text file that in the xCode
+- but manually copying keys from xcode to xcconfig files is cumbersome and error prone
+- we will use this handy tool for automatic creation [BuildSettingsExtractor](https://github.com/dempseyatgithub/BuildSettingExtractor)
+	- just drop you _Xcode_ project on top of it, and it will _autogenerate_ all the files you need
+- the nice thing about this tool is that it __will not do anything__ to __your project__, you need to do it manually!
 
 ![](/img/xcconfig_tutorial/step_4.png)
 
 ### Step 5 - setup custom xcconfig
 
-- setup custom xcconfig files
-	- add all of the above to your project
-		- I would suggest adding those by _drag'n'drop_ so that when xCode asks you for which _target_ you want to add those
-		_unslect all targets_.
-	- add all of the custom xcconfig files to your build configurations
-		- _select project_
-		- _select Info_
-		- _Configurations_
-			- add custom config files
-			![](/img/xcconfig_tutorial/step_5_1.png)
-	- select _project_ - _Build Settings_ (__All__ + __Levels__)
-	![](/img/xcconfig_tutorial/step_5_2.png)
+- add all of the above to your project
+	- I would suggest adding those by _drag'n'drop_ so that when _Xcode_ asks you for which _target_ you want to add those
+	_unselect all targets_.
+- add all of the custom xcconfig files to your build configurations
+	- _select project_
+	- _select Info_
+	- _Configurations_
+		- add custom config files
+		![](/img/xcconfig_tutorial/step_5_1.png)
+- select _project_ - _Build Settings_ (__All__ + __Levels__)
+![](/img/xcconfig_tutorial/step_5_2.png)
 
-	- as you can see, there is a new field __Config.file(...)__, this is our custom config file
-	- but if we think about our goal to have everything inside our custom file;
-		- we don't want the UI settings to override our custom file, and if you remember, settings will be resolved from right to left, that means that UI has higher precedence than custom files.
-		- go trough the Project row and delete it, you can only edit Project row on the current level 
-			- you ony need to delete rows that have something
-			![](/img/xcconfig_tutorial/step_5_3.png)
+- as you can see, there is a new field __Config.file(...)__, this is our custom config file
+- but if we think about our goal to have everything inside our custom file;
+	- we don't want the UI settings to override our custom file, and if you remember, settings will be resolved from right to left, that means that UI has higher precedence than custom files.
+	- go trough the Project row and delete it, you can only edit Project row on the current level 
+		- you ony need to delete rows that have something
+		![](/img/xcconfig_tutorial/step_5_3.png)
 
-	- _select target_ - _Build Settings_ (__All__ + __Levels__)
-	![](/img/xcconfig_tutorial/step_5_4.png)
-		- as you can see on this level there is also a new field, now we have 6 columns
+- _select target_ - _Build Settings_ (__All__ + __Levels__)
+![](/img/xcconfig_tutorial/step_5_4.png)
+	- as you can see on this level there is also a new field, now we have 6 columns
 
-				IResolved | Target0 | Config.File (Target Build) | Project | Config.File (Project Build)| iOS Default
+			IResolved | Target0 | Config.File (Target Build) | Project | Config.File (Project Build)| iOS Default
 
-		- Config File (Target Build)
-			- build configuration based on current target build configuration settings
-			![](/img/xcconfig_tutorial/step_5_5.png)
-		- go trough target row and delete it
+	- Config File (Target Build)
+		- build configuration based on current target build configuration settings
+		![](/img/xcconfig_tutorial/step_5_5.png)
+	- go trough target row and delete it
 
 ### Step 6 - custom Info.plist
 
