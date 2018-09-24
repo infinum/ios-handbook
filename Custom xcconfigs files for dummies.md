@@ -1,6 +1,6 @@
 # Project settings structure and custom xcconfigs
 
-Usually when working in multi team environment, and/or when you need to use multiple configurations, Xcode project settings UI can quickly get really messy, and it is hard to track changes.
+Usually when working in multi team environment, and/or when you need to use multiple configurations, _Xcode_ project settings UI can quickly get really messy, and it is hard to track changes.
 
 `git log` is not really useful with that amount of noise you get by changing one simple *bool*.
 
@@ -27,7 +27,7 @@ Usually when working in multi team environment, and/or when you need to use mult
 ```
 Configurations
 	|
-	|-----> Shared (Project settings - Inherited from xCode and custom (e.g. extra CLANG warnings))
+	|-----> Shared (Project settings - Inherited from Xcode and custom (e.g. extra CLANG warnings))
 	|	|
 	|	|-----> Project - Shared.xcconfig
 	|	|-----> Project - Debug.xcconfig
@@ -195,8 +195,8 @@ PRODUCT_NAME = $(TARGET_NAME)
 ### Step 4 - custom xcconfig
 
 - for all above, we want to use _xcconfig_ files to make it easier for us in the long run
-	- it is much easier to add something when in text file that in the xCode
-- but manually copying keys from xcode to xcconfig files is cumbersome and error prone
+	- it is much easier to add something when in text file that in the _Xcode_
+- but manually copying keys from _Xcode_ to _xcconfig_ files is cumbersome and error prone
 - we will use this handy tool for automatic creation [BuildSettingsExtractor](https://github.com/dempseyatgithub/BuildSettingExtractor)
 	- just drop you _Xcode_ project on top of it, and it will _autogenerate_ all the files you need
 - the nice thing about this tool is that it __will not do anything__ to __your project__, you need to do it manually!
@@ -208,12 +208,14 @@ PRODUCT_NAME = $(TARGET_NAME)
 - add all of the above to your project
 	- I would suggest adding those by _drag'n'drop_ so that when _Xcode_ asks you for which _target_ you want to add those
 	_unselect all targets_.
-- add all of the custom xcconfig files to your build configurations
-	- _select project_
-	- _select Info_
+- add all of the custom _xcconfig_ files to your build configurations
+	- select _Project_
+	- select _Info_
 	- _Configurations_
 		- add custom config files
+
 		![](/img/xcconfig_tutorial/step_5_1.png)
+		
 - select _project_ - _Build Settings_ (__All__ + __Levels__)
 ![](/img/xcconfig_tutorial/step_5_2.png)
 
@@ -284,7 +286,7 @@ end
 
 ![](/img/xcconfig_tutorial/step_7.png)
 
-- this is normal, because as you know by know we are using custom configuration files :), so in order for pods to work, we need to edit our xcconfig file's, to also include pods custom xcconfig files;
+- this is normal, because as you know by know we are using custom configuration files :), so in order for pods to work, we need to edit our _xcconfig_ file's, to also include pods custom _xcconfig_ files;
 
 - open Target1-Debug.xcconfig
 	![](/img/xcconfig_tutorial/step_7_1.png)
