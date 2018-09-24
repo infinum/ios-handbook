@@ -215,27 +215,37 @@ PRODUCT_NAME = $(TARGET_NAME)
 		- add custom config files
 
 		![](/img/xcconfig_tutorial/step_5_1.png)
-		
+
 - select _project_ - _Build Settings_ (__All__ + __Levels__)
+
 ![](/img/xcconfig_tutorial/step_5_2.png)
 
 - as you can see, there is a new field __Config.file(...)__, this is our custom config file
 - but if we think about our goal to have everything inside our custom file;
-	- we don't want the UI settings to override our custom file, and if you remember, settings will be resolved from right to left, that means that UI has higher precedence than custom files.
-	- go trough the Project row and delete it, you can only edit Project row on the current level 
+	- we don't want the UI settings to override our custom file
+	- settings will be resolved from right to left
+	- that means that UI has higher precedence than custom files.
+	- go trough the Project row and delete it, you can only edit Project row on the current level
 		- you ony need to delete rows that have something
+
 		![](/img/xcconfig_tutorial/step_5_3.png)
 
 - _select target_ - _Build Settings_ (__All__ + __Levels__)
+
 ![](/img/xcconfig_tutorial/step_5_4.png)
-	- as you can see on this level there is also a new field, now we have 6 columns
 
-			IResolved | Target0 | Config.File (Target Build) | Project | Config.File (Project Build)| iOS Default
+- as you can see on this level there is also a new field, now we have 6 columns
 
-	- Config File (Target Build)
-		- build configuration based on current target build configuration settings
-		![](/img/xcconfig_tutorial/step_5_5.png)
-	- go trough target row and delete it
+```
+Resolved | Target0 | Config.File (Target Build) | Project | Config.File (Project Build)| iOS Default
+```
+
+- Config File (Target Build)
+	- build configuration based on current target build configuration settings
+
+	![](/img/xcconfig_tutorial/step_5_5.png)
+	
+- go trough target row and delete it
 
 ### Step 6 - custom Info.plist
 
@@ -257,8 +267,7 @@ PRODUCT_NAME = $(TARGET_NAME)
 		- _Target_
 		- _General_
 
-
-`Nice thing about custom Info.plist is that you can easily setup custom AppIcon, Assets Catalog ...`
+_Nice thing about custom Info.plist is that you can easily setup custom AppIcon, Assets Catalog...__
 
 ### Step 7 - Cocoapods
 
@@ -289,12 +298,19 @@ end
 - this is normal, because as you know by know we are using custom configuration files :), so in order for pods to work, we need to edit our _xcconfig_ file's, to also include pods custom _xcconfig_ files;
 
 - open Target1-Debug.xcconfig
+
 	![](/img/xcconfig_tutorial/step_7_1.png)
+
 - and change to
+	
 	![](/img/xcconfig_tutorial/step_7_2.png)
+	
 - open Target1-Release.xcconfig
+	
 	![](/img/xcconfig_tutorial/step_7_3.png)
+
 - and change to
+	
 	![](/img/xcconfig_tutorial/step_7_4.png)
 
 - repeat this process for Target0.
