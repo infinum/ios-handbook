@@ -1,6 +1,6 @@
 # Project settings structure and custom xcconfigs
 
-Usually when working in multi team environment, and/or when you need to use multiple configurations, _Xcode_ project settings UI can quickly get really messy, and it is hard to track changes.
+Usually when working in team environment, and/or when you need to use multiple configurations, _Xcode_ project settings UI can quickly get really messy, and it is hard to track changes.
 
 `git log` is not really useful with that amount of noise you get by changing one simple *bool*.
 
