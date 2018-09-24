@@ -4,21 +4,21 @@ Usually when working in multi team environment, and/or when you need to use mult
 
 `git log` is not really useful with that amount of noise you get by changing one simple *bool*.
 
-### Proposed project structure (xcconfig files, build targets, build configurations)
+## Proposed project structure (xcconfig files, build targets, build configurations)
 
-- use **xcconfig files** for project build settings and for custom user defined keys
+- use __xcconfig files__ for project build settings and for custom user defined keys
 	- custom defined user keys (e.g. GOOGLE_ANALYTICS_KEY ...)
-- use **build configurations** (default are release and debug) for different build setup's
+- use __build configurations__ (default are release and debug) for different build setup's
 	- release build
 	- qa build
 	- test build
 	- production build
-- use **target** to define a **single product**
+- use __target__ to define a __single product__
 	- it organizes the inputs into the build system
 	- the source files and instructions for processing those source files required to build that product.
 	- it usually doesn't make sense to use targets in place of of build configurations
 
-#### Configurations structure
+### Configurations structure
 
 - two targets (and a project)
 - three build configurations
@@ -145,7 +145,7 @@ PRODUCT_NAME = $(TARGET_NAME)
 ### Step 1 - targets
 
 - add new target
-	- **CMD + D**
+	- __CMD + D__
 
 ![](/img/xcconfig_tutorial/step_1.png)
 
@@ -159,12 +159,12 @@ PRODUCT_NAME = $(TARGET_NAME)
 	- select _project_
 	- _Info tab_
 	- _Configurations_
-	- always duplicate existing one (choose between **debug** and **release**)
+	- always duplicate existing one (choose between __debug__ and __release__)
 		- current use case is that the we are using our enterprise account for develop
 		but the client want's to use their account for release to the store
 		- so basically we would have to change certificates, provisioning profiles and bundle identifiers before
 		each submission. This is both cumbersome and error prone!
-		- that is why we will create copies of both **debug** and **release** build configurations
+		- that is why we will create copies of both __debug__ and __release__ build configurations
 
 ![](/img/xcconfig_tutorial/step_2.png)
 
@@ -173,20 +173,20 @@ PRODUCT_NAME = $(TARGET_NAME)
 - build settings
 	- _select project_
 		- _Build Settings_
-			- always use All and Levels
-		- Settings will be resolved from **right to left**
-			- **iOS Default - Project - Resolved**
-		- **iOS Default** - default settings defined by Apple (compiler flags, architecture etc ...)
-		- **Project** - user defined using UI
-		- **Resolved** - by combining previous two
+			- always use `All` and `Levels`
+		- Settings will be resolved from __right to left__
+			- __iOS Default - Project - Resolved__
+		- __iOS Default__ - default settings defined by Apple (compiler flags, architecture, etc...)
+		- __Project__ - user defined using UI
+		- __Resolved__ - by combining previous two
 
 ![](/img/xcconfig_tutorial/step_3.png)
 
 - select _build target_
 	- _Build Settings_
-		- always use **All** and **Levels**
-	- Settings will be resolved from **right to left**
-		- **iOS Default -> Project -> Target0 -> Resolved**
+		- always use `All` and `Levels`
+	- Settings will be resolved from __right to left__
+		- __iOS Default -> Project -> Target0 -> Resolved__
 	- same as above, only difference here is that you can define custom settings per target
 		- user profiles, bundle identifiers, user defined keys (e.g. analytics)
 
@@ -200,7 +200,7 @@ PRODUCT_NAME = $(TARGET_NAME)
 	- but manually copying keys from xcode to xcconfig files is cumbersome and error prone
 	- we will use this handy tool for automatic creation [BuildSettingsExtractor](https://github.com/dempseyatgithub/BuildSettingExtractor)
 		- just drop you xcode project on top of it, and it will _autogenerate_ all the files you need
-	- the nice thing about this tool is that it **will not do anything** to **your project**, you need to do it manually!
+	- the nice thing about this tool is that it __will not do anything__ to __your project__, you need to do it manually!
 
 ![](/img/xcconfig_tutorial/step_4.png)
 
@@ -216,17 +216,17 @@ PRODUCT_NAME = $(TARGET_NAME)
 		- _Configurations_
 			- add custom config files
 			![](/img/xcconfig_tutorial/step_5_1.png)
-	- select _project_ - _Build Settings_ (**All** + **Levels**)
+	- select _project_ - _Build Settings_ (__All__ + __Levels__)
 	![](/img/xcconfig_tutorial/step_5_2.png)
 
-	- as you can see, there is a new field **Config.file(...)**, this is our custom config file
+	- as you can see, there is a new field __Config.file(...)__, this is our custom config file
 	- but if we think about our goal to have everything inside our custom file;
 		- we don't want the UI settings to override our custom file, and if you remember, settings will be resolved from right to left, that means that UI has higher precedence than custom files.
 		- go trough the Project row and delete it, you can only edit Project row on the current level 
 			- you ony need to delete rows that have something
 			![](/img/xcconfig_tutorial/step_5_3.png)
 
-	- _select target_ - _Build Settings_ (**All** + **Levels**)
+	- _select target_ - _Build Settings_ (__All__ + __Levels__)
 	![](/img/xcconfig_tutorial/step_5_4.png)
 		- as you can see on this level there is also a new field, now we have 6 columns
 
@@ -239,19 +239,19 @@ PRODUCT_NAME = $(TARGET_NAME)
 
 ### Step 6 - custom Info.plist
 
-- after duplicating default target in step 1., **Info.plist** can get all messed up.
-	- delete newly created **Info.plist**, which is probably in the root of project
-	- copy default **Info.plist**
+- after duplicating default target in step 1., __Info.plist__ can get all messed up.
+	- delete newly created __Info.plist__, which is probably in the root of project
+	- copy default __Info.plist__
 	- rename both to something meaningful (e.g. Info - Target0.plist, Info - Target1.plist)
 	- add those file to project as you would add any other file
-	- be sure to **unselect** _Target Membership_
+	- be sure to __unselect__ _Target Membership_
 
 	![](/img/xcconfig_tutorial/step_6.png)
 
 - setup your custom files to use those
-	- open **Target0-Shared.xcconfig**
-	- find **INFOPLIST_FILE**
-	- change to **INFOPLIST_FILE = CustomConfiguration/Info - Target0.plist** (your newly created)
+	- open __Target0-Shared.xcconfig__
+	- find __INFOPLIST_FILE__
+	- change to __INFOPLIST_FILE = CustomConfiguration/Info - Target0.plist__ (your newly created)
 	- check that everything is ok by clicking on
 		- _Project_
 		- _Target_
