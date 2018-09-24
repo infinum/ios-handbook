@@ -1,6 +1,6 @@
 Usually when working in team environment, and/or when you need to use multiple configurations, _Xcode_ project settings UI can quickly get really messy, and it is hard to track changes.
 
-`git log` is not really useful with that amount of noise you get by changing one simple *bool*.
+`git log` is not really useful with that amount of noise you get by changing one simple _bool_.
 
 ## Proposed project structure (xcconfig files, build targets, build configurations)
 
@@ -317,6 +317,7 @@ __Build a project :)__
 
 ## Resources
 
+- [Sample project](/resources/Sample_xcconfig.zip)
 - [Using xcconfig files for your Xcode Project][1]
 - [Generating Xcode Build Configuration Files with BuildSettingExtractor (xcodeproj → xcconfig)][2]
 
