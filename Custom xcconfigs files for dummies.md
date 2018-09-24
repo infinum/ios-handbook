@@ -1,7 +1,5 @@
 # Project settings structure and custom xcconfigs
 
-## Intro
-
 Usually when working in multi team environment, and/or when you need to use multiple configurations, Xcode project settings UI can quickly get really messy, and it is hard to track changes.
 
 `git log` is not really useful with that amount of noise you get by changing one simple *bool*.
@@ -29,26 +27,26 @@ Usually when working in multi team environment, and/or when you need to use mult
 ```
 Configurations
 	|
-	|------------> Shared (Project settings - Inherited from xCode and custom (e.g. extra CLANG warnings))
-	|					|
-	|					|------------> Project - Shared.xcconfig
-	|					|------------> Project - Debug.xcconfig
-	|					|------------> Project - Release.xcconfig
-	|					|------------> Project - QA.xcconfig
+	|-----> Shared (Project settings - Inherited from xCode and custom (e.g. extra CLANG warnings))
+	|	|
+	|	|-----> Project - Shared.xcconfig
+	|	|-----> Project - Debug.xcconfig
+	|	|-----> Project - Release.xcconfig
+	|	|-----> Project - QA.xcconfig
 	|
-	|------------> Target0
-	|					|
-	|					|------------> Target0 - Shared.xcconfig
-	|					|------------> Target0 - Debug.xcconfig
-	|					|------------> Target0 - Release.xcconfig
-	|					|------------> Target0 - QA.xcconfig
+	|-----> Target0
+	|	|
+	|	|-----> Target0 - Shared.xcconfig
+	|	|-----> Target0 - Debug.xcconfig
+	|	|-----> Target0 - Release.xcconfig
+	|	|-----> Target0 - QA.xcconfig
 	|
-	|------------> Target1
-	|					|
-	|					|------------> Target1 - Shared.xcconfig
-	|					|------------> Target2 - Debug.xcconfig
-	|					|------------> Target3 - Release.xcconfig
-	|					|------------> Target4 - QA.xcconfig
+	|-----> Target1
+	|	|
+	|	|-----> Target1 - Shared.xcconfig
+	|	|-----> Target2 - Debug.xcconfig
+	|	|-----> Target3 - Release.xcconfig
+	|	|-----> Target4 - QA.xcconfig
 ```
 
 #### Shared
