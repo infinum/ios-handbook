@@ -55,64 +55,65 @@ Before we get to the actual generated files we'll need to cover the base protoco
 ### BaseWireframe
 
 ```swift
-enum Transition {
-    case root
-    case push
-    case present(fromViewController: UIViewController)
-}
-
 protocol WireframeInterface: class {
-    func popFromNavigationController(animated: Bool)
-    func dismiss(animated: Bool)
 }
 
 class BaseWireframe {
 
-    unowned var navigationController: UINavigationController
+    private unowned var _viewController: UIViewController
+    
+    //to retain view controller reference upon first access
+    private var _temporaryStoredViewController: UIViewController?
 
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init(viewController: UIViewController) {
+        _temporaryStoredViewController = viewController
+        _viewController = viewController
     }
 
-    func show(_ viewController: UIViewController, with transition: Transition, animated: Bool) {
-        switch transition {
-        case .push:
-            navigationController.pushViewController(viewController, animated: animated)
-        case .present(let fromViewController):
-            navigationController.viewControllers = [viewController]
-            fromViewController.present(navigationController, animated: animated, completion: nil)
-        case .root:
-            navigationController.setViewControllers([viewController], animated: animated)
-        }
-    }
 }
 
 extension BaseWireframe: WireframeInterface {
     
-    func popFromNavigationController(animated: Bool) {
-        let _ = navigationController.popViewController(animated: animated)
-    }
+}
 
-    func dismiss(animated: Bool) {
-        navigationController.dismiss(animated: animated)
+extension BaseWireframe {
+    
+    var viewController: UIViewController {
+        defer { _temporaryStoredViewController = nil }
+        return _viewController
     }
+    
+    var navigationController: UINavigationController? {
+        return viewController.navigationController
+    }
+    
+}
+
+extension UIViewController {
+    
+    func presentWireframe(_ wireframe: BaseWireframe, animated: Bool = true, completion: (()->())? = nil) {
+        present(wireframe.viewController, animated: animated, completion: completion)
+    }
+    
+}
+
+extension UINavigationController {
+    
+    func pushWireframe(_ wireframe: BaseWireframe, animated: Bool = true) {
+        self.pushViewController(wireframe.viewController, animated: animated)
+    }
+    
+    func setRootWireframe(_ wireframe: BaseWireframe, animated: Bool = true) {
+        self.setViewControllers([wireframe.viewController], animated: animated)
+    }
+    
 }
 
 ```
-The `Transition` enumeration provides three standard ways of showing a module:
+The `BaseWireframe`, as its name states, is base class for each wireframe. Each wireframe has its own instance of *view controller* and optional *navigation controller* which if infered from *view controller*. The file contains two extensions. First extension is of `UIViewController` with implementation for presenting the wireframe. Second extension is of `UINavigationController` which offers methods for navigation of wireframes: 
 
-1. setting it as a root module,
-2. pushing it on a current navigation controller and 
-3. presenting it over given view controller.
-
-The `WireframeInterface` is pretty straightforward and it's extension offers very practical out-of-the-box navigational functions which you should use whenever possible. 
-
-The `BaseWireframe`, as its name states, is base class for each wireframe. Every wireframe has its own *navigation controller*. Also, it provides default implementation for `show(_:with:animated:)` method which takes care of showing the module. Showing behaviour is controlled with `Transition` enum in these ways:
-
-1.  `.push` will push current module on wireframe's *navigation controller*,
-2.  `.present` will first embed given *view controller* as an initial view controller on wireframe's *navigation controller* and then it will present *navigation controller* over `fromViewController`, and
-3.  `.root` will make given *view controller* as an initial view controller on wireframe's *navigation controller* (useful when setting current module as root view controller on `UIWindow`).
-
+* pushing the wireframe on stack and
+* setting the wireframe as root wireframe of *navigation controller*
 
 ### ViewInterface
 
@@ -194,20 +195,15 @@ final class LoginWireframe: BaseWireframe {
 
     // MARK: - Module setup -
 
-    func configureModule(with viewController: LoginViewController) {
+    init() {
+        let moduleViewController = _storyboard.instantiateViewController(ofType: LoginViewController.self)
+        super.init(viewController: moduleViewController)
+        
         let interactor = LoginInteractor()
-        let presenter = LoginPresenter(wireframe: self, view: viewController, interactor: interactor)
-        viewController.presenter = presenter
+        let presenter = LoginPresenter(wireframe: self, view: moduleViewController, interactor: interactor)
+        moduleViewController.presenter = presenter
     }
 
-    // MARK: - Transitions -
-
-    func show(with transition: Transition, animated: Bool = true) {
-        let moduleViewController = _storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        configureModule(with: moduleViewController)
-
-        show(moduleViewController, with: transition, animated: animated)
-    }
 }
 
 // MARK: - Extensions -
@@ -219,18 +215,23 @@ extension LoginWireframe: LoginWireframeInterface {
 }
 ```
 
-In `configureModule` method, as its name states, should be implemented all logic for initial module configuration. Probably you are asking yourself now: _Configure with what?_. Since this is automatically generated class, we cannot know for what will you use it, so, it is on you to define all needed data models in interactor and/or presenter initializers, and also to define them in `configureModule` and `show` methods. 
+In `init` method should be implemented all initialisation logic for module. Since this is automatically generated class, we cannot know for what will you use it, so, it is on you to define all needed data models in initializer. 
 
-Let say, for showing bank account details module you'll probably need a bank account model or its `ID` so instantiating and showing module would look something like this:
+The `navigate(to:)` method will implement logic for navigating to other modules.
+
+Let say, for showing bank account details module you'll probably need a bank account model or its `ID` so instantiating and showing a module in `navigate(to:)` method would look something like this:
 
 ```swift
 ...
-let wireframe = BankAccountDetailsWireframe(navigationController: navigationController)
-wireframe.show(with: bankAccount, transition: .push)
+func navigate(to option: BankAccountNavigationOption) {
+	switch option {
+		case .bankAccountDetails(let bankAccount):
+			let bankAccountDetailsWF = BankAccountDetailsWireframe(bankAccount: bankAccount)
+			navigationController?.pushWireframe(bankAccountDetailsWF)
+	}
+}
 ...
 ```
-
-The `navigate(to:)` method will implement logic for navigating to other modules, more detail on this in an example a bit later.
 
 ### Presenter
 
@@ -315,20 +316,15 @@ final class HomeWireframe: BaseWireframe {
 
     // MARK: - Module setup -
 
-    func configureModule(with viewController: HomeViewController) {
+    init() {
+        let moduleViewController = _storyboard.instantiateViewController(ofType: HomeViewController.self)
+        super.init(viewController: moduleViewController)
+        
         let interactor = HomeInteractor()
-        let presenter = HomePresenter(wireframe: self, view: viewController, interactor: interactor)
-        viewController.presenter = presenter
+        let presenter = HomePresenter(wireframe: self, view: moduleViewController, interactor: interactor)
+        moduleViewController.presenter = presenter
     }
 
-    // MARK: - Transitions -
-
-    func show(with transition: Transition, animated: Bool = true) {
-        let moduleViewController = _storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        configureModule(with: moduleViewController)
-
-        show(moduleViewController, with: transition, animated: animated)
-    }
 }
 
 // MARK: - Extensions -
@@ -338,12 +334,11 @@ extension HomeWireframe: HomeWireframeInterface {
     func navigate(to option: HomeNavigationOption) {
         switch option {
         case .login(let userAccount):
-            let wireframe = LoginWireframe(navigationController: navigationController)
-            wireframe.show(with: userAccount, transition: .push)
-        case .register:
-            let moduleNavigationController = UINavigationController()
-            let wireframe = RegisterWireframe(navigationController: moduleNavigationController)
-            wireframe.show(with: .present(fromViewController: self.navigationController!))
+            let loginWF = LoginWireframe(userAccount: userAccount)
+            navigationController?.pushWireframe(loginWF)
+        case .register:            
+            let registerWF = RegisterWireframe()
+            viewController.presentWireframe(registerWF, animated: True)
         }
     }
 }
