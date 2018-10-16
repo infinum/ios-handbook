@@ -225,9 +225,9 @@ Let say, for showing bank account details module you'll probably need a bank acc
 ...
 func navigate(to option: BankAccountNavigationOption) {
     switch option {
-        case .bankAccountDetails(let bankAccount):
-            let bankAccountDetailsWF = BankAccountDetailsWireframe(bankAccount: bankAccount)
-            navigationController?.pushWireframe(bankAccountDetailsWF)
+    case .bankAccountDetails(let bankAccount):
+        let bankAccountDetailsWF = BankAccountDetailsWireframe(bankAccount: bankAccount)
+        navigationController?.pushWireframe(bankAccountDetailsWF)
     }
 }
 ...
