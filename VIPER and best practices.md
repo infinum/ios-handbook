@@ -215,7 +215,7 @@ extension LoginWireframe: LoginWireframeInterface {
 }
 ```
 
-In `init` method should implement all initialisation logic for module. Since this is automatically generated class, we cannot know for what will you use it, so, it is on you to define all needed data models in initializer. 
+The `init` method should implement all initialisation logic for module. Since this is automatically generated class, we cannot know for what will you use it, so, it is on you to define all needed data models in initializer. 
 
 The `navigate(to:)` method will implement logic for navigating to other modules.
 
