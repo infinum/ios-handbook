@@ -110,7 +110,7 @@ extension UINavigationController {
 }
 
 ```
-The `BaseWireframe`, as its name states, is base class for each wireframe. Each wireframe has its own instance of *view controller* and optional *navigation controller* which if infered from *view controller*. The file contains two extensions. First extension is of `UIViewController` with implementation for presenting the wireframe. Second extension is of `UINavigationController` which offers methods for navigation of wireframes: 
+The `BaseWireframe`, as its name states, is base class for each wireframe. Each wireframe has its own instance of *view controller*. *Navigation controller* is a computed property infered from *view controller*. The file contains two extensions. First extension is of `UIViewController` with implementation for presenting the wireframe. Second extension is of `UINavigationController` which offers methods for navigation of wireframes:
 
 * pushing the wireframe on stack and
 * setting the wireframe as root wireframe of *navigation controller*
@@ -215,7 +215,7 @@ extension LoginWireframe: LoginWireframeInterface {
 }
 ```
 
-In `init` method should be implemented all initialisation logic for module. Since this is automatically generated class, we cannot know for what will you use it, so, it is on you to define all needed data models in initializer. 
+In `init` method should implement all initialisation logic for module. Since this is automatically generated class, we cannot know for what will you use it, so, it is on you to define all needed data models in initializer. 
 
 The `navigate(to:)` method will implement logic for navigating to other modules.
 
