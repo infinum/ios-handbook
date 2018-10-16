@@ -338,7 +338,7 @@ extension HomeWireframe: HomeWireframeInterface {
             navigationController?.pushWireframe(loginWF)
         case .register:            
             let registerWF = RegisterWireframe()
-            viewController.presentWireframe(registerWF, animated: True)
+            viewController.presentWireframe(registerWF, animated: true)
         }
     }
 }
