@@ -31,6 +31,7 @@ In some simpler cases you won't need an Interactor for a certain module, which i
 Wireframes, Presenters and Interactors inherit PONSOs (Plain Old NSObject). Views inherit UIViewControllers. All protocols should be located in one file called *Interfaces*.
 
 ## Communication and references
+
 The following pictures shows relationships and communication for one module.
 
 ![iOS VIPER GRAPH](/img/ios_viper_graph.jpg "iOS VIPER GRAPH")
@@ -38,9 +39,9 @@ The following pictures shows relationships and communication for one module.
 * The View contains a *presenter* property/var with a strong reference. It communicates with that Presenter via a *DogViewDelegate* protocol. This protocol defines methods which delegate event responses to the presenter, such as taps on buttons and table cells. As such their names should begin with verbs like *should...*, *did...*, *will...*, and so on.
 * The Presenter contains a *view* property/var with a weak reference. It communicates with that View via a *DogViewInterface* protocol.
 * The Presenter contains an *interactor* property/var with a strong reference. It communicates with that Interactor via a *DogInteractorInterface* which defines methods in which the Interactor passes the data to the Presenter via closures.
-* The Presenter contains a *wireframe* property/var with a strong reference. It communicates with that Wireframe via a protocol.
+* The Presenter contains a *wireframe* property/var with a strong reference. It communicates with that wireframe via a protocol.
 
-Although the strong/weak references might appear a bit counter-intuitive they are organised this way to assure all module components are not deallocated from memory as long as one of its Views is active.
+Although the strong/weak references might appear a bit counter-intuitive they are organized this way to assure all module components are not deallocated from memory as long as one of its Views is active.
 
 The creation and setup of module components is done in it's Wireframe. The creation of a new Wireframe is almost always done in the previous Wireframe. More details on this later in the actual code.
 
@@ -62,7 +63,7 @@ class BaseWireframe {
 
     private unowned var _viewController: UIViewController
     
-    //to retain view controller reference upon first access
+    // To retain view controller reference upon first access
     private var _temporaryStoredViewController: UIViewController?
 
     init(viewController: UIViewController) {
@@ -110,7 +111,8 @@ extension UINavigationController {
 }
 
 ```
-The `BaseWireframe`, as its name states, is base class for each wireframe. Each wireframe has its own instance of *view controller*. *Navigation controller* is a computed property infered from *view controller*. The file contains two extensions. First extension is of `UIViewController` with implementation for presenting the wireframe. Second extension is of `UINavigationController` which offers methods for navigation of wireframes:
+
+The `BaseWireframe`, as its name states, is base class for each wireframe. Each wireframe has its own instance of *view controller*. *Navigation controller* is a computed property inferred from *view controller*. The file contains two extensions. First extension is of `UIViewController` with implementation for presenting the wireframe. Second extension is of `UINavigationController` which offers methods for navigation of wireframes:
 
 * pushing the wireframe on stack and
 * setting the wireframe as root wireframe of *navigation controller*
@@ -182,7 +184,7 @@ protocol LoginInteractorInterface: InteractorInterface {
 ```
 
 This interface file will provide you with a nice overview of your entire module at one place.
-The `LoginNavigationOption` enum is used for all navigation options which envolve creating a new wireframe and navigating to it in which ever way possible. Since this is an action which almost always envolves some user interaction on the view which then notifys the presenter which then just notifies the wireframe to perform the navigation - this is generalised and generated automatically for each module. Well provide a more detailed example for this a bit later.
+The `LoginNavigationOption` enum is used for all navigation options which envolve creating a new wireframe and navigating to it in which ever way possible. Since this is an action which almost always envolves some user interaction on the view which then notifies the presenter which just notifies the wireframe to perform the navigation - this is generalized and generated automatically for each module. Well provide a more detailed example for this a bit later.
 
 ### Wireframe
 
@@ -215,7 +217,7 @@ extension LoginWireframe: LoginWireframeInterface {
 }
 ```
 
-The `init` method should implement all initialisation logic for module. Since this is automatically generated class, we cannot know for what will you use it, so, it is on you to define all needed data models in initializer. 
+The `init` method should implement all initialization logic for module. Since this is automatically generated class, we cannot know for what will you use it, so, it is on you to define all needed data models in initializer. 
 
 The `navigate(to:)` method will implement logic for navigating to other modules.
 
@@ -240,13 +242,13 @@ final class LoginPresenter {
 
     // MARK: - Private properties -
 
-    fileprivate weak var _view: LoginViewInterface?
-    fileprivate var _interactor: LoginInteractorInterface
-    fileprivate var _wireframe: LoginWireframeInterface
+    private unowned let _view: LoginViewInterface?
+    private let _interactor: LoginInteractorInterface
+    private let _wireframe: LoginWireframeInterface
 
     // MARK: - Lifecycle -
 
-    init (wireframe: LoginWireframeInterface, view: LoginViewInterface, interactor: LoginInteractorInterface) {
+    init(wireframe: LoginWireframeInterface, view: LoginViewInterface, interactor: LoginInteractorInterface) {
         _wireframe = wireframe
         _view = view
         _interactor = interactor
@@ -266,7 +268,7 @@ This is the skeleton of a *presenter* which will get a lot more meat on it once 
 ```swift
 final class LoginViewController: UIViewController {
 
-	// MARK: - Public properties -
+    // MARK: - Public properties -
 
     var presenter: LoginPresenterInterface!
 
@@ -282,7 +284,8 @@ final class LoginViewController: UIViewController {
 extension LoginViewController: LoginViewInterface {
 }
 ```
-Like the *presenter* above, this is only a skeleton which you will populate with IBoutlets, animations and so on.
+
+Like the *presenter* above, this is only a skeleton which you will populate with IBOutlets, animations and so on.
 
 ### Interactor
 
@@ -293,9 +296,11 @@ final class LoginInteractor {
 extension LoginInteractor: LoginInteractorInterface {
 }
 ```
+
 Once again, this is only a skeleton which you will, in most cases, use to proxy API services, database services, etc.
 
 ### Example
+
 Here is an example of a wireframe for a home screen module which uses two types of navigation options: `.login` which takes an `UserAccount` instance and `.register`. Notice how the navigation option enum is handled in the `navigate(to:)` method, this is the preferred way of using it.
 
 ```swift
@@ -319,7 +324,7 @@ final class HomeWireframe: BaseWireframe {
     init() {
         let moduleViewController = _storyboard.instantiateViewController(ofType: HomeViewController.self)
         super.init(viewController: moduleViewController)
-        
+
         let interactor = HomeInteractor()
         let presenter = HomePresenter(wireframe: self, view: moduleViewController, interactor: interactor)
         moduleViewController.presenter = presenter
@@ -334,11 +339,11 @@ extension HomeWireframe: HomeWireframeInterface {
     func navigate(to option: HomeNavigationOption) {
         switch option {
         case .login(let userAccount):
-            let loginWF = LoginWireframe(userAccount: userAccount)
-            navigationController?.pushWireframe(loginWF)
-        case .register:            
-            let registerWF = RegisterWireframe()
-            viewController.presentWireframe(registerWF, animated: true)
+            let wireframe = LoginWireframe(userAccount: userAccount)
+            navigationController?.pushWireframe(wireframe)
+        case .register:
+            let wireframe = RegisterWireframe()
+            viewController.presentWireframe(wireframe, animated: true)
         }
     }
 }
@@ -350,7 +355,6 @@ All resources should be located in dedicated *Resources* folder. This folder sho
 
 Sometimes you'll need to be handling temp mock resources. Don't put these files into your standard *.xcassets* because it's easy to lose track of them that way and leave them in production! Instead create a separate *.xcassets* files called *temp.xcassets*, this will make it very easy for you to locate and delete these items later. Also delete each of these mock files the moment you don't need them any more since there is no point in keeping them and they increase build file size.
 
-
 ### Useful links
 
 * [Architecting iOS Apps with VIPER][3]
@@ -359,7 +363,6 @@ Sometimes you'll need to be handling temp mock resources. Don't put these files 
 
 * [VIPER Module Generator][1]
 * [iOS project generator][2]
-
 
 [1]:    https://github.com/infinum/iOS-VIPER-Xcode-Templates
 [2]:    https://bitbucket.org/infinum_hr/ios-project-generator
