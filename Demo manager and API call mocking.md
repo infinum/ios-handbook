@@ -6,8 +6,8 @@ It would get tiring quickly, so we've decided to make something better - a `demo
 
 Its responsibility should be two things:
 
-1. hooking onto every API call your application makes,
-2. filtering those API calls in the following way:
+* hooking onto every API call your application makes,
+* filtering those API calls in the following way:
     * if it should be mocked -> read the response from stored file and forward it to the interactor
     * if it shouldn't be mocked -> make an API call to the server
 
