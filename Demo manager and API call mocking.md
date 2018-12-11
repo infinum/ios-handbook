@@ -8,8 +8,8 @@ Its responsibility should be two things:
 
 1. hooking onto every API call your application makes,
 2. filtering those API calls in the following way:
-    - if it should be mocked -> read the response from stored file and forward it to the interactor
-    - if it shouldn't be mocked -> make an API call to the server
+    * if it should be mocked -> read the response from stored file and forward it to the interactor
+    * if it shouldn't be mocked -> make an API call to the server
 
 For API call mocking we'll be using [OHTTPStubs](https://github.com/AliSoftware/OHHTTPStubs), a library designed to stub network requests by using method swizzling. It works with `NSURLConnection`, `NSURLSession`, `AFNetworking`, `Alamofire` or any networking frameworks that use Cocoa's URL Loading System, so it's perfect for our use case.
 
