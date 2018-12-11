@@ -8,8 +8,8 @@ Its responsibility should be two things:
 
 * hooking onto every API call your application makes,
 * filtering those API calls in the following way:
-    * if it should be mocked -> read the response from stored file and forward it to the interactor
-    * if it shouldn't be mocked -> make an API call to the server
+  * if it should be mocked -> read the response from stored file and forward it to the interactor
+  * if it shouldn't be mocked -> make an API call to the server
 
 For API call mocking we'll be using [OHTTPStubs](https://github.com/AliSoftware/OHHTTPStubs), a library designed to stub network requests by using method swizzling. It works with `NSURLConnection`, `NSURLSession`, `AFNetworking`, `Alamofire` or any networking frameworks that use Cocoa's URL Loading System, so it's perfect for our use case.
 
@@ -154,6 +154,7 @@ This method is where the magic happens. It calls OHTTPStubs's `stub()` method wh
 
 If the condition closure returns `true`, the response closure will be executed and the API call will not be passed throught to the server, otherwise it will be executed normally.
 In our implementation, we check whether several parameters of the API call are included to determine whether we should mock it:
+
 * API call URL is the only required parameter in our `stubResponse()` implementation, and it should match the one in the call itself
 * queryParamPart - optional parameter specifying the specific query parameter we need in the API call
 * requiredHeaderValues - optional array of header values that are required to be in the call, otherwise it won't be mocked
