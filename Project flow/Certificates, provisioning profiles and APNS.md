@@ -1,93 +1,93 @@
 ## Certificates
 
-Certificates are part of the app development process called Code Signing.
+Certificates are a part of the app development process called code signing.
 
-When you registered as a developer for the iOS Developer Program you received an option to create a personal development certificate.
+When you registered as a developer for the iOS Developer Program, you were offered an option to create a personal development certificate.
 
-If you haven't created it, the process is pretty straightforward.
+If you haven't created it then, you can do it now. The process is pretty straightforward:
 
 1. Open up the Keychain Access app
-2. Under menu select Keychain Access -> Certificate Assistant -> Request a Certificate from the Certificate Authority
-3. In the Certificate Assistant dialog populate the neccesary fields and choose to save the request to disk
-4. Open up your favorite browser and go to the [developer.apple.com][1]
+2. From the menu, select Keychain Access -> Certificate Assistant -> Request a Certificate from the Certificate Authority
+3. Populate the necessary fields in the Certificate Assistant dialog and choose to save the request to disk
+4. Go to [developer.apple.com][1] in your favorite browser
 5. Log in to the Member Center  
-6. Go to the Certificates, Identifiers & Profiles -> Certificates
-7. Under Certificates - Development choose to add a new development profile (hint: the magical plus sign [+])
-8. In the certificate creation dialog choose iOS app development for the certificate type, and click continue until "Generate" section in which you upload the "certificate signing request" file which you have generated in the step #3
+6. Go to Certificates, Identifiers & Profiles -> Certificates
+7. Under Certificates—Development, choose to add a new development profile (hint: the magic plus sign [+])
+8. In the certificate creation dialog, choose iOS app development for the certificate type and click continue until you get to the "Generate" section. Upload the "certificate signing request" file which you generated in step #3 in this section.
 9. The last step is downloading and opening the generated certificate file
 10. Check your Keychain app for your personal ADP certificate!
 
-It can be seen in the Keychain app under "My Certificates" section.
+You can find it in the Keychain app under the "My Certificates" section.
 
 ![Personal certificate][image-1]
 
-The main part of the certificate is your public/private key pair with which you guarantee that the apps are truly developed/distributed by you.
+The main part of the certificate is your public/private key pair, which is a guarantee that the apps are truly developed/distributed by you.
 
-This is of key importance when distributing the apps, no matter whether the distribution target is App store or In-House distribution.
+This is of key importance for app distribution, no matter whether the distribution target is the App Store or in-house.
 
-We at Infinum have two different Apple Developers Program accounts, one for App store distribution (Infinum d.o.o) and the other one, enterprise account (Infinum D.O.O.), for In-House distribution.
+We at Infinum have two different Apple Developer Program accounts—one for App Store distribution (Infinum d.o.o), and the other one, the enterprise account (Infinum D.O.O.), for in-house distribution.
 
 ## Provisioning profiles
 
-To understand the provisioning profiles there are few more things to knowhow.
+To understand provisioning profiles, there are few more things to know how to do.
 
 ### App ID
 
-The app id uniquely identifies the app among all other apps. The App ID string contains two parts separated by a period (.)—an App ID Prefix that is defined as your Team ID by default and an App ID Suffix that is defined as a Bundle ID search string.
+The App ID uniquely identifies the app among all other apps. The App ID string contains two parts separated by a period (.)—an App ID prefix that is defined as your Team ID by default, and an App ID suffix that is defined as a Bundle ID search string.
 
-Bundle ID is created following the reversed URI convention. For app named "My App" the bundle id could be defined as com.infinum.my-app
+The Bundle ID is created following the reversed URI convention. For an app named "My App", the Bundle ID could be defined as com.infinum.my-app.
 
 ### Device UDID
 
-To run the development app on the device, the device should be addded to the developer's portal also. Device UDID is the identifier which, like App ID for apps, uniquely identifies the device.
+To run the development app on a device, the device should also be added to the developer portal. The Device UDID is an identifier that uniquely identifies the device, just like the App ID identifies apps.
 
-### Provisioning profile sumup
+### Provisioning profile sum-up
 
-The provisiong profile binds the App ID to the device UDID(s) and Code Signing identity and enables us to run or install the apps on the devices with UDIDs that are added to the developers portal.
+The provisioning profile binds the App ID to the device UDID(s) and Code Signing identity, and enables us to run or install the apps on devices with UDIDs that are added to the developer portal.
 
-When you create a provisioning profile, you're basically associating the iOS devices you have listed in the Provisioning Portal with the certificate signed by Apple in the previous step. The result of that is a .mobileprovision file, that is used during the compilation process of an iOS app, and also needs to be deployed to the device. To install this provisioning profile, simply download it and double-click it: XCode will automatically add it to the list of provisioning profiles in the Organizer.
+When you create a provisioning profile, you're basically associating the iOS devices you have listed in the Provisioning Portal with the certificate signed by Apple in the previous step. The result of that is a .mobileprovision file, that is used during the compilation process of an iOS app, and also has to be deployed to the device. To install this provisioning profile, simply download it and double-click it: XCode will automatically add it to the list of provisioning profiles in the Organizer.
 
 ### Provisioning profile types
 
-When describing the provisioning profiles types there are a few things that should be kept in mind. There is a difference between a regular ADP and the enterprise one (ADEP). As the enterprise one is used for In-House development only the provisioning profiles types which can be generated are iOS development, Ad Hoc and In House.
+There are a few things that should be kept in mind when describing provisioning profile types. There is a difference between a regular ADP and the enterprise one (ADEP). As the enterprise one is used for in-house development only, the provisioning profile types that can be generated are iOS development, ad hoc and in-house.
 
-#### In House distribution
+#### In-house distribution
 
-In House distribution is a way of distributing the apps apart from the App Store. As we have both the ADP and ADEP, this kind of distribution is commonly used for sending test builds to the clients. Prerequisites in the developer's portal are:
+In-house distribution is another way to distribute apps besides the App Store. As we have both the ADP and ADEP, this kind of distribution is commonly used for sending test builds to the clients. Prerequisites in the developer portal are:
 
 1. generated App ID
-2. generated Distribution provisioning profile (select In House distribution when prompted)
+2. generated Distribution Provisioning Profile (select in-house distribution when prompted)
 3. provisioning profile downloaded, opened in XCode
-4. In the Build Settings under Code Signing select the created provisioning profile under Release section
+4. In the Build Settings, under Code Signing, select the created provisioning profile under the Release section
 
-#### Ad Hoc
+#### Ad hoc
 
-For the regular ADP the provisioning profile types which can be chosen are Development, Ad Hoc and App Store.
+For the regular ADP, the provisioning profile types which can be chosen are: development, ad hoc and App Store.
 
-Ad Hoc profiles are used to distribute the app for the devices which are chosen while generating the certificate. So the devices on which the app should run are predetermined and should be pre-added to the developers portal.
+Ad hoc profiles are used to distribute the app for the devices which are chosen while generating the certificate. So, the devices on which the app should run are predetermined, and should be pre-added to the developer portal.
 
-Another common way of sending the builds directly to clients can be TestFlight for which the App Store provisioning profile type is used, and the build is directly uploaded to the app store.
+TestFlight is another common way of sending the builds directly to clients. You use the App Store provisioning profile type, and the build is uploaded directly to the App Store.
 
 ## APNS
 
-For the iOS platform push notifications are available through the APNS server. To communicate with the APNS server the SSL certificates are also needed. They can be generated using the developer's portal under the section "Certificates". You will probably need both the development and the production APNS certificates.
+For the iOS platform, push notifications are available through the APNS server. You also need SSL certificates to communicate with the APNS server. They can be generated using the developer portal under the "Certificates" section. You will probably need both the development and the production APNS certificates.
 
 
 ![APNS Dev certificate][image-2]
 
 
-The attached image displays the generation of an APNS development certificate. After continuing the App ID for the target app should be selected and the certificate signing request should be uploaded; again the process is the same as with generating personal certificate:
+The attached image displays the generation of an APNS development certificate. After continuing, you should select the App ID for the target app and upload the certificate signing request. Again, the process is the same as with generating a personal certificate:
 
 1. Open up the Keychain Access app
-2. Under menu select Keychain Access -> Certificate Assistant -> Request a Certificate from the Certificate Authority
-3. In the Certificate Assistant dialog populate necessary fields and choose to save the request to disk
-4. Upload the CSR to developers portal
+2. From the menu, select Keychain Access -> Certificate Assistant -> Request a Certificate from the Certificate Authority
+3. Populate the necessary fields in the Certificate Assistant dialog and choose to save the request to disk
+4. Upload the CSR to the developer portal
 
-After completing the CSR upload save the APNS SSL certificate to disk (it can be seen in the Keychain App).
+After completing the CSR upload, save the APNS SSL certificate to disk (you can find it in the Keychain App).
 
-Generating APNS Production certificates is very similar, all you have to do is choose "Production" under "Certificates" and in the "Select type" step choose Apple Push Notification service SSL (Production). The following steps are same as for the Sandbox SSL certificate generation.
+Generating APNS Production certificates is very similar. All you have to do is choose "Production" under "Certificates" and choose the Apple Push Notification service SSL (Production) in the "Select type" step. The following steps are the same as for the Sandbox SSL certificate generation.
 
-The certificates will be used by the API which will be responsible for initiating push notification messages.
+The certificates will be used by the API, which will be responsible for initiating push notification messages.
 
 [1]:	https://developer.apple.com
 
