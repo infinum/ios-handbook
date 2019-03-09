@@ -1,13 +1,13 @@
-## Prequisites
+## Prerequisites
 
-### Main project - DEBUG flag
+### Main project—DEBUG flag
 
-- for every __debug__ target, or scheme in your main project
+- for every __debug__ target or scheme in your main project
 - `OTHER_SWIFT_FLAGS = "-D" "DEBUG"`
 
-### Pods project - TRACE RESOURCES flag
+### Pods project—TRACE RESOURCES flag
 
-- add to you `Podfile`, replace config name with your config
+- add to your `Podfile`, replace config name with your config
 
 ```ruby
 post_install do |installer|
@@ -23,13 +23,13 @@ post_install do |installer|
 end
 ```
 
-### Third party stuff
+### Third-party stuff
 
 - `SwiftyBeaver` pod, to make logging nicer
 
 ## Implementation
 
-### View Controller based tracking (preferred way)
+### View controller-based tracking (preferred way)
 
 - use this view controller as your base class
 
@@ -104,9 +104,9 @@ class ViewController: UIViewController {
 }
 ```
 
-### Periodically based sampling
+### Periodic sampling
 
-- basically you put this part of the code in `AppDelegate` or in any other class
+- basically, you put this part of the code in `AppDelegate` or any other class
 
 ```swift
 _ = Observable<Int>
@@ -118,10 +118,10 @@ _ = Observable<Int>
 
 ## Testing
 
-- check out the comments inside base `ViewController` above ;)
-    - go back and forth on view controller that you wish to test and observer `Resources count`
-    - if discrepancy is too big, or if count is never dropping after `dealloc`, you probably have a leak
-    - also it would be good practice to periodically use `Xcode's` memory debugger
+- check out the comments inside the `ViewController` base above ;)
+    - go back and forth on the view controller that you wish to test and observe `Resources count`
+    - if the discrepancy is too big, or if the count never drops after `dealloc`, you probably have a leak
+    - also, it would be good practice to periodically use `Xcode's` memory debugger
 
 ## Troubleshooting (if you have memory leaks)
 
