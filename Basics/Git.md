@@ -4,11 +4,11 @@
 
 **Thou shalt use 2FA everywhere where we use Git!**
 
-## 2. Git flow
+## 2. GitFlow
 
-This section describes only basics of the Gitflow workflow. Check detailed description [here][1] if you want more information.
+This section describes only the basics of the GitFlow workflow. Check out a detailed description [here][1] if you want more information.
 
-Basic idea how to use Gitflow workflow:
+The basic idea of using GitFlow workflow:
 
 ![Gitflow workflow][image-2]
 
@@ -16,35 +16,35 @@ Basic idea how to use Gitflow workflow:
 
 #### 2.1.1. Master
 
-**Master** branch is used to represent your App Store builds. Each commit in the master branch represents one app version in the App Store, and each one of them is tagged with the version in the App Store. Use `git tag <app-store-version-number> && git push --tags` to create a new tag.
+The **Master** branch is used to represent your App Store builds. Each commit in the master branch represents one app version in the App Store, and each one of them is tagged with the version in the App Store. Use `git tag <app-store-version-number> && git push --tags` to create a new tag.
 
 #### 2.1.3. Develop
 
-**Develop** is the lifeline of your project. You’ll want this branch up to date at all times, and this is the branch you should branch from almost always when adding your feature, enhancement and other branches.
+**Develop** is the lifeline of your project. You’ll want this branch up-to-date at all times, and this is the branch you should branch from almost every time you add a feature, enhancement, and other branches.
 
-Once your feature branch is ready, tested and working, you submit a pull request here.
+Once your feature branch is ready, tested, and working, you submit a pull request here.
 
 #### 2.1.4. Feature branches
 
-**Feature branches** are what you’ll be doing on the project. Try to make your branch as atomic as possible, and keep only as little change as possible in each of them. These are new features, enhancements, fixes etc.
+**Feature branches** are what you’ll be doing on the project. Try to make your branches as atomic as possible, and keep only as little change as possible in each of them. These are new features, enhancements, fixes, etc.
 
-At one point, only one developer should be actively working on one of these branches.
+At any given point in time, only one developer should be actively working on one of these branches.
 
-Once more, only, and only when everything is tested working and not breaking the project, you should submit a pull request to *develop*, and once it’s approved, close your branch down and start working on a new one.
+Once more, you should submit a pull request to *develop* only when everything is tested, working, and not breaking the project. Once it has been approved, close your branch down and start working on a new one.
 
-## 3. Git flow for small projects
+## 3. GitFlow for small projects
 
-In order to keep things rolling faster, small projects still use git flow, but a very limited one.
+In order to keep things rolling faster, small projects also use GitFlow, but to a very limited extent.
 
-For one man projects, you will only have **master** and **develop** branches, and commit your code directly to develop, while the master stays the same.
+For one-man projects, you will have only the **master** and **develop** branches, and will commit your code directly to develop, while the master stays the same.
 
-If there are more developers than one, a standard git flow model is the kind you’re looking.
+If there is more than one developer, you'll need a standard GitFlow model.
 
 ## 4. Tools (optional)
 
-Although you don’t need any tools to be used with Gitflow workflow, and may prefer sticking to the workflow manually, you still have an option to add commands for commonly used workflows to your console/terminal.
+Although you don’t need to use any tools with GitFlow workflow, and may prefer sticking to the workflow manually, you still have an option to add commands to your console/terminal for commonly used workflows.
 
-If you want to use git with Gitflow commands and terms, you might find useful this tool: [git-flow][2]
+If you want to use Git with Gitflow commands and terms, you might find the [git-flow][2] tool useful.
 
 [1]:	https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow
 [2]:	https://github.com/nvie/gitflow
