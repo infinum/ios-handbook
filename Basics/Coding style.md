@@ -67,7 +67,7 @@ extension Person : CustomStringConvertible {
 
 ## Naming
 
-* Names should be written in CamelCase.
+* Names should be written in lower camel case.
 * __Be mindful about grammar!__
 * Names should be meaningful and compact.
 
