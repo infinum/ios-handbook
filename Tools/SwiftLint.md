@@ -1,13 +1,13 @@
-SwiftLint checks the source code for programmatic as well as stylistic errors. This is most helpful in identifying some common and uncommon mistakes that are made during coding. SwiftLint is based on guidelines from Swift style guide. Simply saying it can just helps us with:
+SwiftLint checks the source code for programmatic as well as stylistic errors. This is most helpful in identifying some common and uncommon mistakes that are made during coding. SwiftLint is based on guidelines from the Swift style guide. To put it simply, it can help us with:
 
 * maintaining a higher level of code discipline and
-* increasing the reliability of the code.
+* increasing the code's reliability.
 
 ## Installation
 
 You can easily install SwiftLint using Homebrew: `$ brew install swiftlint`.
 
-If you have already installed SwiftLint, you can update it to the latest version using the command: `$ brew upgrade swiftlint`
+If you have already installed SwiftLint, you can update it to the latest version using the `$ brew upgrade swiftlint` command.
 
 *NOTE: Please update Homebrew to the latest version before installing and updating SwiftLint:* `$ brew update`.
 
@@ -27,15 +27,15 @@ fi
 
 ![iOS SwiftLint Run script](/img/iOS-SwiftLint-script.jpg)
 
-And thats it, now SwiftLint will run with the default settings.
+And that's it. Now SwiftLint will run with default settings.
 
 ## Configuration file
 
 You can find all rules by running `$ swiftlint rules`.
 
-You have the possibility to control which rule is disabled/enabled and to set thresholds for warnings and errors for a given rule, just create a `.swiflint.yml` file and add it to your project root directory.
+You have the possibility to control which rule is disabled/enabled and set thresholds for warnings and errors for a given rule. Just create a `.swiflint.yml` file and add it to your project root directory.
 
-To disable a rule you add the following to your .yml file:
+To disable a rule, add the following to your .yml file:
 
 ```yaml
 disabled_rules: # rule identifiers to exclude from running
@@ -44,7 +44,7 @@ disabled_rules: # rule identifiers to exclude from running
   - type_name
 ```
 
-To customize a rule thresholds for warnings and errors you can add one of the following:
+To customize a rule threshold for warnings and errors, you can add one of the following:
 
 ```yaml
 force_unwrapping: warning
@@ -60,7 +60,7 @@ file_length:
   error: 1200
 ```
 
-You can also exclude some parts of your project like Pods, so SwiftLint won't check them:
+You can also exclude some parts of your project, such as Pods, so SwiftLint won't check them:
 
 ```yaml
 excluded: # paths to ignore during linting. Takes precedence over `included`.
@@ -91,7 +91,7 @@ let noWarning :String = "" // No warning about colons immediately after variable
 let hasWarning :String = "" // Warning generated about colons immediately after variable names
 ```
 
-It's also possible to modify a disable or enable command by appending `:previous`, `:this` or `:next` for only applying the command to the previous, this (current) or next line respectively.
+It's also possible to modify a disable or enable command by appending `:previous`, `:this`, or `:next` to apply the command only to the previous, this (current), or next line.
 
 For example:
 
@@ -108,15 +108,15 @@ let noWarning3 = NSNumber() as! Int
 
 ### iOS SwiftLint rules
 
-In accordance to our Swift Style Guide and our rules discussion, the configured file can be downloaded here: [SwiftLint configuration.](/resources/swiftlint.yml)
+In accordance with our Swift Style Guide and our rules discussion, the configured file can be downloaded here: [SwiftLint configuration.](/resources/swiftlint.yml)
 
 ### Xcode trailing whitespace
 
-By default, Xcode won't remove trailing whitespace if the line is empty. SwiftLint does not like that and you will probably receive some warnings for this. For future coding you should change Xcode settings and set it to automatically remove all trailing whitespace even if the line is empty.
+By default, Xcode won't remove trailing whitespace if the line is empty. SwiftLint does not like that, and you will probably receive some warnings for this. For future coding, you should change Xcode settings and set it to automatically remove all trailing whitespace even if the line is empty.
 
-![iOS Trailing whitespace](/img/iOS_xcode_trim_whitespace.png)
+![iOS trailing whitespace](/img/iOS_xcode_trim_whitespace.png)
 
-*NOTE: This will not automatically fix your SwiftLint warnings you already have, but will prevent it's happening again.*
+*NOTE: This will not automatically fix the SwiftLint warnings you've already received, but it will prevent them from repeating.*
 
-That's it. Install SwiftLint, add the configuration file to your root directory and lint up your project!
+That's it. Install SwiftLint, add the configuration file to your root directory, and lint up your project!
 
