@@ -1,24 +1,24 @@
 ## A guide to our Swift style and conventions.
 
-This is an attempt to encourage patterns that accomplish the following goals (in
+This is an attempt to encourage patterns of coding that help accomplish the following goals (in
 rough priority order):
 
-1. increased rigor, and decreased likelihood of programmer error,
+1. increased rigor and decreased likelihood of programmer error,
 2. increased clarity of intent,
-3. reduced verbosity and
+3. reduced verbosity, and
 4. fewer debates about aesthetics
 
 ## One rule to rule them all ---> **KISS** <---
 
-* Don't be a smart ass.
-* Read, understand and apply [KISS](https://en.wikipedia.org/wiki/KISS_principle).
+* Don't be a smartass.
+* Read, understand, and apply [KISS](https://en.wikipedia.org/wiki/KISS_principle).
 
-***Trivia:*** phrase coined by lead engineer of SR-71 Blackbird.
+***Trivia:*** The phrase was coined by the lead engineer of SR-71 Blackbird.
 
 ## Whitespace
 
 * Tabs, not spaces.
-* End files with a newline.
+* End files with a new line.
 * Make liberal use of vertical whitespace to divide code into logical chunks.
 * Don’t leave trailing whitespace.
 * Not even leading indentation on blank lines.
@@ -62,19 +62,19 @@ extension Person : CustomStringConvertible {
 
 ## Code segmentation
 
-* Use `MARK:` a.k.a `PRAGMA MARK:`.
+* Use `MARK:`, aka `PRAGMA MARK:`.
 * Add one empty row after `MARK`.
 
 ## Naming
 
-* Names should be written in camelCase.
+* Names should be written in lower camel case.
 * __Be mindful about grammar!__
 * Names should be meaningful and compact.
 
 ## Constants
 
-* You should use structs to define your constants. You can even define multiple substructures to break your contants in logical sections.
-* Struct's constants are written in lowercase.
+* You should use structs to define your constants. You can even define multiple substructures to break your constants into logical sections.
+* The struct's constants are written in lowercase.
 
 ```swift
 // Definiton
@@ -94,7 +94,7 @@ Constants.UserDefaults.onboardingPassed
 ```
 
 ## Comments
-* Use comments when code is not self explaining:
+* Use comments when code is not self-explanatory:
 	* Rx
 	* API calls
 	* dark magic
@@ -117,13 +117,13 @@ _Rationale:_ Use US English spelling to match Apple's API.
 
 ## Closures
 * If the last argument of the function is a closure, use trailing closure syntax.
-* If it's its only argument, parentheses may be omitted.
+* If it's the only argument, parentheses may be omitted.
 * Unused closure arguments should be replaced with _ (or fully omitted if no arguments are used).
-* In most cases argument types should be inferred.
+* In most cases, argument types should be inferred.
 * If **capturing self**, always use `[weak self]`.
 * If **in doubt**, always use `[weak self]`.
 
-## Closure Expressions
+## Closure expressions
 
 ### Preferred
 
@@ -157,7 +157,7 @@ UIView.animate(withDuration: 0.3, animations: {
 
 ## Prefer `let`-bindings over `var`-bindings wherever possible
 
-Use `let foo = …` over `var foo = …` wherever possible (and when in doubt). Only use `var` if you absolutely have to (i.e. you *know* that the value might change, e.g. when using the `weak` storage modifier).
+Use `let foo = …` over `var foo = …` wherever possible (and when in doubt). Use `var` only if you absolutely have to (i.e., you *know* that the value might change, for example, when using the `weak` storage modifier).
 
 _Rationale:_ The intent and meaning of both keywords is clear, but *let-by-default* results in safer and clearer code.
 
@@ -187,13 +187,13 @@ guard n.isNumber else {
 // Use n here
 ```
 
-You can also do it with `if` statement, but using `guard` is preferred, because `guard` statement without `return`, `break` or `continue` produces a compile-time error, so exit is guaranteed.
+You can also do it with an `if` statement, but using `guard` is preferred because a `guard` statement without `return`, `break`, or `continue` produces a compile-time error, so exit is guaranteed.
 
-## Avoid Using Force-Unwrapping of Optionals
+## Avoid using force unwrapping of Optionals
 
-If you have an identifier `foo` of type `FooType?` or `FooType!`, don't force-unwrap it to get to the underlying value (`foo!`) if possible.
+If you have a `foo` identifier of the `FooType?` or `FooType!` type, don't force unwrap it to get to the underlying value (`foo!`) if possible.
 
-Instead, prefer this:
+Instead, do this:
 
 ```swift
 if let foo = foo {
@@ -210,18 +210,18 @@ Alternatively, you might want to use Swift's Optional Chaining in some of these 
 foo?.callSomethingIfFooIsNotNil()
 ```
 
-_Rationale:_ Explicit `if let`-binding of optionals results in safer code. Force unwrapping is more prone to lead to runtime crashes.
+_Rationale:_ Explicit `if let`-binding of Optionals results in safer code. Force unwrapping is more prone to lead to runtime crashes.
 
-## Avoid Using Implicitly Unwrapped Optionals
+## Avoid using implicitly unwrapped Optionals
 
-Where possible, use `let foo: FooType?` instead of `let foo: FooType!` if `foo` may be nil (Note that in general, `?` can be used instead of `!`).
+Where possible, use `let foo: FooType?` instead of `let foo: FooType!` if `foo` may be nil (note that, in general, `?` can be used instead of `!`).
 
 _Rationale:_ Explicit optionals result in safer code. Implicitly unwrapped optionals have the potential of crashing at runtime.
 
 ## Prefer implicit getters on read-only properties and subscripts
 
-When possible, omit the `get` keyword on read-only computed properties and
-read-only subscripts.
+Omit the `get` keyword on read-only computed properties and
+read-only subscripts when possible.
 
 So, write these:
 
@@ -251,7 +251,7 @@ subscript(index: Int) -> T {
 }
 ```
 
-_Rationale:_ The intent and meaning of the first version is clear, and results in less code.
+_Rationale:_ The intent and meaning of the first version is clear, and it results in less code.
 
 ## Always specify access control explicitly for top-level definitions
 
@@ -263,7 +263,7 @@ internal struct TheFez {}
 private func doTheThings(things: [Thing]) {}
 ```
 
-However, definitions within those can leave access control implicit, where appropriate:
+However, the definitions within those can leave access control implicit, where appropriate:
 
 ```swift
 internal struct TheFez {
@@ -271,12 +271,12 @@ internal struct TheFez {
 }
 ```
 
-_Rationale:_ It's rarely appropriate for top-level definitions to be specifically `internal`, and being explicit ensures that careful thought goes into that decision. Within a definition, reusing the same access control specifier is just duplicative, and the default is usually reasonable.
+_Rationale:_ It's rarely appropriate for top-level definitions to be specifically `internal`, and being explicit ensures that careful thought is put into that decision. Within a definition, reusing the same access control specifier is just duplicative, and the default is usually reasonable.
 
-## When specifying a type, always associate the colon with the identifier
+## Always associate the colon with the identifier when specifying a type
 
 When specifying the type of an identifier, always put the colon immediately
-after the identifier, followed by a space and then the type name.
+after the identifier, followed by a space, and then the type name.
 
 ```swift
 class SmallBatchSustainableFairtrade: Coffee { ... }
@@ -286,17 +286,17 @@ let timeToCoffee: TimeInterval = 2
 func makeCoffee(type: CoffeeType) -> Coffee { ... }
 ```
 
-_Rationale:_ The type specifier is saying something about the _identifier_ so
-it should be positioned with it.
+_Rationale:_ The type specifier is saying something about the _identifier_, so
+it should be positioned together with it.
 
-Also, when specifying the type of a dictionary, always put the colon immediately
-after the key type, followed by a space and then the value type.
+Also, when specifying the dictionary type, always put the colon immediately
+after the key type, followed by a space, and then the value type.
 
 ```swift
 let capitals: [Country: City] = [Sweden: Stockholm]
 ```
 
-## Only explicitly refer to `self` when required
+## Refer to `self` explicitly only when required
 
 When accessing properties or methods on `self`, leave the reference to `self` implicit by default:
 
@@ -310,7 +310,7 @@ private class History {
 }
 ```
 
-Only include the explicit keyword when required by the language—for example, in a closure, or when parameter names conflict:
+Include the explicit keyword only when required by the language—for example, in a closure, or when the parameter names conflict:
 
 ```swift
 extension History {
@@ -326,13 +326,13 @@ extension History {
 }
 ```
 
-_Rationale:_ This makes the capturing semantics of `self` stand out more in closures, and avoids verbosity elsewhere.
+_Rationale:_ This makes the capturing semantics of `self` stand out more in closures, and prevents verbosity elsewhere.
 
 ## Prefer structs over classes
 
-Unless you require functionality that can only be provided by a class (like identity or deinitializers), implement a struct instead.
+Unless you require functionality that can be provided only by a class (like identity or deinitializers), implement a struct instead.
 
-Note that inheritance is (by itself) usually _not_ a good reason to use classes, because polymorphism can be provided by protocols, and implementation reuse can be provided through composition.
+Note that inheritance is (by itself) usually _not_ a good reason to use classes because polymorphism can be provided by protocols, and implementation reuse can be provided through composition.
 
 For example, this class hierarchy:
 
@@ -382,11 +382,11 @@ struct Car: Vehicle {
 }
 ```
 
-_Rationale:_ Value types are simpler, easier to reason about, and behave as expected with the `let` keyword.
+_Rationale:_ Value types are simpler, easier to reason about, and they behave as expected with the `let` keyword.
 
 ## Make classes `final` by default
 
-Classes should start as `final`, and only be changed to allow subclassing if a valid need for inheritance has been identified. Even in that case, as many definitions as possible _within_ the class should be `final` as well, following the same rules.
+Classes should start as `final` and only be changed to allow subclassing if a valid need for inheritance has been identified. Even in that case, as many definitions as possible _within_ the class should be `final` as well, following the same rules.
 
 _Rationale:_ Composition is usually preferable to inheritance, and opting _in_ to inheritance hopefully means that more thought will be put into the decision.
 
@@ -433,7 +433,7 @@ func <| (lhs: Int, rhs: Int) -> Int
 func <|< <A>(lhs: A, rhs: A) -> A
 ```
 
-_Rationale:_ Operators consist of punctuation characters, which can make them difficult to read when immediately followed by the punctuation for a type or value parameter list. Adding whitespace separates the two more clearly.
+_Rationale:_ Operators consist of punctuation characters, which can make them difficult to read when immediately followed by punctuation for a type or value parameter list. Adding whitespace separates the two more clearly.
 
 ## Forbidden
 
