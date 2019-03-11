@@ -29,7 +29,7 @@ end
 
 ## Implementation
 
-### View controller-based tracking (preferred way)
+### ViewController-based tracking (preferred way)
 
 - use this view controller as your base class
 
