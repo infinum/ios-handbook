@@ -1,7 +1,7 @@
 ## Basic:
 
 * use descriptive names
-* CamelCase for classes, methods, variables, etc.
+* lower camel case for classes, methods, variables, etc.
 * class names should be capitalized
 * method names and variables should start with a lowercase letter
 * use `_` for private methods and variables _(open for discussion)_
