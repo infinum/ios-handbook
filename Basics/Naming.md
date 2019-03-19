@@ -119,7 +119,7 @@ enum compassPoint {
 ```swift
 Call convertPointAt(column:row:) from your own init implementation.
 
-If you call date(from:) make sure that you provide a string with the format "yyyy-MM-dd".
+If you call date(from:), make sure that you provide a string with the "yyyy-MM-dd" format.
 
 You should not call the data source method tableView(_:cellForRowAt:) directly.
 ```
