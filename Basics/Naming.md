@@ -1,9 +1,9 @@
 ## Basic:
 
 * use descriptive names
-* camel case for classes, methods, variables, etc.
+* lower camel case for classes, methods, variables, etc.
 * class names should be capitalized
-* method names and variables should start with a lower case letter
+* method names and variables should start with a lowercase letter
 * use `_` for private methods and variables _(open for discussion)_
 
 ### Preferred:
@@ -17,7 +17,7 @@ class WidgetContainer {
 }
 ```
 
-### Not Preferred:
+### Not preferred:
 
 ```swift
 let MAX_WIDGET_COUNT = 100
@@ -30,7 +30,7 @@ class app_widgetContainer {
 
 ## Functions
 
-Since _Swift 3_ all function parameters have labels unless you request otherwise by using underscore.
+Since _Swift 3_, all function parameters have labels unless you request otherwise by using underscore.
 
 * Prefer method and function names that make use sites form grammatical English phrases.
     ##### Preferred:
@@ -40,7 +40,7 @@ Since _Swift 3_ all function parameters have labels unless you request otherwise
     x.subViews(havingColor: y)  “x's subviews having color y”
     x.capitalizingNouns()       “x, capitalizing nouns”
     ```
-    ##### Not Preferred:
+    ##### Not preferred:
     
     ```swift
     x.insert(y, position: z)
@@ -48,21 +48,21 @@ Since _Swift 3_ all function parameters have labels unless you request otherwise
     x.nounCapitalize()
     ```
     
-* Include all the words needed to avoid ambiguity for a person reading code where the name is used.
+* Include all the words necessary to avoid ambiguity for a person reading code where the name is used.
     ##### Preferred:
     
     ```swift
     func remove(at position: Index) -> Element
     employees.remove(at: x)
     ```
-    ##### Not Preferred:
+    ##### Not preferred:
     
     ```swift
     func remove(_ position: Index) -> Element
     employees.remove(x) // unclear: are we removing x?
     ```
 
-* When the first argument forms part of a [prepositional phrase][3], give it an argument label. The argument label should normally begin at the preposition.
+* When the first argument forms a part of a [prepositional phrase][3], give it an argument label. The argument label should begin at the preposition.
     ##### Preferred:
     
     ```swift
@@ -71,7 +71,7 @@ Since _Swift 3_ all function parameters have labels unless you request otherwise
     names.index(of: "Taylor")
     color.fadeFrom(red: b, green: c, blue: d) // Begin the argument label after the preposition, to keep the abstraction clear.
     ```
-    ##### Not Preferred:
+    ##### Not preferred:
     
     ```swift
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -79,12 +79,12 @@ Since _Swift 3_ all function parameters have labels unless you request otherwise
     names.indexOf("Taylor")
     color.fade(fromRed: b, green: c, blue: d) // The first two arguments represent parts of a single abstraction
     ```
-* For more info and examples on function naming please visit [Swift API Design Guidelines][2] since they have provided a lot of examples and explanations on edge cases.
+* Please visit [Swift API Design Guidelines][2] for more info and examples on function naming—they provide a lot of examples and explanations on edge cases.
 
 ## Enumerations
 
-* Each enumeration definition defines a brand new type, so like other types in Swift, their names should start with a capital letter.
-* Use lower camel case for enumeration values.
+* Each enumeration definition defines a brand new type. So, like other types in Swift, their names should start with a capital letter.
+* Use lower CamelCase for enumeration values.
 
 ### Preferred:
 
@@ -97,7 +97,7 @@ enum CompassPoint {
 }
 ```
 
-### Not Preferred:
+### Not preferred:
 
 ```swift
 enum compassPoint {
@@ -110,12 +110,12 @@ enum compassPoint {
 
 ## Prose
 
-* When referring to functions in prose (tutorials, books, comments) include the required paramter names from the caller's perspective or `_` for unnamed parameters
-* When in doubt, look at how Xcode lists the method in the jump bar `(CTRL + 6)`.
+* When referring to functions in prose (tutorials, books and comments) include the required parameter names from the caller's perspective or `_` for unnamed parameters
+* When in doubt, check how Xcode lists the method in the jump bar `(CTRL + 6)`.
 
 ![iOS NAMING - JUMP BAR](/img/xcode_jump_bar.png "iOS xCode jump bar methods naming")
 
-### Example - Prose
+### Example—Prose
 ```swift
 Call convertPointAt(column:row:) from your own init implementation.
 
@@ -128,7 +128,7 @@ You should not call the data source method tableView(_:cellForRowAt:) directly.
 
 * Use `typealias` to make parameters meaningful.
 
-### Example - Typealias:
+### Example—Typealias:
 
 ```swift
 typealias MimeType: String
@@ -136,9 +136,9 @@ typealias MimeType: String
 func fileURL(with mimeType: MimeType, data: Data) -> URL
 ```
 
-## Class Prefixes
+## Class prefixes
 
-* Swift types are automatically namespaced by the module that contains them and you should not add a class prefix. If two names from different modules collide, you can disambiguate by prefixing the type name with the module name.
+* Swift types are automatically namespaced by the module that contains them, and you should not add a class prefix. If two names from different modules collide, you can disambiguate by prefixing the type name with the module name.
 
 ### Example:
 
@@ -148,7 +148,7 @@ import SomeModule
 let myClass = MyModule.UsefulClass()
 ```
 
-This guide is mostly copied from [Swift API Design Guidelines][2], [Ray Wenderlich Swift guide][1], and [What's new in Swift 3.0][4] with some minor changes.
+This guide is mostly copied from [Swift API Design Guidelines][2], [Ray Wenderlich Swift guide][1], and [What's new in Swift 3.0][4], with some minor changes.
 
 [1]:    https://github.com/raywenderlich/swift-style-guide#naming
 [2]:    https://swift.org/documentation/api-design-guidelines/
