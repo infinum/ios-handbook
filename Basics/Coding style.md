@@ -206,7 +206,7 @@ if let foo = foo {
 Alternatively, you might want to use Swift's Optional Chaining in some of these cases, such as:
 
 ```swift
-// Call the function if `foo` is not nil. If `foo` is nil, ignore we ever tried to make the call
+// Call the function if `foo` is not nil. If `foo` is nil, forget we ever tried to make the call
 foo?.callSomethingIfFooIsNotNil()
 ```
 
