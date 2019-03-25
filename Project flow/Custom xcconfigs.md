@@ -111,7 +111,7 @@ PRODUCT_BUNDLE_IDENTIFIER = infinum.co.Park-BBB
 
 // Product Name
 // 
-// This is the basename of the product generated.
+// This is the basename of the generated product.
 
 PRODUCT_NAME = $(TARGET_NAME)
 ```
