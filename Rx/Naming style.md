@@ -38,17 +38,17 @@ In instances where we can do that, a simple `struct` wrapper works wonders to he
 An example of that would look like the following:
 
 ```swift
-struct Actions = (
+struct Actions {
     save: Observable<Void>,
     cancel: Observable<Void>,
     ...
-)
+}
 ```
 
 ```swift
-struct Events = (
+struct Events {
     ...
-)
+}
 ```
 
 We delcare these in our namespace `struct`, not to polute the rest of the project. Afterwards, simply use them in our default I/O approach during the initial binding:
