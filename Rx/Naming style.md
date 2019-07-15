@@ -1,5 +1,3 @@
-# Naming style
-
 ## Observables, drivers and the rest of the observable types
 
 In most instances we want to ditch `observable` from our object names and treat these in the following way:
