@@ -1,5 +1,3 @@
-# Coding style
-
 ## Static transformation functions
 
 Keep the blocks short and sweet. Ideally, a block should contain one or two lines of code that are descriptive about the task the block should end up doing.
