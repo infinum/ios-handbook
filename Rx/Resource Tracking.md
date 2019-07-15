@@ -1,5 +1,3 @@
-# Prerequisites
-
 ## Main project—DEBUG flag
 
 - for every __debug__ target or scheme in your main project
