@@ -1,5 +1,3 @@
-# Common issues
-
 ## Nested subscribes
 
 One of the most important things that you'll likely run into at some point is chaining observables. With closures, you're familiar with this. When one closure completes, we simply call another function in its completion. We then keep chaining function as we need until inevitably creating a pyramid of doom.
