@@ -1,6 +1,6 @@
-## Prerequisites
+# Prerequisites
 
-### Main project—DEBUG flag
+## Main project—DEBUG flag
 
 - for every __debug__ target or scheme in your main project
 - `OTHER_SWIFT_FLAGS = "-D" "DEBUG"`
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     // MARK: - Public -
 
     // MARK: - Overrides -
-    
+
     // MARK: - Lifecycle -
 
     override func viewDidLoad() {
@@ -56,10 +56,10 @@ class ViewController: UIViewController {
             log.info(logString)
         #endif
     }
-    
+
     deinit {
         #if DEBUG
-            
+
             let mainQueue = DispatchQueue.main
             let when = DispatchTime.now() + DispatchTimeInterval.milliseconds(UIApplication.isInUITest ? 1000 : 300)
 
@@ -70,13 +70,12 @@ class ViewController: UIViewController {
 
             /*
              !!! This cleanup logic is adapted for example app use case. !!!
-             
+
              It is being used to detect memory leaks during pre-release tests.
-             
+
              !!! In case you want to have some resource leak detection logic, the simplest
              method is to just print out `RxSwift.Resources.total` periodically to output. !!!
-             
-             
+
              /* add somewhere in
              func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
              */
@@ -84,7 +83,7 @@ class ViewController: UIViewController {
              .subscribe(onNext: { _ in
              print("Resource count \(RxSwift.Resources.total)")
              })
-             
+
              The most efficient way to test for memory leaks is:
              * navigate to your screen and use it
              * navigate back
@@ -92,10 +91,10 @@ class ViewController: UIViewController {
              * navigate to your screen once more and use it
              * navigate back
              * observe final resource count
-             
+
              In case there is a difference in resource count between the initial and final resource counts, there might be a memory
              leak somewhere.
-             
+
              The reason why we suggest two navigations is because the first navigation forces loading of lazy resources.
              */
 
