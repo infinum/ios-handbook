@@ -101,7 +101,7 @@ Use the [Developer portal](https://developer.apple.com/) to create app IDs, prov
 
 ## 13. Set up your CI
 
-We use [CircleCI](https://circleci.com/) for our continuous integration needs. Automatic deployment beats wasting time for manual builds, and its use is strongly advised. 
+We use [Bitrise](https://www.bitrise.io/) for our continuous integration needs. Automatic deployment beats wasting time for manual builds, and its use is strongly advised. 
 
 To set one up, check the CI chapter in the handbook.
 
