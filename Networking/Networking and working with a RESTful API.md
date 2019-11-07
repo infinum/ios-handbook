@@ -6,14 +6,12 @@
 If your app is going to communicate with a remote server, you will find the following list of [pods][7] useful:
 
 * [Alamofire][1]—used for HTTP networking. On the off chance that you're actually starting an Objective-C based project, you'll be working with [AFNetworking][2] instead. Both of these libraries are developed by the same team who is responsible for [nshipster.com][3]—a site you should really keep in your bookmarks.
-* [Unbox][4]—a [JSON][5] parser. In almost all cases, the data you receive from the remote server will be in a JSON format. Again, in the unlikely event of starting an Objective-C based project, you'll probably use [JSONModel][6] or [Mantle][7].
-* [UnboxedAlamofire][8]—a utility extensions for Alamofire + Unbox.
-* [Wrap][9]—a JSON encoding library. Useful for transforming models into JSON objects.
+* [CodableAlamofire][4]—an extension for Alamofire that can convert [JSON][5] into Decodable objects. In almost all cases, the data you receive from the remote server will be in a JSON format. Again, in the unlikely event of starting an Objective-C based project, you'll probably use [JSONModel][6] or [Mantle][7].
 
 ## REST API and services
-In almost all cases, the architecture of the web service your app is communicating with will be implemented using a RESTful architecture style. A simple and easy explanation of REST APIs can be found [here][10]. You can go [here][11] for a more theoretical description of REST.
+In almost all cases, the architecture of the web service your app is communicating with will be implemented using a RESTful architecture style. A simple and easy explanation of REST APIs can be found [here][8]. You can go [here][9] for a more theoretical description of REST.
 
-When communicating with a RESTful API, it's quite easy to separate networking into services, which is precisely what we do. Services are PONSOs (plain old NSObject) that handle all API requests for one particular segment of the API. Here's an example of a service which handles a login action using UnboxedAlamofire:
+When communicating with a RESTful API, it's quite easy to separate networking into services, which is precisely what we do. Services are PONSOs (plain old NSObject) that handle all API requests for one particular segment of the API. Here's an example of a service which handles a login action using CodableAlamofire:
 
 ```swift
 class MenuService {
@@ -30,7 +28,7 @@ class MenuService {
             url,
             method: .get,
             parameters: params
-        ).validate().responseObject(completionHandler: completionHandler)
+        ).validate().responseDecodableObject(completionHandler: completionHandler)
     }
     
 }
@@ -50,12 +48,19 @@ import Alamofire
 extension DataRequest {
 
     func customValidate() -> Self {
-        return validate { (request, response, data) -> Request.ValidationResult in
-            // custom validation logic
-            guard let error: CustomError = try? unbox(data: data) else {
-                return .success
+        return self.validate { _, response, data -> Request.ValidationResult in
+            guard (400...599) ~= response.statusCode else { return .success }
+            guard let data = data else { return .failure(MyAppGeneralError.generalResponseError) }
+
+            guard let errorResponse = try? JSONDecoder().decode(MyAppResponseError.self, from: data) else {
+                return .failure(MyAppGeneralError.generalResponseError)
             }
-            return .failure(error)
+
+            if response.statusCode == 401 {
+                return .failure(MyAppGeneralError.unauthorizedAccessError(errorResponse))
+            }
+
+            return .failure(MyAppGeneralError.responseError(errorResponse))
         }
     }
 
@@ -108,12 +113,10 @@ struct LotoResult {
 [1]:	https://github.com/Alamofire/Alamofire
 [2]:	https://github.com/AFNetworking/AFNetworking
 [3]:	http://nshipster.com/
-[4]:	https://github.com/JohnSundell/Unbox
+[4]:	https://github.com/Otbivnoe/CodableAlamofire
 [5]:	http://www.json.org/
 [6]:	https://github.com/icanzilb/JSONModel
 [7]:	https://github.com/Mantle/Mantle
-[8]:	https://github.com/serejahh/UnboxedAlamofire
-[9]:	https://github.com/JohnSundell/Wrap
-[10]:	http://searchsoa.techtarget.com/definition/REST
-[11]:	https://en.wikipedia.org/wiki/Representational_state_transfer
+[8]:	http://searchsoa.techtarget.com/definition/REST
+[9]:	ttps://en.wikipedia.org/wiki/Representational_state_transfer
 <!--[7]:	https://cocoapods.org/-->
