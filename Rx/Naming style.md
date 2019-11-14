@@ -49,7 +49,7 @@ struct Events {
 }
 ```
 
-We delcare these in our namespace `struct`, not to polute the rest of the project. Afterwards, simply use them in our default I/O approach during the initial binding:
+We declare these in our namespace `struct`, not to polute the rest of the project. Afterwards, simply use them in our default I/O approach during the initial binding:
 
 ```swift
 struct ViewOutput {
