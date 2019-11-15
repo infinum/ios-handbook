@@ -56,13 +56,13 @@ result.map { $0.model }.subscribe()
 result.map { $0.model.nestedModels }.subscribe()
 ```
 
-You might not notice it right away, but if you go out your way to put a `.debug()`, you might notice that you api call will be triggered *twice*. What happens is that on each subscription you're essentially getting a new stream of data. If you decide to add further mapping on the stream, you'll make it even worse, as it'll end up basically being an additional _subscription_ since the stream will be duplicated each time.
+You might not notice it right away, but if you go out your way to put a `.debug()`, you might notice that your API call will be triggered *twice*. What happens is that on each subscription you're essentially getting a new stream of data. If you decide to add further mapping on the stream, you'll make it even worse, as it'll end up basically being an additional _subscription_ since the stream will be duplicated each time.
 
 This is pretty bad, right? Well, thankfully, we have `share` operator which comes in our rescue.
 
 >So what'll happen is, `share` will _share_ the resources of a specific stream and pass that *same* stream to all of its subscribers.
 
-Don't let that sentence scare you - if we simplify that statemenet a bit, we can say:
+Don't let that sentence scare you - if we simplify that statement a bit, we can say:
 
 >After using share on a specific Rx sequence, the part before the share operator will become a shared stream. That stream itself will execute only once, and each subscriber will simply get a result from that exact
 stream without performing any further actions.
