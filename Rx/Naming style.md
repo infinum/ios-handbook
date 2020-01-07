@@ -31,7 +31,7 @@ let formEditsRelay = BehaviorRelay<Model>(value: model)
 ## Actions grouping
 
 Actions which can be grouped should be organized as such. For instance, we've mentioned `events` and `actions` that are sent between our module components.
-In instances where we can do that, a simple `struct` wrapper works wonders to help you out organizing the code, if ever so slightly.
+In instances where we can do that, a simple `struct` wrapper works wonders to help you out in organizing the code, if ever so slightly.
 
 An example of that would look like the following:
 
@@ -49,7 +49,7 @@ struct Events {
 }
 ```
 
-We declare these in our namespace `struct`, not to polute the rest of the project. Afterwards, simply use them in our default I/O approach during the initial binding:
+We declare these in our namespace `struct` in order to not pollute the rest of the project. Afterwards, simply use them in our default I/O approach during the initial binding:
 
 ```swift
 struct ViewOutput {
@@ -64,7 +64,7 @@ struct ViewInput {
 }
 ```
 
->Note: In cases where it makes no sense to group actions, e.g. `let items: Observable<Item>` in the above example, it is only important to follow the very first part of the naming section. That includes deciding on a property name, while omitting the observable _type_ from the name.
+>Note: In cases where it makes no sense to group actions, e.g., `let items: Observable<Item>` in the above example, it is only important to follow the very first part of the naming section. That includes deciding on a property name, while omitting the observable _type_ from the name.
 
 ## Presenters' bind function
 
@@ -76,8 +76,8 @@ presenter.configure(with output: Module.ViewOutput) -> Module.ViewInput
 
 ## Handle functions
 
-Considering that all of the actions we need to handle will end up in the given `configure` function, we'll need to format the code appropriatelly so that we don't end up with a _"Massive View Controller"_ configure function.
-General template that we follow is to use `handle` functions, which will transform our data and then either _subscribe_ or _return the value_. Example:
+Considering that all of the actions we need to handle will end up in the given `configure` function, we'll need to format the code appropriately so that we don't end up with a _"Massive View Controller"_ configure function.
+The general template we follow is to use `handle` functions, which will transform our data and then either _subscribe_ or _return the value_. Example:
 
 ```swift
 func configure(with output: Module.ViewOutput) -> Module.ViewInput {
@@ -92,4 +92,4 @@ func configure(with output: Module.ViewOutput) -> Module.ViewInput {
 }
 ```
 
-Depending on the action name and whether it conflicts with an already given name, for instance `_handle(viewDidLoad: output.viewDidLoad)`, we can make use of labels to further identify what are we going to do in the `handle` function. In those instances we would use the _viewActionWith_ label.
+Depending on the action name and whether it conflicts with an already given name, for instance `_handle(viewDidLoad: output.viewDidLoad)`, we can make use of labels to further identify what are we going to do in the `handle` function. In those instances, we would use the _viewActionWith_ label.

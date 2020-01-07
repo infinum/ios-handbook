@@ -30,13 +30,13 @@ class MenuService {
             parameters: params
         ).validate().responseDecodableObject(completionHandler: completionHandler)
     }
-    
+
 }
 ```
 
-Here, you can also see our standard pattern of handling API requests. The most elegant way is to have one method/function per an API request which accepts parameters necessary for the API request and completion block.
+Here, you can also see our standard pattern of handling API requests. The most elegant way is to have one method/function per API request which accepts the parameters necessary for the API request and completion block.
 
-You might wonder why not use class methods for such requests. The answer is testability. Using instances for services means you can easily swap them for test classes which mock responses.
+You might wonder why not use class methods for such requests. The answer is testability. Using instances for services means that you can easily swap them for test classes which mock responses.
 
 ## Handling errors with Alamofire
 

@@ -1,11 +1,11 @@
 ## A guide to our Swift style and conventions.
 
 This is an attempt to encourage patterns of coding that help accomplish the following goals (in
-rough priority order):
+a rough priority order):
 
-1. increased rigor and decreased likelihood of programmer error,
-2. increased clarity of intent,
-3. reduced verbosity, and
+1. increased rigor and decreased likelihood of programmer error
+2. increased clarity of intent
+3. reduced verbosity
 4. fewer debates about aesthetics
 
 ## One rule to rule them all ---> **KISS** <---
@@ -19,7 +19,7 @@ rough priority order):
 
 * Tabs, not spaces.
 * End files with a new line.
-* Make liberal use of vertical whitespace to divide code into logical chunks.
+* Make liberal use of vertical whitespace to divide the code into logical chunks.
 * Don’t leave trailing whitespace.
 * Not even leading indentation on blank lines.
 
@@ -94,7 +94,7 @@ Constants.UserDefaults.onboardingPassed
 ```
 
 ## Comments
-* Use comments when code is not self-explanatory:
+* Use comments when the code is not self-explanatory:
 	* Rx
 	* API calls
 	* dark magic
@@ -128,7 +128,7 @@ _Rationale:_ Use US English spelling to match Apple's API.
 ### Preferred
 
 ```swift
-UIView.animate(withDuration: 0.3) { 
+UIView.animate(withDuration: 0.3) {
     self.myView.alpha = 0
 }
 
@@ -148,7 +148,7 @@ UIView.animate(withDuration: 0.3, animations: {
     self.myView.alpha = 0
 })
 
-UIView.animate(withDuration: 0.3, animations: { 
+UIView.animate(withDuration: 0.3, animations: {
     self.myView.alpha = 0
 }) { (finished) in
     self.myView.removeFromSuperview()
@@ -220,8 +220,7 @@ _Rationale:_ Explicit optionals result in safer code. Implicitly unwrapped optio
 
 ## Prefer implicit getters on read-only properties and subscripts
 
-Omit the `get` keyword on read-only computed properties and
-read-only subscripts when possible.
+Omit the `get` keyword on read-only computed properties and read-only subscripts when possible.
 
 So, write these:
 
@@ -235,7 +234,7 @@ subscript(index: Int) -> T {
 }
 ```
 
-… not these:
+...not these:
 
 ```swift
 var myGreatProperty: Int {
@@ -275,8 +274,7 @@ _Rationale:_ It's rarely appropriate for top-level definitions to be specificall
 
 ## Always associate the colon with the identifier when specifying a type
 
-When specifying the type of an identifier, always put the colon immediately
-after the identifier, followed by a space, and then the type name.
+When specifying the type of an identifier, always put the colon immediately after the identifier, followed by a space, and then the type name.
 
 ```swift
 class SmallBatchSustainableFairtrade: Coffee { ... }
@@ -286,11 +284,9 @@ let timeToCoffee: TimeInterval = 2
 func makeCoffee(type: CoffeeType) -> Coffee { ... }
 ```
 
-_Rationale:_ The type specifier is saying something about the _identifier_, so
-it should be positioned together with it.
+_Rationale:_ The type specifier is saying something about the _identifier_, so it should be positioned together with it.
 
-Also, when specifying the dictionary type, always put the colon immediately
-after the key type, followed by a space, and then the value type.
+Also, when specifying the dictionary type, always put the colon immediately after the key type, followed by a space, and then the value type.
 
 ```swift
 let capitals: [Country: City] = [Sweden: Stockholm]
@@ -433,7 +429,7 @@ func <| (lhs: Int, rhs: Int) -> Int
 func <|< <A>(lhs: A, rhs: A) -> A
 ```
 
-_Rationale:_ Operators consist of punctuation characters, which can make them difficult to read when immediately followed by punctuation for a type or value parameter list. Adding whitespace separates the two more clearly.
+_Rationale:_ Operators consist of punctuation characters, which can make them difficult to read when immediately followed by punctuation for a type or a value parameter list. Adding whitespace separates the two more clearly.
 
 ## Forbidden
 

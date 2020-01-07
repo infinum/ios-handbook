@@ -1,7 +1,7 @@
-SwiftLint checks the source code for programmatic as well as stylistic errors. This is most helpful in identifying some common and uncommon mistakes that are made during coding. SwiftLint is based on guidelines from the Swift style guide. To put it simply, it can help us with:
+SwiftLint checks the source code for programmatic as well as stylistic errors. This is helpful in identifying some common and uncommon mistakes that are made during coding. SwiftLint is based on guidelines from the Swift style guide. To put it simply, it can help us with:
 
-* maintaining a higher level of code discipline and
-* increasing the code's reliability.
+* maintaining a higher level of code discipline
+* increasing the code's reliability
 
 ## Installation
 
@@ -27,7 +27,7 @@ fi
 
 ![iOS SwiftLint Run script](/img/iOS-SwiftLint-script.jpg)
 
-And that's it. Now SwiftLint will run with default settings.
+And that's it. SwiftLint will now run with default settings.
 
 ## Configuration file
 
@@ -91,7 +91,7 @@ let noWarning :String = "" // No warning about colons immediately after variable
 let hasWarning :String = "" // Warning generated about colons immediately after variable names
 ```
 
-It's also possible to modify a disable or enable command by appending `:previous`, `:this`, or `:next` to apply the command only to the previous, this (current), or next line.
+It's also possible to modify a disable or enable command by appending `:previous`, `:this`, or `:next` to apply the command only to the previous, this (the current), or the next line.
 
 For example:
 
@@ -119,4 +119,3 @@ By default, Xcode won't remove trailing whitespace if the line is empty. SwiftLi
 *NOTE: This will not automatically fix the SwiftLint warnings you've already received, but it will prevent them from repeating.*
 
 That's it. Install SwiftLint, add the configuration file to your root directory, and lint up your project!
-
