@@ -4,23 +4,23 @@ Usually, when you work in a team environment, and/or when you need to use multip
 
 ## Proposed project structure (xcconfig files, build targets, build configurations)
 
-- use __xcconfig files__ for project build settings and for custom user-defined keys
+- Use __xcconfig files__ for project build settings and for custom user-defined keys
 	- custom user keys (e.g., GOOGLE_ANALYTICS_KEY...)
-- use __build configurations__ (default are release and debug) for different build setups
+- Use __build configurations__ (default are release and debug) for different build setups
 	- release build
 	- qa build
 	- test build
 	- production build
-- use __target__ to define a __single product__
+- Use __target__ to define a __single product__
 	- it organizes the inputs into the build system
 	- source files and instructions for processing those source files required to build that product
 	- it usually doesn't make sense to use targets in place of build configurations
 
 ### Configuration structure
 
-- two targets (and a project)
-- three build configurations
-- each build configuration (debug, release, qa)
+- Two targets (and a project)
+- Three build configurations
+- Each build configuration (debug, release, qa)
 
 ```
 Configurations
@@ -49,29 +49,29 @@ Configurations
 
 #### Shared
 
-- will contain all settings that are inherited for a specific type of project (e.g., iOS)
-- you'll want to have this included in everything else
-- usually compiler flags and friends ... :)
+- Will contain all settings that are inherited for a specific type of project (e.g., iOS)
+- You'll want to have this included in everything else
+- Usually compiler flags and friends... :)
 
 		//  Clang Warnings
 		OTHER_CFLAGS = -Wall -Wextra
 
-- you would get those from the UI by clicking on a top-level project
+- You would get those from the UI by clicking on a top-level project
 	- PROJECT -> Name Of Your Project -> Build Settings
-	
+
 #### Target
 
-- specific target settings would be
+- Specific target settings would be:
 	- custom Info.plist
 	- developer profile for signing the app
 	- app icon
 	- analytics key
 	- Facebook key
 	- iOS version...
- 
+
 ### xcconfig
 
-- the key/value file for storing build settings and user-defined keys
+- The key/value file for storing build settings and user-defined keys
 
 ```
 // Asset Catalog App Icon Set Name
@@ -110,23 +110,23 @@ PRODUCT_BUNDLE_IDENTIFIER = infinum.co.Park-BBB
 
 
 // Product Name
-// 
+//
 // This is the basename of the generated product.
 
 PRODUCT_NAME = $(TARGET_NAME)
 ```
 
-- we will leverage this to make our project settings cleaner and easier to understand
+- We will leverage this to make our project settings cleaner and easier to understand
 
 ### Build targets
 
-- use when dealing with a template app, for example. One target for every vendor.
+- Use when dealing with a template app, for example. One target for every vendor.
 	- can have separate assets
 	- a whole new project, except code, can be shared between targets more easily
 
 ### Build configurations
 
-- use when we need to fine-tune certificates, third-party SDK keys, versioning APIs...
+- Use when we need to fine-tune certificates, third-party SDK keys, versioning APIs...
 
 ### User-defined keys
 
@@ -142,26 +142,24 @@ PRODUCT_NAME = $(TARGET_NAME)
 
 ### Step 1—targets
 
-- add a new target
+- Add a new target
 	- __CMD + D__
 
 ![](/img/xcconfig_tutorial/step_1.png)
 
-- new target added
-	
+- New target added
+
 ![](/img/xcconfig_tutorial/step_1_1.png)
 
 ### Step 2—add new build configurations
 
-- select _project_
+- Select _project_
 - _Info tab_
 - _Configurations_
-- always duplicate an existing one (choose between __debug__ and __release__)
-	- use case: we are currently using our enterprise account for develop,
-	but the client wants to use their account for release to the Store
-	- so basically, we would have to change certificates, provisioning profiles, and bundle identifiers before
-	each submission. This is both cumbersome and error-prone!
-	- that is why we will create copies of both __debug__ and __release__ build configurations
+- Always duplicate an existing one (choose between __debug__ and __release__).
+	- Use case: we are currently using our enterprise account for develop, but the client wants to use their account for release to the Store.
+	- Basically, we would have to change certificates, provisioning profiles, and bundle identifiers before each submission. This is both cumbersome and error-prone!
+	- That is why we will create copies of both __debug__ and __release__ build configurations.
 
 ![](/img/xcconfig_tutorial/step_2.png)
 
@@ -170,7 +168,7 @@ PRODUCT_NAME = $(TARGET_NAME)
 #### Project
 
 - _Build settings_
-	- always use `All` and `Levels`
+	- Always use `All` and `Levels`
 - Settings will be resolved from __right to left__
 	- __iOS Default—Project - Resolved__
 - __iOS Default__—default settings defined by Apple (compiler flags, architecture, etc.)
@@ -185,32 +183,31 @@ PRODUCT_NAME = $(TARGET_NAME)
 	- always use `All` and `Levels`
 - Settings will be resolved from __right to left__
 	- __iOS Default -> Project -> Target0 -> Resolved__
-- the same as _project_, the only difference is that here you can define custom settings per target
-	- user profiles, bundle identifiers, user defined keys (e.g., analytics)
+- The same as _project_; the only difference is that here you can define custom settings per target
+	- user profiles, bundle identifiers, user-defined keys (e.g., analytics)
 
 ![](/img/xcconfig_tutorial/step_3_1.png)
 
 ### Step 4—custom xcconfig
 
-- for everything above, we want to use _xcconfig_ files to make it easier for us in the long run
-	- it is much easier to add something in a text file than in _Xcode_
-- but copying keys from _Xcode_ to _xcconfig_ files manually is cumbersome and error-prone
-- we will use this handy tool for automatic creation: [BuildSettingsExtractor](https://github.com/dempseyatgithub/BuildSettingExtractor)
-	- just drop you _Xcode_ project on top of it, and it will _autogenerate_ all the files you need
-- what is great about this tool is that it __will not do anything__ to __your project__, you have to do it manually!
+- For everything above, we want to use _xcconfig_ files to make it easier for us in the long run.
+	- It is much easier to add something in a text file than in _Xcode_.
+- But copying keys from _Xcode_ to _xcconfig_ files manually is cumbersome and error-prone.
+- We will use this handy tool for automatic creation: [BuildSettingsExtractor](https://github.com/dempseyatgithub/BuildSettingExtractor).
+	- Just drop you _Xcode_ project on top of it, and it will _autogenerate_ all the files you need.
+- What is great about this tool is that it __will not do anything__ to __your project__—you have to do it manually!
 
 ![](/img/xcconfig_tutorial/step_4.png)
 
 ### Step 5—set up custom xcconfig
 
-- add all of the above to your project
-	- I would suggest adding those by _drag'n'drop_ so that, when _Xcode_ asks you for which _target_ you want to add, those
-	_unselect all targets_.
-- add all of the custom _xcconfig_ files to your build configurations
-	- select _Project_
-	- select _Info_
+- Add all of the above to your project.
+	- I would suggest adding those by _drag'n'drop_ so that, when _Xcode_ asks you for which _target_ you want to add, those _unselect all targets_.
+- Add all of the custom _xcconfig_ files to your build configurations.
+	- Select _Project_
+	- Select _Info_
 	- _Configurations_
-		- add custom config files
+		- Add custom config files
 
 		![](/img/xcconfig_tutorial/step_5_1.png)
 
@@ -218,13 +215,13 @@ PRODUCT_NAME = $(TARGET_NAME)
 
 ![](/img/xcconfig_tutorial/step_5_2.png)
 
-- as you can see, there is a new field __Config.file(...)__—this is our custom config file
-- but if we think about our goal to have everything inside our custom file:
+- As you can see, there is a new field __Config.file(...)__—this is our custom config file.
+- But if we think about our goal to have everything inside our custom file:
 	- we don't want the UI settings to override our custom file
 	- settings will be resolved from right to left
-	- that means that UI has higher precedence than custom files
-	- go trough the Project row and delete it, you can only edit the Project row on the current level
-		- you have to delete only the rows that have something
+	- that means that UI has a higher precedence than custom files
+	- go through the Project row and delete it; you can only edit the Project row on the current level
+		- you have to delete only the rows that contain something
 
 		![](/img/xcconfig_tutorial/step_5_3.png)
 
@@ -232,44 +229,44 @@ PRODUCT_NAME = $(TARGET_NAME)
 
 ![](/img/xcconfig_tutorial/step_5_4.png)
 
-- as you can see, there is also a new field on this level. Now we have 6 columns.
+- As you can see, there is also a new field on this level. Now we have 6 columns.
 
 ```
 Resolved | Target0 | Config.File (Target Build) | Project | Config.File (Project Build)| iOS Default
 ```
 
 - Config File (Target Build)
-	- build configuration based on current target build configuration settings
+	- Build configuration based on the current target build configuration settings
 
 	![](/img/xcconfig_tutorial/step_5_5.png)
-	
-- go through the target row and delete it
+
+- Go through the target row and delete it.
 
 ### Step 6—custom Info.plist
 
-- after duplicating the default target in step 1., __Info.plist__ can get all messed up.
-	- delete newly created __Info.plist__, which is probably in the root of the project
-	- copy default __Info.plist__
-	- rename both to something meaningful (e.g., Info—Target0.plist, Info—Target1.plist)
-	- add those files to the project as you would add any other file
-	- be sure to __unselect__ _Target Membership_
+- After duplicating the default target in step 1., __Info.plist__ can get all messed up.
+	- Delete newly created __Info.plist__, which is probably in the root of the project.
+	- Copy default __Info.plist__.
+	- Rename both to something meaningful (e.g., Info—Target0.plist, Info—Target1.plist).
+	- Add those files to the project as you would add any other file.
+	- Be sure to __unselect__ _Target Membership_.
 
 	![](/img/xcconfig_tutorial/step_6.png)
 
-- set up your custom files to use those
-	- open __Target0-Shared.xcconfig__
-	- find __INFOPLIST_FILE__
-	- change to __INFOPLIST_FILE = CustomConfiguration/Info - Target0.plist__ (your newly created)
-	- check that everything is OK by clicking on
+- Set up your custom files to use those
+	- Open __Target0-Shared.xcconfig__
+	- Find __INFOPLIST_FILE__
+	- Change to __INFOPLIST_FILE = CustomConfiguration/Info - Target0.plist__ (newly created)
+	- Check that everything is OK by clicking on
 		- _Project_
 		- _Target_
 		- _General_
 
-_The great thing about custom Info.plist is that you can easily setup custom AppIcon, Assets Catalog..._
+_The great thing about custom Info.plist is that you can easily set up custom AppIcon, Assets Catalog..._
 
 ### Step 7—Cocoapods
 
-- be careful when installing _Pods_ in a project with multiple targets
+- Be careful when installing _Pods_ in a project with multiple targets.
 
 ```
 platform :ios, '8.0'
@@ -289,26 +286,26 @@ target 'Target1' do
 end
 ```
 
-- pod install will probably give you a warning
+- Pod install will probably give you a warning.
 
 ![](/img/xcconfig_tutorial/step_7.png)
 
-- this is normal because, as you know by now, we are using custom configuration files :). So in order for pods to work, we need to edit our _xcconfig_ files to also include pods custom _xcconfig_ files;
+- This is normal because, as you know by now, we are using custom configuration files. :) So, in order for pods to work, we need to edit our _xcconfig_ files to also include pods custom _xcconfig_ files;
 
 - open Target1-Debug.xcconfig
 
 	![](/img/xcconfig_tutorial/step_7_1.png)
 
 - and change to
-	
+
 	![](/img/xcconfig_tutorial/step_7_2.png)
 
 - open Target1-Release.xcconfig
-	
+
 	![](/img/xcconfig_tutorial/step_7_3.png)
 
 - and change to
-	
+
 	![](/img/xcconfig_tutorial/step_7_4.png)
 
 - repeat this process for Target0.
@@ -317,8 +314,8 @@ __Build a project :)__
 
 ## Resources
 
-- [Sample project](/resources/Sample_xcconfig.zip)
-- [Using xcconfig files for your Xcode Project][1]
+- [Sample Project](/resources/Sample_xcconfig.zip)
+- [Using xcconfig Files for Your Xcode Project][1]
 - [Generating Xcode Build Configuration Files with BuildSettingExtractor (xcodeproj → xcconfig)][2]
 
 [1]:	http://www.jontolof.com/cocoa/using-xcconfig-files-for-you-xcode-project/

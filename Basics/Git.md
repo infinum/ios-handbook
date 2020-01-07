@@ -22,7 +22,7 @@ The **Master** branch is used to represent your App Store builds. Each commit in
 
 **Develop** is the lifeline of your project. You’ll want this branch up-to-date at all times, and this is the branch you should branch from almost every time you add a feature, enhancement, and other branches.
 
-Once your feature branch is ready, tested, and working, you submit a pull request here.
+Once your feature branch is ready, tested and working, you submit a pull request here.
 
 #### 2.1.4. Feature branches
 

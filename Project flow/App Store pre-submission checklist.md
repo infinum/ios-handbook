@@ -1,4 +1,5 @@
-## Your app  
+## Your app:
+
 * Never crashes
 * Has no memory leaks
 * Works on all iOS devices with different (minimum and maximum!) OS versions and resolutions
@@ -32,9 +33,9 @@
 * Upload a new build to the iTunesconnect
 * Enable internal and/or external testing for the new build
 * Install the new version from TestFlight over the old version from the App Store
-* Check that the user doesn't lose any of his information in the application after the update
+* Check that the user doesn't lose any of their information in the application after the update
 
-### Check that data from NSUserDefaults is read in a correct way:
+### Check that the data from NSUserDefaults is read in a correct way:
 
 * App doesn't crash trying to read non-existing keys
 * You haven't changed keys in the `initWithCoder:` and `encodeWithCoder:` methods (your current app should be able to read data saved by an old version of the application)  
@@ -46,10 +47,12 @@
 * Check that push notifications are working
 
 ## Logging
-* Remove or disable the `NSLog()` and `print()` calls. At least like this: #define NSLog(...)  
+
+* Remove or disable the `NSLog()` and `print()` calls, at least like this: #define NSLog(...)  
 
 ## Conforms to Apple's Human Interface Guidelines
-* The app looks well designed and of high quality
+
+* The app looks well-designed and high quality
 * Native button icons are consistent with their native actions
 * Activity spinners should not spin indefinitely
 * Buttons trigger on touch-up inside an event
@@ -59,11 +62,13 @@
 You can find more information about this topic [here][1].
 
 ## iPad-specific
-* Your app should work in all four orientations, but if it is only portrait or landscape, it has to support both ways up
+
+* Your app should work in all four orientations. If it is only portrait or landscape, it has to support both ways up
 * Your app doesn't nest popovers, i.e., selecting something on a popover should not display another popover
 * Your app doesn't show more than one popover at a time
 
 ## Submission package details
+
 * The name of your app (in the binary package) matches (or is the abbreviated version of) its iTunes name
 * Your iTunes description accurately describes the functionality of the app, i.e., it works as advertised
 * Your iTunes description does not state the price

@@ -1,5 +1,5 @@
 <div class="markdown-output__summary">
-  Creating a new project from scratch is a rather simple task, but more often than not, you'll forget a tidbit or two, so here's a useful list to keep in mind. Use common sense, not all of these are necessary for every projects. Also, when in doubt, ask someone to give you a hand.
+  Creating a new project from scratch is a rather simple task, but more often than not, you'll forget a tidbit or two, so here's a useful list to keep in mind. Use common sense—not all of these are necessary for every project. Also, when in doubt, ask someone to give you a hand.
 </div>
 
 ## 1. Create a new Xcode project
@@ -10,11 +10,11 @@ The Bundle ID should be something like co.infinum.my-app-dev. This might change 
 
 ## 2. Create a new repository on GitHub
 
-GitHub admin access is limited to team leads only. Find the nearest one and twist his arm until he opens up a new repo for you :).
+GitHub admin access is limited to team leads only. Find the nearest one and twist their arm until they opens up a new repo for you. :)
 
 ## 3. Init a git repo in your project
 
-You can either use *git init* in the project folder, or clone an empty repo and move your project there (or even create it inside after cloning). The latter option will ensure that the folder structure is consistent with anyone else's who might be working on the project.
+You can either use *git init* in the project folder or clone an empty repo and move your project there (or even create it inside after cloning). The latter option will ensure that the folder structure is consistent with anyone else's who might be working on the project.
 
 ## 4. Add a gitignore
 
@@ -31,7 +31,7 @@ Your README should follow a standard layout:
 **[project architecture]**—just a quick overview of the project architecture and style.
 
 **[gotchas]**—keep everything important about the project that might not be immediately clear here. Even if it is, keep it here. For example, "To test this project, you need credentials from www.credentials.com, ask Hrvatko about them", or: "This project keeps some lib in GitHub LFS, make sure you have it installed before pulling, or check the documentation to find out how to do it afterwards."
- 
+
 ## 6. Reorganize your project
 
 The Xcode default folder structure almost never works for you. This is the perfect time to sort everything into a neater little package. The project structure should look like this:
@@ -78,18 +78,18 @@ We always want a perfectly functional project in the repo, with the versions of 
 For example, build a number script, SwiftLint, codebeat, or whatever else you might need. More complex projects will need more of these.
 
 Stuff to consider:
-1. [SwiftLint](https://github.com/realm/SwiftLint)— a tool to help you keep your Swift code swifty
-2. [Codebeat](https://codebeat.co/)— a static analyzer of your code's quality
+1. [SwiftLint](https://github.com/realm/SwiftLint)—a tool to help you keep your Swift code swifty
+2. [Codebeat](https://codebeat.co/)—a static analyzer of your code's quality
 
-For both of the above, we already have default config files for you to use [here]() and [here]().
+For both of the above, we already have the default config files for you to use [here]() and [here]().
 
 ## 9. Push your project to the repo
 
-After setting everything up properly and making sure everything works, push your project to the master branch. Until you deploy a build to the App Store, this will be your last commit to the `master`, so onto the next step.
+After setting everything up properly and making sure that everything works, push your project to the master branch. Until you deploy a build to the App Store, this will be your last commit to the `master`, so onto the next step.
 
 ## 10. Set up a GitFlow flow and start working
 
-Create a `development` branch and feature branch and start working on your project. Ask the team lead once more to protect your `development` branch.
+Create a `development` branch and a feature branch and start working on your project. Ask the team lead once more to protect your `development` branch.
 
 ## 11. Set up your configurations (what used to be targets)
 
@@ -101,7 +101,7 @@ Use the [Developer portal](https://developer.apple.com/) to create app IDs, prov
 
 ## 13. Set up your CI
 
-We use [Bitrise](https://www.bitrise.io/) for our continuous integration needs. Automatic deployment beats wasting time for manual builds, and its use is strongly advised. 
+We use [Bitrise](https://www.bitrise.io/) for our continuous integration needs. Automatic deployment beats wasting time for manual builds, and its use is strongly advised.
 
 To set one up, check the CI chapter in the handbook.
 

@@ -1,10 +1,10 @@
 ## Basic:
 
-* use descriptive names
-* lower camel case for classes, methods, variables, etc.
-* class names should be capitalized
-* method names and variables should start with a lowercase letter
-* use `_` for private methods and variables _(open for discussion)_
+* Use descriptive names
+* Lower camel case for classes, methods, variables, etc.
+* Class names should be capitalized
+* Method names and variables should start with a lowercase letter
+* Use `_` for private methods and variables _(open for discussion)_
 
 ### Preferred:
 
@@ -34,29 +34,29 @@ Since _Swift 3_, all function parameters have labels unless you request otherwis
 
 * Prefer method and function names that make use sites form grammatical English phrases.
     ##### Preferred:
-    
+
     ```swift
     x.insert(y, at: z)          “x, insert y at z”
     x.subViews(havingColor: y)  “x's subviews having color y”
     x.capitalizingNouns()       “x, capitalizing nouns”
     ```
     ##### Not preferred:
-    
+
     ```swift
     x.insert(y, position: z)
     x.subViews(color: y)
     x.nounCapitalize()
     ```
-    
+
 * Include all the words necessary to avoid ambiguity for a person reading code where the name is used.
     ##### Preferred:
-    
+
     ```swift
     func remove(at position: Index) -> Element
     employees.remove(at: x)
     ```
     ##### Not preferred:
-    
+
     ```swift
     func remove(_ position: Index) -> Element
     employees.remove(x) // unclear: are we removing x?
@@ -64,7 +64,7 @@ Since _Swift 3_, all function parameters have labels unless you request otherwis
 
 * When the first argument forms a part of a [prepositional phrase][3], give it an argument label. The argument label should begin at the preposition.
     ##### Preferred:
-    
+
     ```swift
     func numberOfSections(in tableView: UITableView) -> Int
     func viewForZooming(in scrollView: UIScrollView) -> UIView?
@@ -72,7 +72,7 @@ Since _Swift 3_, all function parameters have labels unless you request otherwis
     color.fadeFrom(red: b, green: c, blue: d) // Begin the argument label after the preposition, to keep the abstraction clear.
     ```
     ##### Not preferred:
-    
+
     ```swift
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView?
@@ -110,7 +110,7 @@ enum compassPoint {
 
 ## Prose
 
-* When referring to functions in prose (tutorials, books and comments) include the required parameter names from the caller's perspective or `_` for unnamed parameters
+* When referring to functions in prose (tutorials, books and comments) include the required parameter names from the caller's perspective or `_` for unnamed parameters.
 * When in doubt, check how Xcode lists the method in the jump bar `(CTRL + 6)`.
 
 ![iOS NAMING - JUMP BAR](/img/xcode_jump_bar.png "iOS xCode jump bar methods naming")
