@@ -45,42 +45,34 @@ Our demo manager here is a singleton, with one variable for switching it on/off.
 private extension DemoManager {
 
     func setupStubResponses() {
-
         stubSomething()
         stubUpdatingSomething()
         stubSomethingWithPagination()
-
     }
 
     func stubSomething() {
-
         stubResponse(
             containing: Router.Something.path,
             statusCode: 200,
             from: "something_mocked"
         )
-
     }
 
     func stubUpdatingSomething() {
-
         stubResponse(
             containing: Router.Transactions.updateCategoryPath,
             method: .patch,
             statusCode: 200
         )
-
     }
 
     func stubSomethingWithPagination() {
-
         stubResponse(
             containing: Router.PaginatedSomething.path,
             queryParamPart: "cursor=1",
             statusCode: 200,
             from: "something_paginated"
         )
-
     }
 
 }
@@ -100,8 +92,7 @@ private extension DemoManager {
         method: HTTPMethod? = .get,
         statusCode: Int32 = 200,
         from fileName: String? = nil
-        ) {
-
+    ) {
         stub(
             condition: { (request: URLRequest) -> Bool in
                 //Method
