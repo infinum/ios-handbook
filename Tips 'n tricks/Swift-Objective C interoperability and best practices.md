@@ -126,7 +126,7 @@ If you need to use Swift code in `.h` file, you should use something called Forw
 1. Add `@class MySwiftClass` into `.h` file
 2. Add `import {Product_Module_Name}-Swift.h`. into `.m` file
 
-![1](/img/objc_swift_interoperability/1.png)
+![1](/img/iOS-objc-swift-interoperability.png)
 
 ## VIPER
 
