@@ -28,7 +28,12 @@ In Build Settings, under `Objective-C Generated Interface Header Name`, you shou
 
 ### General project configuration
 
-After adding your first Swift file to the project, some additional flags are going to come up in General project configuration. Some flags are important to you, and they are `Other Swift Flags` used for Swift part, and `Preprocessor Macros` for Objective-C. You want to configure both of them so you can use them in Objective-C and Swift codebase.
+After adding your first Swift file to the project, some additional flags are going to come up in General project configuration. Some flags are important to you, and they are:
+
+* `Other Swift Flags` used for Swift part
+* `Preprocessor Macros` used for for Objective-C part
+
+You want to configure both of them so you can use them in Objective-C and Swift codebase.
 
 **Flags example:**
 
@@ -71,6 +76,7 @@ $(inherited)
 ### Make Swift visible to Objective-C
 
 In order to expose Swift class or methods to Objective-C, you can use different attributes:
+
 * `@objc` - exposes single method or property
 * `@objcMembers` - exposes all members of the class, its extensions, its subclasses, and all of the extensions of its subclasses
 
@@ -171,6 +177,7 @@ extension BaseWireframe {
 ### Initial setup
 
 * In `polyglot.yml` file of your project, change language from Objective-C to Swift
+
 ```
     language: swift
     ...
