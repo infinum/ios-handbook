@@ -108,7 +108,6 @@ Here are some useful information that can help in further development:
  * `Any` in Swift is represented as `id` in Objective-C
  * You can't subclass a Swift class in Objective-C
  * If null specifiers are not provided, Objective-C properties will be implicitly unwrapped optionals in Swift -> can cause a crash!
- * If you want to use Swift enums in Objective-C, they have to have Int as a raw type
 
 Only exposing Swift methods and classes to Objective-C is not enough to use it in Objective-C codebase. **You should also import exposed code into Objective-C**.
 
@@ -133,6 +132,52 @@ If you need to use Swift code in `.h` file, you should use something called Forw
 2. Add `import {Product_Module_Name}-Swift.h`. into `.m` file
 
 ![1](/img/iOS-objc-swift-interoperability.png)
+
+### Swift enums and Objective-C
+
+#### Header Files - `.h`
+
+>Swift enums can't be used in Objective-C header files.
+
+But if your project must have Swift enums in header files, there are two possible solutions:
+
+ 1. Write Swift enum in Objective-C and use newly written enum in Swift files.
+
+ By doing this, you will have codebase that is easy to maintain.
+
+ 2. Have enum written both in Objective-C and Swift.
+
+ Although having duplicated code is inherently a bad thing, and it will be more challenging to maintain the codebase, using this solution your code will become more flexible and here are the perks that come with it:
+   * You will avoid 'dirtying up' your Swift codebase with Objective-C enums. And by doing this,  somewhere in the future when your project won't use Objective-C anymore, you won't have to go through Swift files and refactor them.
+   * If your project is actually a library which is used in other projects and has support for both Objective-C and Swift, you won't force developers to have support for Objective-C (bridging headers) and their project can remain pure Swift.
+
+Furthermore, here is an example of how to, in some measure, prevent discrepancies between Objective-C and Swift enums if you are using the second solution:
+
+```swift
+enum EnumExample {
+  case numberOne
+  case numberTwo
+
+  init?(enumExampleNumbers: EnumExampleNumbers) {
+    switch enumExampleNumbers {
+    case .one: self = .numberOne
+    case .two: self = .numberTwo
+    }
+  }
+}
+```
+
+```objc
+typedef NS_CLOSED_ENUM(NSInteger, EnumExampleNumbers) {
+    EnumExampleNumbersOne,
+    EnumExampleNumbersTwo
+};
+```
+
+#### Implementation files - `.m`
+
+* If you want to use Swift enums in Objective-C, they have to have Int as a raw type
+*
 
 ## Using Objective-C code in Swift
 
