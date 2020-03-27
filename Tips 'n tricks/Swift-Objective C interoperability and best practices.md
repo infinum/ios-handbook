@@ -134,6 +134,41 @@ If you need to use Swift code in `.h` file, you should use something called Forw
 
 ![1](/img/iOS-objc-swift-interoperability.png)
 
+## Using Objective-C code in Swift
+
+### Make Objective-C visible to Swift
+
+To use Objective-C code in Swift, it is only necessary to import Objective-C header file in `bridging header` file to expose it to Swift.
+
+As your application progresses with migration from Objective-C to Swift, number of imports in bridging header file will probably grow, so it is good practice to start separating import statements into logical sections and use markdowns from the start.
+
+* Bridging header file example:
+
+```objc
+// MARK: - Models -
+#import "User.h"
+#import "Group.h"
+
+// MARK: - Managers -
+#import "AnalyticsManager.h"
+#import "AlertManager.h"
+
+...
+
+```
+
+To customise how Objective-C method name is represented in Swift, you can use `NS_SWIFT_NAME` macro.
+
+```objc
+
++ (void)processNotificationPayload:(NSString \*)payload notificationType:(NSString \*)notificationType;
+
+@objc(processNotificationPayload:notificationType:)
+static func processNotification(with payload: String, notificationType: NotificationType) {
+  ...
+}
+```
+
 ## VIPER
 
 Whether you already have Base VIPER in your project written in Objective-C or not, **you should add Swift version of Base VIPER** which are going to be used for every new module written in Swift.
