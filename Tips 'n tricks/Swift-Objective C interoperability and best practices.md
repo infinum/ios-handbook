@@ -161,12 +161,9 @@ To customise how Objective-C method name is represented in Swift, you can use `N
 
 ```objc
 
-+ (void)processNotificationPayload:(NSString \*)payload notificationType:(NSString \*)notificationType;
++ (void)processNotificationPayload:(NSString *)payload notificationType:(NSString *)notificationType
+NS_SWIFT_NAME(processNotification(payload:notificationType:));
 
-@objc(processNotificationPayload:notificationType:)
-static func processNotification(with payload: String, notificationType: NotificationType) {
-  ...
-}
 ```
 
 ## VIPER
