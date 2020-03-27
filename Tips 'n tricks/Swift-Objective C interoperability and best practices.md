@@ -157,7 +157,7 @@ As your application progresses with migration from Objective-C to Swift, number 
 
 ```
 
-To customise how Objective-C method name is represented in Swift, you can use `NS_SWIFT_NAME` macro.
+To customise how Objective-C is represented in Swift, you can use `NS_SWIFT_NAME` macro.
 
 ```objc
 
@@ -165,6 +165,8 @@ To customise how Objective-C method name is represented in Swift, you can use `N
 NS_SWIFT_NAME(processNotification(payload:notificationType:));
 
 ```
+
+* You can apply `NS_SWIFT_NAME` to an individual type, method, or function declaration.
 
 ## VIPER
 
