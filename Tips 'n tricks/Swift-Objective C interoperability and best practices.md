@@ -176,8 +176,7 @@ typedef NS_CLOSED_ENUM(NSInteger, EnumExampleNumbers) {
 
 #### Implementation files - `.m`
 
-* If you want to use Swift enums in Objective-C, they have to have Int as a raw type
-*
+* If you want to use Swift enums in Objective-C implementation files, they have to have Int as a raw type.
 
 ## Using Objective-C code in Swift
 
