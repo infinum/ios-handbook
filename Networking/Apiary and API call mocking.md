@@ -119,21 +119,36 @@ At this moment setup is done and you should end up with something like this:
 
 [ 7 ] = Navigation between multiple APIs
 
+Now all you have to do is add bunch of endpoints along with their responses and voila, you have your API mock :)
+
 ## Connecting you app with apiary
 
+First of all there are multiple ways to connect apiary with your app, you can mock whole app or only a few screens. In example below will be shown how to mock whole app.
 
 
+Step 1:
+
+If you don't already have add some enum that will represent your `base` urls and add your **mock** url
+
+```swift
+enum Base: String { 
+        case api = "https://backend.project.com/something/api" 
+        case mock = "https://private-4d7af-project18.apiary-mock.com" 
+    }
+```
+
+Step 2:
+
+Add singleton that will control current base url 
+
+```swift
+class Selection {
+        static let current = Selection()
+        
+        private(set) var base: Constants.AppUrl.Base = .api 
+    }
+```
 
 ## Closing words
 
-Apiary is  good for bla bla
-
-There is much more that APiary can offer you, these are just basics
-
-But it has limits:
-
-You need network connection
-
-Can't Test API Speed
-
-Flows / Changes
+There is much more that Apiary can offer you, these are just basics. All of above is possible to do with free version, however there is also paid version that provides much more functionality, for more info about apiary click here [here](https://apiary.io/how-apiary-works).
