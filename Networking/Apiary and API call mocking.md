@@ -83,6 +83,12 @@ Here are some of the limitations of apiary:
 
 * **Changes**, if app has to update some value, it might be a bit harder to mock
 
+* **Editing by hand** 
+
+* **Merging**, multiple people editing the same thing at the same time
+
+* **Merging**, responses are publically available, clients might dislike that
+
 ## Apiary setup
 
 Step 1 
@@ -109,7 +115,7 @@ At this moment setup is done and you should end up with something like this:
 
 [ 2 ] = API Endpoint
 
-[ 3 ] = Method that will be used `GET` / `POST` / `DELETE`
+[ 3 ] = Method that will be used, `GET` / `POST` / `DELETE` ...
 
 [ 4 ] = In case you liked Apiary and want to create bigger team.
 
@@ -128,7 +134,7 @@ First of all there are multiple ways to connect apiary with your app, you can mo
 
 Step 1:
 
-If you don't already have add some enum that will represent your `base` urls and add your **mock** url
+* If you don't already have add some enum that will represent your `base` urls and add your **mock** url
 
 ```swift
 enum Base: String { 
@@ -139,7 +145,7 @@ enum Base: String {
 
 Step 2:
 
-Add singleton that will control current base url 
+* Add singleton that will control current base url 
 
 ```swift
 class Selection {
@@ -148,6 +154,25 @@ class Selection {
         private(set) var base: Constants.AppUrl.Base = .api 
     }
 ```
+
+Step 3:
+
+* Add some button on login screen, and on click have following line executed
+
+```swift
+    Selection.current = .mock
+
+    //Login
+```
+* But don't forget to hide that button on production
+
+```swift
+#if STORE 
+    mockLoginButton.isHidden = true
+#endif
+```
+
+And that should be it, now your app is ready for some mocking
 
 ## Closing words
 
