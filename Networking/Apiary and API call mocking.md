@@ -1,10 +1,10 @@
 ## What is Apiary? 
 
-Apiary is that tool that lets you build your own API extremely fast, allows more then it allows you to build functional API in a single day, sometimes even a few hours. 
+Apiary is that tool that lets you build your API extremely fast, allows you to build functional API in a single day, sometimes even a few hours. 
 
 ## How does it work?
 
-You can look at Apiary like online collection of json responses with a bit more power. You get some base url and all you have to do is define `endpoints` and their `response`. Example of one such response can be seen below :
+You can look at Apiary like an online collection of `JSON` responses with a bit more power. You get some base URL and all you have to do is define `endpoints` and their `response`. Example of one such response can be seen below :
 
 ```json
 
@@ -49,26 +49,26 @@ You can look at Apiary like online collection of json responses with a bit more 
             }
 
 ```
-Apiary usualy uses `API Blueprint`, a powerful high-level API description language for web APIs, more details on that can be found [here](https://apiblueprint.org).
+Apiary usually uses `API Blueprint`, a powerful high-level API description language for web APIs, more details on that can be found [here](https://apiblueprint.org).
 
 
 ## Why Apiary ?
 
 Here are some of reasons why you might want to add apiary to your project: 
 
-* **Easy to learn**, not just for developers, but for testers also.
+* **Easy to learn**, not just for developers, but for testers also
 
 * **Multiplatform sync**, once written API can be used for iOS, Android or Web 
 
-* **Time saving**, takes only **1** person to setup mock for multiple platforms
+* **Time-saving**, takes only **1** person to setup mock for multiple platforms
 
 * **Documentation!** As you write your responses, apiary will automatically generate great documentation
 
 * **Traffic inspector** - one click away from all of the API traffic
 
-* **Easy changes**, no need to rebuild project to apply changes, just edit apiary.
+* **Easy changes**, no need to rebuild project to apply changes, just edit apiary
 
-* **Improves testability**, QA can go through most test cases without support of backend
+* **Improves testability**, QA can go through most test cases without support of the backend
 
 * Because it is **awesome**
   
@@ -79,15 +79,15 @@ Here are some of the limitations of apiary:
 
 * **You need network connection** - no internet, no mocking
 
-* **Backend Speed**, Apiary is usually always very fast so developers might get wrong feeling about some response times
+* **Backend Speed**, Apiary is usually very fast so developers might get a wrong feeling about some response times
 
-* **Changes**, if app has to update some value, it might be a bit harder to mock
+* **Changes**, if the app has to update some value, it might be a bit harder to mock
 
-* **Editing by hand** 
+* **Editing by hand**, all the mocks are just one large JSON file
 
-* **Merging**, multiple people editing the same thing at the same time
+* **Merging**, multiple people editing at the same time
 
-* **Merging**, responses are publically available, clients might dislike that
+* **Privacy**, responses are publically available, clients might dislike that, this is the reason why you will need to ask your clients to use apiary
 
 ## Apiary setup
 
@@ -97,7 +97,7 @@ Step 1
 
 Step 2
 
-* Give your API a name, your project name should be fine, and pick API format; You can choose between `Api Blueprint` and `Swagger`. If are not sure which format to pick, just go with the default.
+* Give your API a name, your project name should be fine, and pick API format; You can choose between `Api Blueprint` and `Swagger`. If you are not sure which format to pick, just go with the default.
 
 Step 3
 
@@ -117,7 +117,7 @@ At this moment setup is done and you should end up with something like this:
 
 [ 3 ] = Method that will be used, `GET` / `POST` / `DELETE` ...
 
-[ 4 ] = In case you liked Apiary and want to create bigger team.
+[ 4 ] = In case you liked Apiary and want to create a bigger team.
 
 [ 5 ] = Save button, you should press it after every change
 
@@ -125,16 +125,16 @@ At this moment setup is done and you should end up with something like this:
 
 [ 7 ] = Navigation between multiple APIs
 
-Now all you have to do is add bunch of endpoints along with their responses and voila, you have your API mock :)
+Now all you have to do is add a bunch of endpoints along with their responses and voila, you have your API mock :)
 
 ## Connecting you app with apiary
 
-First of all there are multiple ways to connect apiary with your app, you can mock whole app or only a few screens. In example below will be shown how to mock whole app.
+First of all there are multiple ways to connect apiary with your app, you can use mocking for the whole app or only a few screens. In the example below will be shown how to set up a mock for the whole app.
 
 
 Step 1:
 
-* If you don't already have add some enum that will represent your `base` urls and add your **mock** url
+* If you don't already have add some enum that will represent your `base` URLs and add your **mock** URL
 
 ```swift
 enum Base: String { 
@@ -157,7 +157,7 @@ class Selection {
 
 Step 3:
 
-* Add some button on login screen, and on click have following line executed
+* Add some button on login screen, and click have following line executed
 
 ```swift
     Selection.current = .mock
@@ -176,4 +176,4 @@ And that should be it, now your app is ready for some mocking
 
 ## Closing words
 
-There is much more that Apiary can offer you, these are just basics. All of above is possible to do with free version, however there is also paid version that provides much more functionality, for more info about apiary click here [here](https://apiary.io/how-apiary-works).
+There is much more that Apiary can offer you, these are just basics. All of the above is possible to do with a free version, however, there is also a paid version that provides much more functionality. For more info about Apiary click here [here](https://apiary.io/how-apiary-works).
