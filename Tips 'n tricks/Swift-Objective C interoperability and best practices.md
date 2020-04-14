@@ -145,9 +145,9 @@ But if your project must have Swift enums in header files, there are two possibl
 
  2. Have enum written both in Objective-C and Swift.
 
- Although having duplicated code is inherently a bad thing, and it will be more challenging to maintain the codebase, using this solution your code will become more flexible and here are the perks that come with it:
-   * You will avoid 'dirtying up' your Swift codebase with Objective-C enums. And by doing this,  somewhere in the future when your project won't use Objective-C anymore, you won't have to go through Swift files and refactor them.
-   * If your project is a library which is used in other projects and has support for both Objective-C and Swift, you won't force Swift developers to have support for Objective-C (bridging headers), and their project can remain pure Swift.
+ Although having duplicated code is inherently a bad thing, and it will be more challenging to maintain, using this solution your code will become more flexible and here are the perks that come with it:
+   * You will avoid 'dirtying up' your Swift codebase with Objective-C enums. And by doing this, somewhere in the future when your project won't use Objective-C anymore, you won't have to go through Swift files and refactor them.
+   * If you want to share your code with others, you won't force Swift developers to have support for Objective-C (bridging headers), and their project can remain pure Swift.
 
 Furthermore, here is an example of how to, in some measure, prevent discrepancies between Objective-C and Swift enums if you are using the second solution:
 
@@ -181,6 +181,7 @@ typedef NS_CLOSED_ENUM(NSInteger, EnumExampleNumbers) {
 ### Make Objective-C visible to Swift
 
 To use Objective-C code in Swift, it is only necessary to import Objective-C header file in `bridging header` file to expose it to Swift.
+If you are working on a framework, you will need to import Objective-C in umbrella header since bridging headers are not available for frameworks.
 
 As your application progresses with migration from Objective-C to Swift, number of imports in bridging header file will probably grow, so it is good practice to start separating import statements into logical sections and use markdowns from the start.
 
