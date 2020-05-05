@@ -49,6 +49,7 @@ You can look at Apiary like an online collection of `JSON` responses with a bit 
             }
 
 ```
+
 Apiary usually uses `API Blueprint`, a powerful high-level API description language for web APIs, more details on that can be found [here](https://apiblueprint.org).
 
 ## Why Apiary?
@@ -135,9 +136,9 @@ There are multiple ways to connect Apiary with your app: you can use mocking for
 
 ```swift
 enum Base: String { 
-        case api = "https://backend.project.com/something/api" 
-        case mock = "https://private-4d7af-project18.apiary-mock.com" 
-    }
+    case api = "https://backend.project.com/something/api" 
+    case mock = "https://private-4d7af-project18.apiary-mock.com" 
+}
 ```
 
 ### Step 2
@@ -146,10 +147,10 @@ enum Base: String {
 
 ```swift
 class Selection {
-        static let current = Selection()
-        
-        private(set) var base: Constants.AppUrl.Base = .api 
-    }
+    static let current = Selection()
+
+    private(set) var base: Constants.AppUrl.Base = .api 
+}
 ```
 
 ### Step 3
@@ -159,8 +160,9 @@ class Selection {
 ```swift
     Selection.current = .mock
 
-    //Login
+    // Login
 ```
+
 * But don't forget to hide that button on production
 
 ```swift
