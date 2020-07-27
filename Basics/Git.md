@@ -53,16 +53,16 @@ There is also a [git hook][4] available to validate your commit message.
 
 ## 6. Pull requests
 
-The preferred way of merging a branch back into main is by creating a pull request and assigning it to a colleague for review. At least one person should review any code that is going to be merged (reviewer on PR).
+The preferred way of merging a branch back into `master` is by creating a pull request and assigning it to a colleague for review. At least one person should review any code that is going to be merged (reviewer on PR).
 
 Each PR should have a description. Link to the Productive/Jira task is minimum for description. It would be great to include a link to design (if applicable) and describe the changes that PR introduces. You can find a good read on what the description should contain [here][5].
 
 PR should have an assignee, which is usually a person who created a PR or the person who will be responsible for merging it. 
 
-Master and/or develop branches should always be marked as protected on Github in order to prevent direct push to those branches. Next options should be checked on branch protection rules page on Github:
+Master and/or release branches should always be marked as protected on Github in order to prevent direct push to those branches. Next options should be checked on the branch protection rules page on Github:
 * ***Require pull request reviews before merging***
 ![Pull request][image-2]
-* ***Require status check to pass before merging (this includes any CI and Sonarcloud if used)***
+* ***Require status check to pass before merging (this includes Bitrise CI and/or SonarCloud if used)***
 ![Status chec][image-3]
 * ***Require branches to be up to date before merging***
 ![Branches][image-4]
@@ -76,7 +76,7 @@ Above mentioned rules should be the minimum for all platforms. Few more are spec
 We’ll be using the Git Flow standard as a base for git branching with some modifications. More about Git Flow [here][6].
 
 #### Branches
-We’ll be using **master** as the main branch. Since we’ll be using tags and optionally **release** branches for deployment, **develop** branch becomes redundant.
+We’ll be using **master** as the main branch. Since we’ll be using tags and optionally **release** branches for deployment, **develop** branch becomes redundant and therefore should not be used in the project.
 
 The main branches in this flow are:
 * **master**
@@ -111,10 +111,10 @@ Deployment is done via tags and Bitrise CI/CD. Here are the chapters on setting 
 
 Sync with another platform as much as possible. Few stuff that should be defined and synced:
 * Environment names - staging, production, uat, beta… whatever is convention on project, but should be the same. Exception probably will be iOS with its production and app store environments due to technical limitations. If using TryOutApps, please sync environment names.
-* Build number/code version - Must be numbers only value. For build number you can use commit count (could be fetched with `git rev-list HEAD --count` from deploy script and bitrise has global variable `$GIT_CLONE_COMMIT_COUNT` that could be used) or manually auto increment number value (i.e. before creating a new build, last build number should be fetched and increment by 1).
+* Build number/code version - Must be numbers only value. For build number you can use tag count (prefer using with [build script](10)) or commit count if tag count is unavailable (could be fetched with `git rev-list HEAD --count` from deploy script and bitrise has global variable `$GIT_CLONE_COMMIT_COUNT` that could be used). 
 * Tag names - tags (used for tagging the TryOutApps version and/or triggering Bitrise CI) should be comprised of three parts: environment, app version with ***v*** prefix and build number/code version, e.g. ***internal-staging/v1.2.3-1234***
   * Each project will have different environments so this will be heavily project dependent, but some suggestions: tags should have prefix like ***internal-staging/***, ***internal-production/***, ***appstore/***... Due to limitation on tag triggers on Bitrise, tags with multiple / are not permitted, so you should use something like ***internal-production/***, ***internal-staging/***.
-  * Use ***internal-*** prefix for all tags which will trigger internal builds (Labs, TryOutApps). Reason behind it: internal tags are not so relevant and one should clear internal tags from time to time to keep the project clean (LEs will prepare the script for it).
+  * Use ***internal-*** prefix for all tags which will trigger internal builds on TryoutApps. The reason behind it: internal tags are not so relevant and one should clear internal tags from time to time to keep the project clean.
   * All the production versions that have been published to the app/play store should be tagged with one extra tag in order to have a better overview of released versions. Tag should look like this: ***v1.2.3*** (without build number).
 
 [1]:  https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
@@ -126,6 +126,7 @@ Sync with another platform as much as possible. Few stuff that should be defined
 [7]:  https://infinum.com/handbook/books/android/bitrise
 [8]:  https://infinum.com/handbook/books/ios/bitrise-ci/pull-request-ci-check
 [9]:  https://infinum.com/handbook/books/ios/bitrise-ci/general-intro
+[10]: https://github.com/infinum/app-deploy-script
 
 [image-1]:	http://imgs.xkcd.com/comics/git.png "Git"
 [image-2]:	/img/iOS-pull-request.png
