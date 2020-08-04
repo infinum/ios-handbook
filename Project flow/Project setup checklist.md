@@ -65,7 +65,49 @@ The Xcode default folder structure almost never works for you. This is the perfe
 
 Keep your Xcode structure in sync with the folder structure on a disk. This means that every group in Xcode should be a folder on the disk.
 
-## 7. Add pods to your project
+## 7. Adding Shaman to the project
+
+Shaman is a gem that we use which provides a nice CLI to setup **TryOutApps deployment**. 
+
+It takes care of the configuration that's needed for the script to work for you. All you have to do is, prepare a project on TryOutApps and set up your environments.
+
+Once that's done, running `shaman init` will lead you through a few simple steps and afterwards, generate a `shaman.yml` for you.
+
+The file itself contains your `environments`, `release_path` per environment and a `token` that's used to communicate with the API.
+
+During said steps, you'll be asked for your user token, which you can find on [TryOutApps](https://infinum.tryoutapps.com/users/me).
+
+Everything else related to the installation and usage of Shaman, you can find [here](https://bitbucket.org/infinum_hr/gem-shaman/src/master/).
+
+### Common issues
+
+During shaman installation you might end up running into potential issues due to some of the changes that were made to the MacOS file system. If these do happen, an error that you'll likely see will be:
+
+```
+Building native extensions. This could take a while...
+ERROR:  Error installing shaman:
+ERROR: Failed to build gem native extension.
+```
+This likely means that your Ruby version is outdated, so a simple update to a newer version will fix that. It's highly recommended to use RVM instead of manual gem updates because RVM allows you to specify the version that you'd like to use.
+
+To get it working, use the following commands:
+
+```bash
+# Installs RVM
+\curl -sSL https://get.rvm.io | bash -s stable 
+
+# Install the desired Ruby version (replace $VERSION with an actual value)
+rvm install ruby-$VERSION
+
+# Set your desired version as the default (replace $VERSION with an actual value)
+rvm --default use $VERSION
+```
+
+>Note: In case that you encunter permission errors when, in case that the installation wants to go into `/usr/bin`, please replace the installation target to `/usr/local/bin`.
+
+With that in place, you shouldn't have issues with the shaman installation.
+
+## 8. Add pods to your project
 
 `pod init` and then add whatever pods you think you’ll want to use. Alamofire is a good start. No matter how simple your project is, there’s a good chance you’ll be needing pods anyway. `pod install` once you're done adding pods.
 
@@ -73,7 +115,7 @@ Keep your Xcode structure in sync with the folder structure on a disk. This mean
 
 We always want a perfectly functional project in the repo, with the versions of the libs used at a certain point for reference. Bandwidth is cheap. Tracking uncommitted changes is not.
 
-## 8. Add your build scripts, lints, analyzers, etc.
+## 9. Add your build scripts, lints, analyzers, etc.
 
 For example, build a number script, SwiftLint, codebeat, or whatever else you might need. More complex projects will need more of these.
 
@@ -83,29 +125,29 @@ Stuff to consider:
 
 For both of the above, we already have the default config files for you to use [here]() and [here]().
 
-## 9. Push your project to the repo
+## 10. Push your project to the repo
 
 After setting everything up properly and making sure that everything works, push your project to the master branch. Until you deploy a build to the App Store, this will be your last commit to the `master`, so onto the next step.
 
-## 10. Set up a GitFlow flow and start working
+## 11. Set up a GitFlow flow and start working
 
 Create a `development` branch and a feature branch and start working on your project. Ask the team lead once more to protect your `development` branch.
 
-## 11. Set up your configurations (what used to be targets)
+## 12. Set up your configurations (what used to be targets)
 
 TBA
 
-## 12. Get some provisioning profiles
+## 13. Get some provisioning profiles
 
 Use the [Developer portal](https://developer.apple.com/) to create app IDs, provisioning profiles, and whatever you'll be needing for deployment.
 
-## 13. Set up your CI
+## 15. Set up your CI
 
 We use [Bitrise](https://www.bitrise.io/) for our continuous integration needs. Automatic deployment beats wasting time for manual builds, and its use is strongly advised.
 
 To set one up, check the CI chapter in the handbook.
 
-## 14. Get them fingers busy
+## 16. Get them fingers busy
 
 Time to get to work. Happy coding!
 
@@ -117,11 +159,12 @@ Time to get to work. Happy coding!
 4. Add a gitignore
 5. Add a README
 6. Reorganize your project
-7. Add pods to your project
-8. Add your build scripts, lints, analyzers, etc.
-9. Push your project to the repo
-10. Set up a GitFlow flow and start working
-11. Set up your configurations (what used to be targets)
-12. Get some provisioning profiles
-13. Set up your CI
-14. Get them fingers busy
+7. Install shaman and configure deployment
+8. Add pods to your project
+9. Add your build scripts, lints, analyzers, etc.
+10. Push your project to the repo
+11. Set up a GitFlow flow and start working
+12. Set up your configurations (what used to be targets)
+13. Get some provisioning profiles
+14. Set up your CI
+15. Get them fingers busy
