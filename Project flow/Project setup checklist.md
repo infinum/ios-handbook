@@ -71,7 +71,6 @@ Shaman is a gem that we use which provides a nice CLI to setup **TryOutApps depl
 
 It takes care of the configuration that's needed for the script to work for you. All you have to do is, prepare a project on TryOutApps and set up your environments.
 
-
 Once that's done, running `shaman init` will lead you through a few simple steps and afterwards, generate a `shaman.yml` for you.
 
 The file itself contains your `environments`, `release_path` per environment and a `token` that's used to communicate with the API.
