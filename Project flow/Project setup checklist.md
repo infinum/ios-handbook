@@ -133,9 +133,13 @@ After setting everything up properly and making sure that everything works, push
 
 Create a `development` branch and a feature branch and start working on your project. Ask the team lead once more to protect your `development` branch.
 
-## 12. Set up your configurations (what used to be targets)
+## 12. Set up your schemes and configurations
 
-TBA
+Schemes are there to define different environments in our case. Each target should have at least one scheme to define a blueprint for the entire build process. That being said, each scheme can then have configurations that describe what build settings are to be used for the scheme (debug, release, etc.).
+
+Ideally, a project should have a single or multiple targets, depending on the use case (the app itself, app extensions, etc.) which are then described by the mentioned schemes and configurations.
+
+To set things up and read more about it, check out the [Custom xcconfigs chapter](https://infinum.com/handbook/books/ios/project-flow/custom-xcconfigs).
 
 ## 13. Get some provisioning profiles
 
