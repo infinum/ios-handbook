@@ -54,7 +54,7 @@ Apple does pretty much all of the hard work and packs everything in the `ASAutho
 
 The only thing you need to do is to specify information you need via the `ASAuthorizationAppleIDRequest`, which you can create from `ASAuthorizationAppleIDProvider` and pass it on as a parameter to `ASAuthorizationController`.
 
-In the following example, we request both *email* and *fullName* of the user:
+In the following example, we request both the *email* and *fullName* of the user:
 
 ```swift
 @objc
