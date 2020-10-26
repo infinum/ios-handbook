@@ -1,6 +1,4 @@
-# Sign in with Apple
-
-At WWDC 2019., Apple revealed [Sign in with Apple - Apple Developer][1], a privacy and security focused login service. It provides users with a way to sign up or log in into application by leveraging the Apple ID they have set up on their devices.
+At WWDC 2019., Apple revealed **[Sign in with Apple - Apple Developer][1]**, a privacy and security focused login service. It provides users with a way to sign up or log in into application by leveraging the Apple ID they have set up on their devices.
 
 Initially it provided a nice alternative to Google/Facebook login, but as time passed, it became mandatory for all applications which are using any other type of third party login services, which is why it's necessary for you to know how to implement it. 
 
@@ -42,7 +40,7 @@ Since you'll be using the default button most of the times, it's good to know th
 
 Now that the button is placed properly and looks the way you want to, let's get to the meat of this chapter - authorization handling.
 
-## Handling user authorization
+## 3. Handle user authorization
 
 You can add the action just like you usually would: 
 
@@ -74,7 +72,7 @@ func handleAuthorizationAppleIDButtonPress() {
 
 As you can see, we are making our view controller a delegate for two things - **ASAuthorizationControllerPresentationContextProviding** and **ASAuthorizationControllerDelegate**. Let's set them up!
 
-## Setting up delegate methods
+### Setting up delegate methods
 
 `presentationContextProvider` (*ASAuthorizationControllerPresentationContextProviding*) asks for one thing, a window it will use for presenting the sign in dialog.
 
@@ -128,11 +126,11 @@ func authorizationController(controller: ASAuthorizationController, didCompleteW
 
 This is pretty much everything you need to do to integrate Sign in with Apple into your apps. You can tap the sign in button now and see it in action.
 
-## Sing in flow
+## 4. Test different flows
 
 The sign in flow is quite simple; let's have a quick look at what can happen when the sign in button is tapped.
 
-## 1st case - the user not logged into Apple ID
+### 1st case - the user not logged into Apple ID
 
 If the device has no Apple ID, `authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error)` will be called with an `ASAuthorizationErrorUnknown` error case.
 
@@ -140,7 +138,7 @@ You don't have to do anything about this, system alert will automatically be sho
 
 ![No Apple ID][image-3]
 
-## 2nd case - first time using Sign in with Apple
+### 2nd case - user is logged into Apple ID
 
 If the user is already signed in but using sign in with Apple for the first time, they will see the Data and privacy information screen.
 
@@ -196,7 +194,7 @@ And just like that, you've just implemented your first Sign in with Apple!
 
 ## Implementation notes
 
-These are some notes that we've gathered while testing out this feature - they could prove to be useful to you:
+These are some notes that we've gathered while testing out this feature, which could prove to be useful to you:
 
 * Sign in with Apple is supported only on iOS 13+, so if you're supporting older OS versions `@available` will be your friend
 * simulators can be hit or miss when it comes to working as one would expect, so test your implementation on a real device as much as you can; if it works in a simulator, great, but if you get an error 1000 (undefined) and you can’t figure out why, switch to a real device and see if the problem persists
