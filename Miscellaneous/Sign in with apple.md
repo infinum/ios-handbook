@@ -16,6 +16,8 @@ The first thing you need to do is to add the new **Sign in with Apple capability
 
 This capability is **available only for non-enterprise account types**, which means that in 99% of cases you can only add this capability to the production target/configuration (depending on your project setup) which is **signed using the client’s account, not Infinum D.O.O.**. `#if APPSTORE` or whatever you have configured in your project for differentiating environments will be your friend when following the next steps.
 
+> Make sure that the app is signed with the client's certificate, and not with the one from Infinum d.o.o. The reason is that once the bundle ID of the app is registered on one account where the Sign in with Apple capability is enabled, that app is "locked" to that account and we won't be able to migrate it to the client's account.
+
 ## 2. Add the Sign in with Apple button
 
 Apple provides a dedicated class for the Sign in with Apple button, `ASAuthorizationAppleIDButton`. To create it, you just need to initialize it like you would a normal button and place it somewhere on the screen: 
@@ -77,7 +79,6 @@ As you can see, we are making our view controller a delegate for two things - **
 `presentationContextProvider` (*ASAuthorizationControllerPresentationContextProviding*) asks for one thing, a window it will use for presenting the sign in dialog.
 
 ```swift
-// MARK: - ASAuthorizationControllerPresentationContextProviding
 func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
     view.window ?? UIWindow()
 }
