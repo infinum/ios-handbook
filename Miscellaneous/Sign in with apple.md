@@ -14,7 +14,7 @@ The first thing you need to do is to add the new **Sign in with Apple capability
 
 ![Sign in with Apple capability][image-1]
 
-This capability is **available only for non-enterprise account types**, which means that in 99% of cases you can only add this capability to the production target/configuration (depending on your project setup) which is **signed using the client’s account, not Infinum D.O.O.**. `#if APPSTORE` or whatever you have configured in your project for diferentiating environments will be your friend when following the next steps.
+This capability is **available only for non-enterprise account types**, which means that in 99% of cases you can only add this capability to the production target/configuration (depending on your project setup) which is **signed using the client’s account, not Infinum D.O.O.**. `#if APPSTORE` or whatever you have configured in your project for differentiating environments will be your friend when following the next steps.
 
 ## 2. Add the Sign in with Apple button
 
@@ -38,7 +38,7 @@ Since you'll be using the default button most of the times, it's good to know th
 * **appearance** - you can choose between *white*, *white with an outline* and *black*,
 * **corner radius**.
 
-Now that the button is placed properly and looks the way you want to, let's get to the meat of this chapter - authorization handling.
+Now that the button is placed properly and looks the way you want it to, let's get into the meat of this chapter - authorization handling.
 
 ## 3. Handle user authorization
 
