@@ -3,10 +3,10 @@
 </div>
 
 ## Networking
-For comunication with a remote server, use [Alamofire][1] - an HTTP networking [pod][4] written in Swift. On the off chance that you're actually starting an Objective-C based project, you'll be working with [AFNetworking][2] instead. Both of these libraries are developed by the same team who is responsible for [nshipster.com][3]—a site you should really keep in your bookmarks.
+For comunication with a remote server, use [Alamofire](https://github.com/Alamofire/Alamofire) - an HTTP networking [pod](https://cocoapods.org/) written in Swift. On the off chance that you're actually starting an Objective-C based project, you'll be working with [AFNetworking](https://github.com/AFNetworking/AFNetworking) instead. Both of these libraries are developed by the same team who is responsible for [nshipster.com](http://nshipster.com/)—a site you should really keep in your bookmarks.
 
 ## REST API and services
-In almost all cases, the architecture of the web service your app is communicating with will be implemented using a RESTful architecture style. A simple and easy explanation of REST APIs can be found [here][5]. You can go [here][6] for a more theoretical description of REST.
+In almost all cases, the architecture of the web service your app is communicating with will be implemented using a RESTful architecture style. A simple and easy explanation of REST APIs can be found [here](http://searchsoa.techtarget.com/definition/REST). You can go [here](https://en.wikipedia.org/wiki/Representational_state_transfer) for a more theoretical description of REST.
 
 When communicating with a RESTful API, it's quite easy to separate networking into services, which is precisely what we do. Services are PONSOs (plain old NSObject) that handle all API requests for one particular segment of the API. Here's an example of a service which handles a login action using Alamofire:
 
@@ -101,10 +101,3 @@ struct LotoResult {
     let extraNumber: Int?
 }
 ```
-
-[1]:	https://github.com/Alamofire/Alamofire
-[2]:	https://github.com/AFNetworking/AFNetworking
-[3]:	http://nshipster.com/
-[4]:	https://cocoapods.org/
-[5]:	hhttp://searchsoa.techtarget.com/definition/REST
-[6]:	ttps://en.wikipedia.org/wiki/Representational_state_transfer

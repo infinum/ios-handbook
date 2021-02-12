@@ -9,7 +9,7 @@ If you haven't created it then, you can do it now. The process is pretty straigh
 1. Open up the Keychain Access app.
 2. From the menu, select Keychain Access -> Certificate Assistant -> Request a Certificate from the Certificate Authority.
 3. Populate the necessary fields in the Certificate Assistant dialog and choose to save the request to disk.
-4. Go to [developer.apple.com][1] in your favorite browser.
+4. Go to [developer.apple.com](https://developer.apple.com) in your favorite browser.
 5. Log into the Member Center.
 6. Go to Certificates, Identifiers & Profiles -> Certificates.
 7. Under Certificates—Development, choose to add a new development profile (hint: the magic plus sign [+]).
@@ -19,7 +19,7 @@ If you haven't created it then, you can do it now. The process is pretty straigh
 
 You can find it in the Keychain app in the "My Certificates" section.
 
-![Personal certificate][image-1]
+![Personal certificate](/img/iOS-certificates-keychain.png)
 
 The main part of the certificate is your public/private key pair, which is a guarantee that the apps are truly developed/distributed by you.
 
@@ -73,7 +73,7 @@ TestFlight is another common way of sending the builds directly to clients. You 
 For the iOS platform, push notifications are available through the APNS server. You also need SSL certificates to communicate with the APNS server. They can be generated using the developer portal under the "Certificates" section. You will probably need both the development and the production APNS certificates.
 
 
-![APNS Dev certificate][image-2]
+![APNS Dev certificate](/img/iOS-certificates-apns.png)
 
 
 The attached image displays the generation of an APNS development certificate. After continuing, you should select the App ID for the target app and upload the certificate signing request. Again, the process is the same as with generating a personal certificate:
@@ -88,8 +88,3 @@ After completing the CSR upload, save the APNS SSL certificate to disk (you can 
 Generating APNS Production certificates is very similar. All you have to do is choose "Production" under "Certificates" and choose the Apple Push Notification service SSL (Production) in the "Select type" step. The following steps are the same as for the Sandbox SSL certificate generation.
 
 The certificates will be used by the API, which will be responsible for initiating push notification messages.
-
-[1]:	https://developer.apple.com
-
-[image-1]:	/img/iOS-certificates-keychain.png
-[image-2]:	/img/iOS-certificates-apns.png

@@ -59,7 +59,7 @@
 * Screen layout can handle the double-height status bar (e.g., during a phone call)
 * Landscape mode, if supported, looks well-designed (i.e., is not accidental and bad)
 
-You can find more information about this topic [here][1].
+You can find more information about this topic [here](https://developer.apple.com/ios/human-interface-guidelines/overview/design-principles/).
 
 ## iPad-specific
 
@@ -86,5 +86,3 @@ You can find more information about this topic [here][1].
 * The required-device-capabilities entry in the info.plist file match the requirements of the app
 * Your app matches your claimed OS version compatibility
 * NSZombieEnabled is set to NO
-
-[1]:	https://developer.apple.com/ios/human-interface-guidelines/overview/design-principles/
