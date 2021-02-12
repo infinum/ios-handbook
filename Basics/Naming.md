@@ -62,7 +62,7 @@ Since _Swift 3_, all function parameters have labels unless you request otherwis
     employees.remove(x) // unclear: are we removing x?
     ```
 
-* When the first argument forms a part of a [prepositional phrase][3], give it an argument label. The argument label should begin at the preposition.
+* When the first argument forms a part of a [prepositional phrase](https://en.wikipedia.org/wiki/Adpositional_phrase#Prepositional_phrases),  give it an argument label. The argument label should begin at the preposition.
     ##### Preferred:
 
     ```swift
@@ -79,7 +79,7 @@ Since _Swift 3_, all function parameters have labels unless you request otherwis
     names.indexOf("Taylor")
     color.fade(fromRed: b, green: c, blue: d) // The first two arguments represent parts of a single abstraction
     ```
-* Please visit [Swift API Design Guidelines][2] for more info and examples on function naming—they provide a lot of examples and explanations on edge cases.
+* Please visit [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/) for more info and examples on function naming—they provide a lot of examples and explanations on edge cases.
 
 ## Enumerations
 
@@ -148,9 +148,4 @@ import SomeModule
 let myClass = MyModule.UsefulClass()
 ```
 
-This guide is mostly copied from [Swift API Design Guidelines][2], [Ray Wenderlich Swift guide][1], and [What's new in Swift 3.0][4], with some minor changes.
-
-[1]:    https://github.com/raywenderlich/swift-style-guide#naming
-[2]:    https://swift.org/documentation/api-design-guidelines/
-[3]:    https://en.wikipedia.org/wiki/Adpositional_phrase#Prepositional_phrases
-[4]:    https://www.hackingwithswift.com/swift3
+This guide is mostly copied from [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/), [Ray Wenderlich Swift guide](https://github.com/raywenderlich/swift-style-guide#naming), and [What's new in Swift 3.0](https://www.hackingwithswift.com/swift3), with some minor changes.

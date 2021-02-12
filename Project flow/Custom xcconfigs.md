@@ -315,8 +315,5 @@ __Build a project :)__
 ## Resources
 
 - [Sample Project](/resources/Sample_xcconfig.zip)
-- [Using xcconfig Files for Your Xcode Project][1]
-- [Generating Xcode Build Configuration Files with BuildSettingExtractor (xcodeproj → xcconfig)][2]
-
-[1]:	http://www.jontolof.com/cocoa/using-xcconfig-files-for-you-xcode-project/
-[2]:	http://jamesdempsey.net/2015/01/31/generating-xcode-build-configuration-files-with-buildsettingextractor-xcodeproj-to-xcconfig/
+- [Using xcconfig Files for Your Xcode Project](http://www.jontolof.com/cocoa/using-xcconfig-files-for-you-xcode-project/)
+- [Generating Xcode Build Configuration Files with BuildSettingExtractor (xcodeproj → xcconfig)](http://jamesdempsey.net/2015/01/31/generating-xcode-build-configuration-files-with-buildsettingextractor-xcodeproj-to-xcconfig/)
