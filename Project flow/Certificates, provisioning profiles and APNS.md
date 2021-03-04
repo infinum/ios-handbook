@@ -1,3 +1,5 @@
+> NOTE: Once a certificate or key from this chapter is created, it should be sent to the Lead Engineer so that they can securely store it! 
+
 ## Certificates
 
 Certificates are a part of the app development process called code signing.
@@ -68,9 +70,26 @@ Ad hoc profiles are used to distribute the app to the devices which are chosen w
 
 TestFlight is another common way of sending the builds directly to clients. You use the App Store provisioning profile type, and the build is uploaded to App Store directly.
 
-## APNS
+## APNS - p8 key
 
-For the iOS platform, push notifications are available through the APNS server. You also need SSL certificates to communicate with the APNS server. They can be generated using the developer portal under the "Certificates" section. You will probably need both the development and the production APNS certificates.
+For the iOS platform, push notifications are available through the APNS server. In order to establish communication with the APNS server, you'll have to create the Apple Push Notification service key. Once that key is created, you should upload it to the push notification provider (e.g. Firebase) configuration page or to the server if notification handling is done manually.
+
+To create the key, visit the [developer console](https://developer.apple.com) and select the *Certificates, Identifiers & Profiles* option. On the next page, select *Keys* and then *+*. Add the key name (e.g. APNs key) and select *Apple Push Notification service (APNs)*.
+![ios_register_new_key](/img/ios_register_new_key.png)
+
+Once key is created, you'll be able to download it. **Keep in mind that you can download that key only once!**
+
+> Send created key to the Lead Engineer so that they can securely store it.
+
+If you are using Firebase for the push notifications, you'll have to upload that key into the project settings, under the *Cloud Messaging* tab.
+
+![ios_notification_key_upload](/img/ios_notification_key_upload.png)
+
+## APNS  - certificates (deprecated)
+
+Another (deprecated) way to establish that communcaion is through the  SSL certificates. They can be generated using the developer portal under the "Certificates" section. You will probably need both the development and the production APNS certificates.
+
+> As certificate can expire and you'll have to recreate and upload new one every few years, consider using p8 key as they don't have the validity date.
 
 
 ![APNS Dev certificate](/img/iOS-certificates-apns.png)
