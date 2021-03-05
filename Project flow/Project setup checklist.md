@@ -92,7 +92,7 @@ This likely means that your Ruby version is outdated, so a simple update to a ne
 
 To get it working, use the following commands:
 
-```bash
+```
 # Installs RVM
 \curl -sSL https://get.rvm.io | bash -s stable 
 
