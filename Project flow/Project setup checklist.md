@@ -18,7 +18,7 @@ You can either use *git init* in the project folder or clone an empty repo and m
 
 ## 4. Add a gitignore
 
-Use [gitignore.io](https://www.gitignore.io/) or [GitHub](https://github.com/github/gitignore). The former one is much easier to use, just make sure to add both **OSX** and **Xcode** along with **Objective-C** or **Swift**.
+Use [gitignore.io](https://www.gitignore.io/) or [GitHub](https://github.com/github/gitignore). The former one is much easier to use, just make sure to add both **macOS** and **Xcode** along with **Objective-C** or **Swift**.
 
 **Make sure you have a .gitignore before your first commit.** Revising the repo is a bit painful.
 
@@ -26,7 +26,7 @@ Use [gitignore.io](https://www.gitignore.io/) or [GitHub](https://github.com/git
 
 Your README should follow a standard layout:
 
-**[badges]**—for example, CircleCI, Codebeat, etc. You can add these after the services have been set up.
+**[badges]**—for example, BitriseCI, cocoapods, swift version, min iOS version, etc. You can add these after the services have been set up.
 
 **[project architecture]**—just a quick overview of the project architecture and style.
 
@@ -77,7 +77,7 @@ The file itself contains your `environments`, `release_path` per environment and
 
 During said steps, you'll be asked for your user token, which you can find on [TryOutApps](https://infinum.tryoutapps.com/users/me).
 
-Everything else related to the installation and usage of Shaman, you can find [here](https://bitbucket.org/infinum_hr/gem-shaman/src/master/).
+Everything else related to the installation and usage of Shaman, you can find [here](https://github.com/infinum/shaman).
 
 ### Common issues
 
@@ -117,23 +117,31 @@ We always want a perfectly functional project in the repo, with the versions of 
 
 ## 9. Add your build scripts, lints, analyzers, etc.
 
-For example, build a number script, SwiftLint, codebeat, or whatever else you might need. More complex projects will need more of these.
+For example, build a number script, SwiftLint, or whatever else you might need. More complex projects will need more of these.
 
-Stuff to consider:
-1. [SwiftLint](https://github.com/realm/SwiftLint)—a tool to help you keep your Swift code swifty
-2. [Codebeat](https://codebeat.co/)—a static analyzer of your code's quality
+To keep your code clean and up to date with the latest coding style standards, add [SwiftLint](https://github.com/realm/SwiftLint) into your project. Consider installing the SwiftLint from the `brew` and then just add those few lines into the build phases:
+```bash
+if which swiftlint >/dev/null; then
+  swiftlint
+else
+  echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
+fi
+```
+You can find the default config file for the SwiftLint [here](https://infinum.com/handbook/resources/ios/swiftlint.yml).
 
-For both of the above, we already have the default config files for you to use [here]() and [here]().
+## 10. Add Crashlytics
 
-## 10. Push your project to the repo
+To keep your app crash-free, keep an eye on those critical and noncritical bugs. Ask your client to open and create a new project on the Firebase and add [Crashlytics](https://firebase.google.com/products/crashlytics?gclid=CjwKCAiAp4KCBhB6EiwAxRxbpD2i1jOpCyendfMB7uPu8-cJEbpfX7CVPDI8p8pHXh72kgjLNO2srBoCegEQAvD_BwE&gclsrc=aw.ds) to the project. Implementation is fairly easy, just follow [few simple steps](https://firebase.google.com/docs/crashlytics/get-started) and make your app better!
+
+## 11. Push your project to the repo
 
 After setting everything up properly and making sure that everything works, push your project to the master branch. Until you deploy a build to the App Store, this will be your last commit to the `master`, so onto the next step.
 
-## 11. Set up a GitFlow flow and start working
+## 12. Set up a GitFlow flow and start working
 
-Create a `development` branch and a feature branch and start working on your project. Ask the team lead once more to protect your `development` branch.
+Create a `master` branch and a feature branch and start working on your project. Ask the lead engineer once more to protect your `master` and `release/*` branch.
 
-## 12. Set up your schemes and configurations
+## 13. Set up your schemes and configurations
 
 Schemes are there to define different environments in our case. Each target should have at least one scheme to define a blueprint for the entire build process. That being said, each scheme can then have configurations that describe what build settings are to be used for the scheme (debug, release, etc.).
 
@@ -141,7 +149,7 @@ Ideally, a project should have a single or multiple targets, depending on the us
 
 To set things up and read more about it, check out the [Custom xcconfigs chapter](https://infinum.com/handbook/books/ios/project-flow/custom-xcconfigs).
 
-## 13. Get some provisioning profiles
+## 14. Get some provisioning profiles
 
 Use the [Developer portal](https://developer.apple.com/) to create app IDs, provisioning profiles, and whatever you'll be needing for deployment.
 
@@ -166,9 +174,10 @@ Time to get to work. Happy coding!
 7. Install shaman and configure deployment
 8. Add pods to your project
 9. Add your build scripts, lints, analyzers, etc.
-10. Push your project to the repo
-11. Set up a GitFlow flow and start working
-12. Set up your configurations (what used to be targets)
-13. Get some provisioning profiles
-14. Set up your CI
-15. Get them fingers busy
+10. Add Crashlytics
+11. Push your project to the repo
+12. Set up a GitFlow flow and start working
+13. Set up your configurations (what used to be targets)
+14. Get some provisioning profiles
+15. Set up your CI
+16. Get them fingers busy
