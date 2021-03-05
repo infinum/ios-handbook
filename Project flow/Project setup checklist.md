@@ -92,7 +92,7 @@ This likely means that your Ruby version is outdated, so a simple update to a ne
 
 To get it working, use the following commands:
 
-```
+```bash
 # Installs RVM
 \curl -sSL https://get.rvm.io | bash -s stable 
 
@@ -120,6 +120,7 @@ We always want a perfectly functional project in the repo, with the versions of 
 For example, build a number script, SwiftLint, or whatever else you might need. More complex projects will need more of these.
 
 To keep your code clean and up to date with the latest coding style standards, add [SwiftLint](https://github.com/realm/SwiftLint) into your project. Consider installing the SwiftLint from the `brew` and then just add those few lines into the build phases:
+
 ```bash
 if which swiftlint >/dev/null; then
   swiftlint
@@ -127,6 +128,7 @@ else
   echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
 fi
 ```
+
 You can find the default config file for the SwiftLint [here](https://infinum.com/handbook/resources/ios/swiftlint.yml).
 
 ## 10. Add Crashlytics
