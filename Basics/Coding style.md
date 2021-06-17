@@ -42,7 +42,7 @@ class Person {
   private(set) var oib: Int
 
   // 2.2. private properties
-  unowned private let _bankCard: BankCard
+  unowned private let bankCard: BankCard
 
   // 2.3. Initializers
   init(name: String, bankCard: BankCard)
