@@ -35,30 +35,11 @@ You can find all rules by running `$ swiftlint rules`.
 
 You have the possibility to control which rule is disabled/enabled and set thresholds for warnings and errors for a given rule. Just create a `.swiflint.yml` file and add it to your project root directory.
 
-To disable a rule, add the following to your .yml file:
+You need to change the `ProjectNameTests`  to the name of your Tests folder in the Project.
 
-```yaml
-disabled_rules: # rule identifiers to exclude from running
-  - force_cast
-  - force_unwrappingitespace
-  - type_name
-```
+To disable a rule, remove it from the list of  `only_rules` and it will not be included in the linting process.
 
-To customize a rule threshold for warnings and errors, you can add one of the following:
-
-```yaml
-force_unwrapping: warning
-
-line_length: 510
-
-type_body_length:
-  - 300 # warning
-  - 400 # error
-
-file_length:
-  warning: 500
-  error: 1200
-```
+To customize a rule threshold for warnings and errors, go to the end of the file and change `warning` and `error` properties of the rule. If the rule is not present at the file end, just add it with your customization.
 
 You can also exclude some parts of your project, such as Pods, so SwiftLint won't check them:
 
@@ -66,6 +47,7 @@ You can also exclude some parts of your project, such as Pods, so SwiftLint won'
 excluded: # paths to ignore during linting. Takes precedence over `included`.
 - Carthage
 - Pods
+- ProjectNameTests
 ```
 
 ## Disable a rule in code
