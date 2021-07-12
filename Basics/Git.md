@@ -23,6 +23,7 @@ The only allowed characters are [a-z0-9] and -. This way we will make our DevOps
 ## 4. Gitconfig
 
 You should set **username** and **email** properties in your gitconfig file which are then shown in each commit you create. Those can be set by executing the following commands:
+
 * git config --global user.name "FirstName LastName"
 * git config --global user.email "firstName.lastName@infinum.com"
 
@@ -30,6 +31,7 @@ You should set **username** and **email** properties in your gitconfig file whic
 
 ### Branch naming
 As mentioned, branch name should be lowercase. Words in branch names should be splitted with **hyphens** and not underscores. Also, when possible, task id from Productive/Jira should be included in branch name. For example:
+
 * feature/123-add-followers-button
 * hotfix/1337-recipe-details-crash
 
@@ -40,6 +42,7 @@ In general, commits should be small and frequent - “Commit early, commit often
 The important thing is that changes should be described in imperative mood, e.g. "Make xyzzy do frotz" instead of "[This patch] makes xyzzy do frotz" or "[I] changed xyzzy to do frotz", as if you are giving orders to the codebase to change its behavior.
 
 When writing commit messages we should stick to these 7 rules:
+
 1. Separate subject from body with a blank line
 2. Limit the subject line to 50 characters (easier to read on client)
 3. Capitalize the subject line
@@ -60,6 +63,7 @@ Each PR should have a description. Link to the Productive/Jira task is minimum f
 PR should have an assignee, which is usually a person who created a PR or the person who will be responsible for merging it. 
 
 Master and/or release branches should always be marked as protected on Github in order to prevent direct push to those branches. Next options should be checked on the branch protection rules page on Github:
+
 * ***Require pull request reviews before merging***
 ![Pull request](/img/iOS-pull-request.png)
 * ***Require status check to pass before merging (this includes Bitrise CI and/or SonarCloud if used)***
@@ -79,6 +83,7 @@ We’ll be using the Git Flow standard as a base for git branching with some mod
 We’ll be using **master** as the main branch. Since we’ll be using tags and optionally **release** branches for deployment, **develop** branch becomes redundant and therefore should not be used in the project.
 
 The main branches in this flow are:
+
 * **master**
   * It is a main branch
   * anything in the master branch is deployable
@@ -110,9 +115,11 @@ Each pull request must have an automatic check - running tests or just building 
 Deployment is done via tags and Bitrise CI/CD. Here are the chapters on setting up Bitrise on your project: [Android](https://infinum.com/handbook/books/android/bitrise) and [iOS](https://infinum.com/handbook/books/ios/bitrise-ci/general-intro).
 
 Sync with another platform as much as possible. Few stuff that should be defined and synced:
+
 * Environment names - staging, production, uat, beta… whatever is convention on project, but should be the same. Exception probably will be iOS with its production and app store environments due to technical limitations. If using TryOutApps, please sync environment names.
 * Build number/code version - Must be numbers only value. For build number you can use tag count (prefer using with [build script](10)) or commit count if tag count is unavailable (could be fetched with `git rev-list HEAD --count` from deploy script and bitrise has global variable `$GIT_CLONE_COMMIT_COUNT` that could be used). 
 * Tag names - tags (used for tagging the TryOutApps version and/or triggering Bitrise CI) should be comprised of three parts: environment, app version with ***v*** prefix and build number/code version, e.g. ***internal-staging/v1.2.3-1234***
+
   * Each project will have different environments so this will be heavily project dependent, but some suggestions: tags should have prefix like ***internal-staging/***, ***internal-production/***, ***appstore/***... Due to limitation on tag triggers on Bitrise, tags with multiple / are not permitted, so you should use something like ***internal-production/***, ***internal-staging/***.
   * Use ***internal-*** prefix for all tags which will trigger internal builds on TryoutApps. The reason behind it: internal tags are not so relevant and one should clear internal tags from time to time to keep the project clean.
   * All the production versions that have been published to the app/play store should be tagged with one extra tag in order to have a better overview of released versions. Tag should look like this: ***v1.2.3*** (without build number).
