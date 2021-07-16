@@ -37,7 +37,7 @@ You have the possibility to control which rule is disabled/enabled and set thres
 
 You need to change the `ProjectNameTests`  to the name of your Tests folder in the Project.
 
-To disable a rule, remove it from the list of  `only_rules` and it will not be included in the linting process.
+To disable a rule, comment it out from the list of `only_rules` and it will not be included in the linting process. However, if you do so, leave a note detailing why the rule is disabled for future reference and as a reminder that in the end the project should be updated to accommodate the new rules.
 
 To customize a rule threshold for warnings and errors, go to the end of the file and change `warning` and `error` properties of the rule. If the rule is not present at the file end, just add it with your customization.
 
