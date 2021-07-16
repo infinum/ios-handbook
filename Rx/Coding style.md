@@ -303,7 +303,7 @@ Unlike other observable types, we've mentioned that we'll actually keep _-relay_
 
 ```swift
 func configure(with viewOutput: View.Output) -> View.Input {
-    let modelRelay: BehaviorRelay<Model>(value: Model.default)
+    let modelRelay: BehaviorRelay<Model> = BehaviorRelay(value: Model.default)
     handle(action, with: modelRelay)
 }
 ```

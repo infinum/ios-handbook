@@ -20,9 +20,10 @@
 ## CLI Tools
 
 * [Cocoapods](https://cocoapods.org/)—CocoaPods is a dependency manager for Swift and Objective-C Cocoa projects. It has over ten thousand libraries and can help you scale your projects elegantly.
-* [Fastlane](https://github.com/fastlane/fastlane)—the easiest way to automate the building and release your iOS and Android apps.
 * [Brew](https://brew.sh/)—the missing package manager for macOS.
 * [rbenv](https://github.com/rbenv/rbenv)—groom your app’s Ruby environment.
+* [polyglot](https://github.com/infinum/ios-polyglot-cli)—polyglot client for iOS development.
+* [redbreast](https://github.com/infinum/redbreast)—a gem used for generating extensions (categories) of UIImage or UIColor.
 
 ## Source Control
 
@@ -34,7 +35,7 @@
 
 * [Charles](http://www.charlesproxy.com/)—Charles is an HTTP proxy/HTTP monitor/Reverse Proxy that enables a developer to view all of the HTTP and SSL/HTTPS traffic between their machine and the internet. This includes requests, responses, and HTTP headers (which contain cookies and caching information).
 * [Paw](https://luckymarmot.com/paw)—Paw is a full-featured and beautifully designed Mac app that makes interaction with REST services delightful. Whether you are an API maker or a consumer, Paw helps you build HTTP requests, inspect the server's response and even generate client code.
-* [APNS Pusher](https://github.com/KnuffApp/APNS-Pusher)—a debug application for Apple Push Notification Service (APNS).
+* [PushNotifications](https://github.com/onmyway133/PushNotifications)—a debug application for Apple Push Notification Service (APNS).
 * [Postman](https://www.getpostman.com/)—build, test, and document your APIs faster.
 
 ## Debugging
@@ -46,11 +47,11 @@
 
 * [Sketch](http://www.sketchapp.com/)—professional digital design for Mac.
 * [Zeplin](https://zeplin.io/)—design hand-off has never been easier. Automatically generate styleguides and resources.
+* [Figma](https://www.figma.com/downloads/)—a digital design and prototyping tool.
 * [Sip](http://theolabrothers.com/)—the best way to collect, organize & share your colors.
 
 ## Other
 
 * [Dash](https://kapeli.com/dash)—Dash is an API Documentation Browser and Code Snippet Manager. Dash stores snippets of code and instantly searches offline documentation sets for 150+ APIs (see below for a full list). You can even generate your own docsets or request docsets to be included.
-* [Datum](http://datumapps.com/datum.html)—unlock all the power of your databases in an instant. Datum is a full-featured, modern, and fast SQLite manager.
 * [SnippetsLab](https://www.renfei.org/snippets-lab/)—be more productive with SnippetsLab. SnippetsLab is an easy-to-use code snippets manager. It helps you collect and organize valuable code snippets and makes sure that you have easy access to them whenever you need them.
 * [SimPholders2](https://simpholders.com/)—access all application folders from the status item menu.

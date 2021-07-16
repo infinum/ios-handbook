@@ -108,7 +108,7 @@ Some of the Apiary limitations:
 
 At this moment setup is done and you should end up with something like this:
  
-![Editor][image-1]
+![Editor](/img/iOS-apiary-editor.png)
 
 [ 1 ] = Base URL
 
@@ -176,5 +176,3 @@ And that should be it. Your app is ready for some mocking!
 ## Closing words
 
 There is much more Apiary can offer you. This chapter covers only basic, however, there is also a paid version that provides much more functionality. You can find more info [here](https://apiary.io/how-apiary-works).
-
-[image-1]: /img/iOS-apiary-editor.png

@@ -3,34 +3,26 @@
 </div>
 
 ## Networking
-If your app is going to communicate with a remote server, you will find the following list of [pods][7] useful:
-
-* [Alamofire][1]—used for HTTP networking. On the off chance that you're actually starting an Objective-C based project, you'll be working with [AFNetworking][2] instead. Both of these libraries are developed by the same team who is responsible for [nshipster.com][3]—a site you should really keep in your bookmarks.
-* [CodableAlamofire][4]—an extension for Alamofire that can convert [JSON][5] into Decodable objects. In almost all cases, the data you receive from the remote server will be in a JSON format. Again, in the unlikely event of starting an Objective-C based project, you'll probably use [JSONModel][6] or [Mantle][7].
+For comunication with a remote server, use [Alamofire](https://github.com/Alamofire/Alamofire) - an HTTP networking [pod](https://cocoapods.org/) written in Swift. On the off chance that you're actually starting an Objective-C based project, you'll be working with [AFNetworking](https://github.com/AFNetworking/AFNetworking) instead. Both of these libraries are developed by the same team who is responsible for [nshipster.com](http://nshipster.com/)—a site you should really keep in your bookmarks.
 
 ## REST API and services
-In almost all cases, the architecture of the web service your app is communicating with will be implemented using a RESTful architecture style. A simple and easy explanation of REST APIs can be found [here][8]. You can go [here][9] for a more theoretical description of REST.
+In almost all cases, the architecture of the web service your app is communicating with will be implemented using a RESTful architecture style. A simple and easy explanation of REST APIs can be found [here](http://searchsoa.techtarget.com/definition/REST). You can go [here](https://en.wikipedia.org/wiki/Representational_state_transfer) for a more theoretical description of REST.
 
-When communicating with a RESTful API, it's quite easy to separate networking into services, which is precisely what we do. Services are PONSOs (plain old NSObject) that handle all API requests for one particular segment of the API. Here's an example of a service which handles a login action using CodableAlamofire:
+When communicating with a RESTful API, it's quite easy to separate networking into services, which is precisely what we do. Services are PONSOs (plain old NSObject) that handle all API requests for one particular segment of the API. Here's an example of a service which handles a login action using Alamofire:
 
 ```swift
 class MenuService {
 
     @discardableResult
-    func login(with username: String, password: String, completionHandler: @escaping LoginResponseBlock) -> DataRequest {
-        let params: [String: String] = [
-            "username": username,
-            "password": password,
-        ]
-        let url: URL = URL(string: "https://example.com/login")!
+    func login(email: String, password: String, completion: @escaping (AFResult<Void>) -> Void) {
+        let router = LoginRouter.login(email: email, password: password)
 
-        return Alamofire.request(
-            url,
-            method: .get,
-            parameters: params
-        ).validate().responseDecodableObject(completionHandler: completionHandler)
+        AF.requestCompletion(
+                router: router,
+                session: sessionManager.session,
+                completion: completion
+            )
     }
-
 }
 ```
 
@@ -109,14 +101,3 @@ struct LotoResult {
     let extraNumber: Int?
 }
 ```
-
-[1]:	https://github.com/Alamofire/Alamofire
-[2]:	https://github.com/AFNetworking/AFNetworking
-[3]:	http://nshipster.com/
-[4]:	https://github.com/Otbivnoe/CodableAlamofire
-[5]:	http://www.json.org/
-[6]:	https://github.com/icanzilb/JSONModel
-[7]:	https://github.com/Mantle/Mantle
-[8]:	http://searchsoa.techtarget.com/definition/REST
-[9]:	ttps://en.wikipedia.org/wiki/Representational_state_transfer
-<!--[7]:	https://cocoapods.org/-->
