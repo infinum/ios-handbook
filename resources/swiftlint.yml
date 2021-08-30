@@ -164,12 +164,24 @@ identifier_name:
     error: 100
   excluded:
     - id
+    - Id
     - ID
+    - on
+    - On
+    - ON
     - x
     - y
     - z
     - i
     - j
+type_name:
+  excluded:
+    - id
+    - Id
+    - ID
+    - on
+    - On
+    - ON
 line_length:
   warning: 150
   error: 250
