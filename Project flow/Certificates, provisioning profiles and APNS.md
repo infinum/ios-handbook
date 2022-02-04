@@ -1,4 +1,6 @@
 > NOTE: Once a certificate or key from this chapter is created, it should be sent to the Lead Engineer so that they can securely store it! 
+>
+> Before you go and create a new certificate, check with LEs if the certificate you need already exists. If we have that certificate securely stored, you should use that one instead of creating a new one.
 
 ## Certificates
 
