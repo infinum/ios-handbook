@@ -24,13 +24,7 @@ Use [gitignore.io](https://www.gitignore.io/) or [GitHub](https://github.com/git
 
 ## 5. Add a README
 
-Your README should follow a standard layout:
-
-**[badges]**—for example, BitriseCI, cocoapods, swift version, min iOS version, etc. You can add these after the services have been set up.
-
-**[project architecture]**—just a quick overview of the project architecture and style.
-
-**[gotchas]**—keep everything important about the project that might not be immediately clear here. Even if it is, keep it here. For example, "To test this project, you need credentials from www.credentials.com, ask Hrvatko about them", or: "This project keeps some lib in GitHub LFS, make sure you have it installed before pulling, or check the documentation to find out how to do it afterwards."
+Your README should follow a standard layout as described in the [iOS README Template](https://github.com/infinum/ios-readme-template). Everything which falls outside of the scope defined in the template is probably too much information for the README file, and should be moved into a Wiki. In general, we should always strive to have a short and clear README file, and move all detailed information to the Wiki.
 
 ## 6. Reorganize your project
 
