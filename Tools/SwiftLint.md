@@ -16,10 +16,16 @@ If you have already installed SwiftLint, you can update it to the latest version
 If you want to integrate SwiftLint to Xcode, add the following script to your target:
 
 ```bash
+if test -d "/opt/homebrew/bin/"; then
+  PATH="/opt/homebrew/bin/:${PATH}"
+fi
+
+export PATH
+
 if which swiftlint >/dev/null; then
-	swiftlint
+  swiftlint
 else
-	echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
+  echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
 fi
 ```
 
