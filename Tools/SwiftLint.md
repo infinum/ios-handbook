@@ -16,10 +16,16 @@ If you have already installed SwiftLint, you can update it to the latest version
 If you want to integrate SwiftLint to Xcode, add the following script to your target:
 
 ```bash
+if test -d "/opt/homebrew/bin/"; then
+  PATH="/opt/homebrew/bin/:${PATH}"
+fi
+
+export PATH
+
 if which swiftlint >/dev/null; then
-	swiftlint
+  swiftlint
 else
-	echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
+  echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
 fi
 ```
 
@@ -90,7 +96,19 @@ let noWarning3 = NSNumber() as! Int
 
 ### iOS SwiftLint rules
 
-In accordance with our Swift Style Guide and our rules discussion, the configured file can be downloaded here: [SwiftLint configuration.](/resources/swiftlint.yml)
+In accordance with our Swift Style Guide and rules discussion we had, we have created the SwiftLint configuration file which all projects should use. This file is located on our [Swift Style Guide repo](https://github.com/infinum/swift-style-guide) and shall be updated on regular basis. To use it on your project, put the `parent_config` specifier at the start of your `.swiftlint.yml` configuration file:
+
+```yml
+# Parent config - Infinum Style Guide
+parent_config: https://raw.githubusercontent.com/infinum/swift-style-guide/master/.swiftlint.yml
+
+# Specifics/custom rules for the project...
+included: ...
+excluded: ...
+# ...
+```
+
+This will tell Swiftlint to pull the configuration file from the remote URL. This also allows us to sync the rules on every project more easily. We just change the rules on the repo and every project gets the change (no more copy-pasting). For more information on how SwiftLint works with remote URLs, see the [SwiftLint Github Repo](https://github.com/realm/SwiftLint#child--parent-configs-remote).
 
 ### Xcode trailing whitespace
 
