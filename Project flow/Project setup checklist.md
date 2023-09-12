@@ -6,7 +6,11 @@
 
 Make sure the product name is something sane and easy to read. Spaces might be a pain in the ass, so keep that in mind (dashes instead of spaces is a better option). The organization identifier should be **Infinum**.
 
-The Bundle ID should be something like co.infinum.my-app-dev. This might change for production, depending on whose account is being used for the App Store.
+The Bundle ID for **staging** and **app store** should be related to the client containing the environment name. E.g., set bundle ID to `com.client.app-name` for the App Store and `com.client.app-name.development` for the staging development environment.
+
+> NOTE
+>
+> Suppose the project contains Infinum's Bundle ID (e.g., co.infinum.project, com.infinum.project, ...) before migrating the Bundle ID to the client's profile. In that case, the Infinum one must be deleted from the developer portal.
 
 ## 2. Create a new repository on GitHub
 
