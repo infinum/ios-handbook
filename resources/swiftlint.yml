@@ -5,7 +5,6 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
   - ProjectNameTests
 
 analyzer_rules:
-  - unused_capture_list
   - unused_closure_parameter
   - unused_control_flow_label
   - unused_declaration
@@ -62,7 +61,6 @@ only_rules:
   - identical_operands
   - identifier_name
   - implicit_getter
-  - inert_defer
   - is_disjoint
   - joined_default_parameter
   - large_tuple
