@@ -4,7 +4,7 @@ Apiary is a tool that lets you build a functional mocked API really fast, in a s
 
 ## How does it work?
 
-You can look at Apiary like an online collection of `JSON` responses with a bit more power. You get some base URL and all you have to do is define **endpoints** and their **responses**. Example of one such response can be seen below:
+You can look at Apiary like an online collection of `JSON` responses with a bit more power. You get some base URL and all you have to do is define **endpoints** and their **responses**. An example of one such response can be seen below:
 
 ```json
 
@@ -132,7 +132,7 @@ There are multiple ways to connect Apiary with your app: you can use mocking for
 
 ### Step 1
 
-* If you already don't have, add some constant that will represent your `base` URLs and add your **mock** URL
+* If you haven't already, add some constant that will represent your `base` URLs and add your **mock** URL
 
 ```swift
 enum Base: String { 

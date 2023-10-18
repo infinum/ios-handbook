@@ -84,7 +84,7 @@ Since _Swift 3_, all function parameters have labels unless you request otherwis
 ## Enumerations
 
 * Each enumeration definition defines a brand new type. So, like other types in Swift, their names should start with a capital letter.
-* Use lower CamelCase for enumeration values.
+* Use lower camelCase for enumeration values.
 
 ### Preferred:
 
