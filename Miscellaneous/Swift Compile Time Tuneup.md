@@ -2,7 +2,7 @@ As our Swift projects were getting bigger, we noticed that the compile time was 
 
 After some analysis, we realized that there are two major groups of problems—one was Cocoapods and the other was Swift syntax.
 
-Bellow, you can find some issues and how to resolve them. Also, this isn't a silver bullet, so the best way is to do it gradually and measure intermediate states.
+Below, you can find some issues and how to resolve them. Also, this isn't a silver bullet, so the best way is to do it gradually and measure intermediate states.
 
 ## Common issues
 
@@ -11,7 +11,7 @@ Bellow, you can find some issues and how to resolve them. Also, this isn't a sil
 **Bad**
 
 ```swift
-let x = ["A", nil, "B", nil,"C"].flatMap{$0}.reduce("", +)
+let x = ["A", nil, "B", nil, "C"].flatMap{$0}.reduce("", +)
 ```
 
 **Good**
@@ -26,7 +26,7 @@ let x: String = ["A", nil, "B", nil,"C"]
     }
 ```
 
-### Concatenation of string:
+### Concatenation of strings:
 
 **Bad**
 
