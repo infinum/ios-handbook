@@ -24,7 +24,7 @@ Observable.of(1, 2, 3)
     .subscribe()
 ```
 
-We're created an observable and emit a few events through it. The first signal is skipped and the `Observable` is converted to `Single`. At first glance, this looks correct. You'll be able to build the app just fine and you won't be seeing any errors thrown in the console - so we're free to assume that everything works ok, right?
+We've created an observable and emit a few events through it. The first signal is skipped and the `Observable` is converted to `Single`. At first glance, this looks correct. You'll be able to build the app just fine and you won't be seeing any errors thrown in the console - so we're free to assume that everything works ok, right?
 Well, we are, but we would be in the wrong here. What happens is - it'll actually skip the first event, but the sequence itself _knows_ that there are more events in there and that the first one was simply skipped.
 
 Because of that, conversion to `Single` will _**silently**_ fail. You won't get an error in this case and nothing would blow up. The only thing you'll notice is that anything after that call simply wouldn't execute. Putting a `.debug()` also won't help because we effectively aren't doing anything wrong. `.asSingle()` receives a single event and doesn't mention anything about it being an observable grammar error.
@@ -66,7 +66,7 @@ Don't let that sentence scare you. If we simplify that statement a bit, we can s
 
 >After using share on a specific Rx sequence, the part before the share operator will become a shared stream. That stream itself will execute only once, and each subscriber will simply get a result from that exact stream without performing any further actions.
 
-In our specific case, this means that the API call will only be fired off once. All that it brings back will be sent down through the sequence to all of subscriptions!
+In our specific case, this means that the API call will only be fired off once. All that it brings back will be sent down through the sequence to all of the subscriptions!
 
 ```swift
 let result = interactor.apiCall().share()
