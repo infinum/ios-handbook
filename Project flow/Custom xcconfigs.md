@@ -160,6 +160,8 @@ PRODUCT_NAME = $(TARGET_NAME)
 	- Use case: we are currently using our enterprise account for develop, but the client wants to use their account for release to the Store.
 	- Basically, we would have to change certificates, provisioning profiles, and bundle identifiers before each submission. This is both cumbersome and error-prone!
 	- That is why we will create copies of both __debug__ and __release__ build configurations.
+    - If you have a lot of configurations that you need to add, maybe it's a good idea to start with one or two configurations, and go through all of the steps. That way you can check if you've done everything correctly, and Xcode will be faster when you're updating target related configurations :)
+    - If you're working with an App + SDK project, make sure that both App and the SDK contain the same configuration names since the SDK might use the release configuration as the fallback if it doesn't find the one that has the same name as the app one   
 
 ![](/img/xcconfig_tutorial/step_2.png)
 
@@ -222,6 +224,10 @@ PRODUCT_NAME = $(TARGET_NAME)
 	- that means that UI has a higher precedence than custom files
 	- go through the Project row and delete it; you can only edit the Project row on the current level
 		- you have to delete only the rows that contain something
+        - if you can't delete the rows, click on it and change its value to __$(inherited)__ which will inherit the value from the previous column (in this case your xcconfig file)
+        - sometimes you won't be able to change the row value to __$(inherited)__, so you will have to click on the row, and select "other". After that, you'll be able to enter a string instead of the predefined values.
+        - if you have a lot of configurations, don't be scared if Xcode shows its famous rainbow spinner. Just let it update for a minute :D
+        - don't replace row values to "" since Xcode will replace your custom configuration values with an empty string, tend to use the __$(inherited)__ value      
 
 		![](/img/xcconfig_tutorial/step_5_3.png)
 
@@ -240,7 +246,7 @@ Resolved | Target0 | Config.File (Target Build) | Project | Config.File (Project
 
 	![](/img/xcconfig_tutorial/step_5_5.png)
 
-- Go through the target row and delete it.
+- Go through the target row and delete it. Again, be careful here, the same rules apply as the project ones (explained in the step 5)
 
 ### Step 6—custom Info.plist
 
@@ -273,18 +279,52 @@ platform :ios, '8.0'
 
 use_frameworks!
 
-link_with 'Target0', 'Target1'
+# Debug/release config specification
+# You need to add the same configuration names you have set in the project file
+project 'Project', {
+  'Debug' => :debug,
+  'Release' => :release,
+  'ClientDebug' => :debug,
+  'ClientRelease' => :release
+}
 
-pod 'Alamofire'
+# If you need a pod only for some configurations, eg. only for debug and release
+def debugging
+  pod 'Sentinel', :configurations => [
+    'Debug',
+    'Release'
+  ]
+end
+
+def shared
+    pod 'Alamofire'
+end
+
+# If you have targets which use the same pods, you can combine them into an abstract target
+# then you won't need to specify every single target like we do below.
+# You can use either this or specify every single target
+# abstract_target 'MainTargets' do
+  # Shared pods
+#  shared
+#  debugging
+
+#  target 'Target0'
+#  target 'Target1'
+
+#end
 
 target 'Target0' do
-
+   shared
+   debugging
 end
 
 target 'Target1' do
-
+   shared
+   debugging
 end
 ```
+
+- Make sure to read the comments in the podfile, and use the code which suits your needs best :)
 
 - Pod install will probably give you a warning.
 
@@ -297,6 +337,7 @@ end
 	![](/img/xcconfig_tutorial/step_7_1.png)
 
 - and change to
+    - please note, when including other __xcconfig__ files, if the first one, and the second one contain the same property, the first one will be overwritten by the second one, and the second one will be the "Resolved" property value. Eg. if your __shared.xcconfig__ file contains Swift flags, they will be overwritten by the ones from cocoapods. If you want your Swift flags, then you have to put the cocoapods __xcconfig__ file as the first _include_, and your custom one as the last :)
 
 	![](/img/xcconfig_tutorial/step_7_2.png)
 
@@ -305,6 +346,7 @@ end
 	![](/img/xcconfig_tutorial/step_7_3.png)
 
 - and change to
+    - please make sure to read the note on the debug __xcconfig__ file :)
 
 	![](/img/xcconfig_tutorial/step_7_4.png)
 
