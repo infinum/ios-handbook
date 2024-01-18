@@ -133,7 +133,7 @@ else
 fi
 ```
 
-You can find the default config file for the SwiftLint [here](https://infinum.com/handbook/resources/ios/swiftlint.yml).
+You can find the default config file for the SwiftLint [here](https://github.com/infinum/swift-style-guide/blob/master/.swiftlint.yml).
 
 ## 10. Add Crashlytics
 
