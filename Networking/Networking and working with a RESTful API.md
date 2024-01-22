@@ -3,10 +3,10 @@
 </div>
 
 ## Networking
-For comunication with a remote server, use [Alamofire](https://github.com/Alamofire/Alamofire) - an HTTP networking [pod](https://cocoapods.org/) written in Swift. On the off chance that you're actually starting an Objective-C based project, you'll be working with [AFNetworking](https://github.com/AFNetworking/AFNetworking) instead. Both of these libraries are developed by the same team who is responsible for [nshipster.com](http://nshipster.com/)—a site you should really keep in your bookmarks.
+For communication with a remote server, use [Alamofire](https://github.com/Alamofire/Alamofire) - an HTTP networking [pod](https://cocoapods.org/) written in Swift. On the off chance that you're actually starting an Objective-C based project, you'll be working with [AFNetworking](https://github.com/AFNetworking/AFNetworking) instead. Both of these libraries are developed by the same team who is responsible for [nshipster.com](http://nshipster.com/)—a site you should really keep in your bookmarks.
 
 ## REST API and services
-In almost all cases, the architecture of the web service your app is communicating with will be implemented using a RESTful architecture style. A simple and easy explanation of REST APIs can be found [here](http://searchsoa.techtarget.com/definition/REST). You can go [here](https://en.wikipedia.org/wiki/Representational_state_transfer) for a more theoretical description of REST.
+In almost all cases, the architecture of the web service your app is communicating with will be implemented using a RESTful architecture style. You can go [here](https://en.wikipedia.org/wiki/Representational_state_transfer) for a more theoretical description of REST.
 
 When communicating with a RESTful API, it's quite easy to separate networking into services, which is precisely what we do. Services are PONSOs (plain old NSObject) that handle all API requests for one particular segment of the API. Here's an example of a service which handles a login action using Alamofire:
 
@@ -88,7 +88,7 @@ struct LotoResult {
 }
 ```
 
-The `prizes` and `extraNumber` properties always have a value because they are set to empty array and zero by default. They will hold these values even if the API doesn’t return them. This is wrong because it hides the information that data do not exist in the case of the `prizes` property. It is even worse in the case of `extraNumber` because it is an incorrect value.
+The `prizes` and `extraNumber` properties always have a value because they are set to empty array and zero by default. They will hold these values even if the API doesn’t return them. This is wrong because it hides the information that data does not exist in the case of the `prizes` property. It is even worse in the case of `extraNumber` because it is an incorrect value.
 
 Generally, you should always mark properties as optional and handle the logic accordingly when handling the response. A correct example would be:
 
