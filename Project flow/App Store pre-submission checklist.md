@@ -59,7 +59,7 @@
 * Screen layout can handle the double-height status bar (e.g., during a phone call)
 * Landscape mode, if supported, looks well-designed (i.e., is not accidental and bad)
 
-You can find more information about this topic [here](https://developer.apple.com/ios/human-interface-guidelines/overview/design-principles/).
+You can find more information about this topic [here](https://developer.apple.com/design/human-interface-guidelines/).
 
 ## iPad-specific
 
