@@ -1,5 +1,3 @@
-# Best practices for error handling and crash reporting
-
 When our apps work well, our users are happy. Unfortunately, this isn’t always the case. Instead of striving for a perfect world of no crashes and no errors, our goal should be to make the best effort in effectively diagnosing and quickly fixing issues.
 
 At Infinum, we’ve worked on hundreds of mobile apps. Fixing crashes is our day-to-day activity. In this guide, we will cover our learnings and best practices of good crash reporting and error handling.
@@ -24,13 +22,13 @@ From the application perspective, there are two types of errors it can encounter
 
 Expected errors are usually handled as part of regular application flow. 
 
-Example 1
+**Example 1**
 
 The user uploads a document to the backend but the backend needs some time to process it.
 
 In this case, the application might implement API polling. API can return a 404 error to indicate that the resource is not yet available. The application can retry an API call until it gets a 200 response code.
 
-Example 2
+**Example 2**
 
 Under bad network conditions, the user attempts to download a file.
 
@@ -258,7 +256,7 @@ If we follow these rules, we get some nice side effects: 
 2. We will preserve the original errors with all the details (such as HTTP status code or framework error)
 
 
-###### Error details
+**Error details**
 
 Users are generally interested in human readable descriptions of the error. But for programmers, it is critical to have as much details as possible about the error.
 
@@ -267,7 +265,7 @@ We can expose these details in our `ErrorView` by providing an additional Detail
 This can simplify finding issues and shorten the feedback loop between the person reproducing the error and you.
 
 
-###### Non-fatals
+**Non-fatals**
 
 Firebase [non fatals](https://firebase.google.com/docs/crashlytics/customize-crash-reports?platform=ios#log-excepts) are a great way to get more detailed information about errors that occur in production. This can usually provide critical information for debugging user-reported issues. To utilize and analyze them effectively, we need to have fine fine-grained grouping of errors.
 
