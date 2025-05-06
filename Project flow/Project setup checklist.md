@@ -14,7 +14,15 @@ The Bundle ID for **staging** and **app store** should be related to the client 
 
 ## 2. Create a new repository on GitHub
 
-GitHub admin access is limited to team leads only. Find the nearest one and twist their arm until they opens up a new repo for you. :)
+GitHub repository creation is limited to DevOps only. Head to the [#devops-hotline](https://infinum.slack.com/archives/C9GS52FS6) channel and ask there for the repo creation.
+
+To help them out, please use this form:
+
+- New repository name: **ios-clientname-projectname** (e.g. ios-hpb-mhpb)
+- Visibility: **private**
+- Admin access: **Mobile Leads team**
+
+Once the repo is created, please notify the LEs so they can assist you with the next steps (branch rules, adding additional team members, etc.).
 
 ## 3. Init a git repo in your project
 
@@ -28,7 +36,7 @@ Use [gitignore.io](https://www.gitignore.io/) or [GitHub](https://github.com/git
 
 ## 5. Add a README
 
-Your README should follow a standard layout as described in the [iOS README Template](https://github.com/infinum/ios-readme-template). Everything which falls outside of the scope defined in the template is probably too much information for the README file, and should be moved into a Wiki. In general, we should always strive to have a short and clear README file, and move all detailed information to the Wiki.
+Your README should follow a standard layout as described in the [Mobile Readme Template](https://github.com/infinum/mobile-readme-template). Everything which falls outside of the scope defined in the template is probably too much information for the README file, and should be moved into a Wiki. In general, we should always strive to have a short and clear README file, and move all detailed information to the Wiki.
 
 ## 6. Reorganize your project
 
