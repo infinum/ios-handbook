@@ -18,9 +18,10 @@ GitHub repository creation is limited to DevOps only. Head to the [#devops-hotli
 
 To help them out, please use this form:
 
-- New repository name: **ios-clientname-projectname** (e.g. ios-hpb-mhpb)
+- New repository name: **[ios]-[clientname]-[projectname]** (e.g. ios-hpb-mhpb)
 - Visibility: **private**
 - Admin access: **Mobile Leads team**
+- Write access: **[your GitHub account]**
 
 Once the repo is created, please notify the LEs so they can assist you with the next steps (branch rules, adding additional team members, etc.).
 
