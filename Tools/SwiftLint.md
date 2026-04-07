@@ -3,37 +3,11 @@ SwiftLint checks the source code for programmatic as well as stylistic errors. T
 * maintaining a higher level of code discipline
 * increasing the code's reliability
 
-## Installation
+## Installation and Running
 
-You can easily install SwiftLint using Homebrew: `$ brew install swiftlint`.
+Refer to the official [SwiftLint repository](https://github.com/realm/swiftlint) documentation for setup instructions.
 
-If you have already installed SwiftLint, you can update it to the latest version using the `$ brew upgrade swiftlint` command.
-
-*NOTE: Please update Homebrew to the latest version before installing and updating SwiftLint:* `$ brew update`.
-
-## Running in Xcode
-
-If you want to integrate SwiftLint to Xcode, add the following script to your target:
-
-```bash
-if test -d "/opt/homebrew/bin/"; then
-  PATH="/opt/homebrew/bin/:${PATH}"
-fi
-
-export PATH
-
-if which swiftlint >/dev/null; then
-  swiftlint
-else
-  echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
-fi
-```
-
-### Example
-
-![iOS SwiftLint Run script](/img/iOS-SwiftLint-script.jpg)
-
-And that's it. SwiftLint will now run with default settings.
+SPM is the recommended installation method, as it ensures everyone working in the repo uses the same SwiftLint version. For execution, an Xcode build phase is preferred over attaching an SPM build plugin to the target — SPM build plugins don't currently support networking, which is important for remote configuration as required by the team's workflow.
 
 ## Configuration file
 
@@ -94,13 +68,13 @@ let noWarning3 = NSNumber() as! Int
 
 *NOTE: Do not overuse this!*
 
-### iOS SwiftLint rules
+### Team's style guide and shared config file
 
 In accordance with our Swift Style Guide and rules discussion we had, we have created the SwiftLint configuration file which all projects should use. This file is located on our [Swift Style Guide repo](https://github.com/infinum/swift-style-guide) and shall be updated on regular basis. To use it on your project, put the `parent_config` specifier at the start of your `.swiftlint.yml` configuration file:
 
 ```yml
 # Parent config - Infinum Style Guide
-parent_config: https://raw.githubusercontent.com/infinum/swift-style-guide/master/.swiftlint.yml
+parent_config: https://infinum.github.io/swift-style-guide/swiftlint/swiftlint.yml
 
 # Specifics/custom rules for the project...
 included: ...
