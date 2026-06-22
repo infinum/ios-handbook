@@ -27,9 +27,9 @@ You can find it in the Keychain app in the "My Certificates" section.
 
 The main part of the certificate is your public/private key pair, which is a guarantee that the apps are truly developed/distributed by you.
 
-This is of key importance for app distribution, no matter whether the distribution target is the App Store or in-house.
+This is of key importance for app distribution, no matter whether the distribution target is the App Store or test builds.
 
-At Infinum, we have two different Apple Developer Program accounts. One is meant for App Store distribution (Infinum d.o.o), and the other one, the enterprise account (Infinum D.O.O.), for in-house distribution.
+At Infinum, we use the Infinum d.o.o. Apple Developer Program account for app distribution. Some clients have their own Apple Developer accounts, which are used for releasing their apps to the App Store.
 
 ## Provisioning profiles
 
@@ -53,20 +53,9 @@ When you create a provisioning profile, you're basically associating the iOS dev
 
 ### Provisioning profile types
 
-There are a few things that should be kept in mind when describing provisioning profile types. There is a difference between a regular ADP and the enterprise one (ADEP). Since the enterprise one is used for in-house development only, the provisioning profile types that can be generated are iOS development, ad hoc and in-house.
-
-#### In-house distribution
-
-In-house distribution is another way to distribute apps besides the App Store. As we have both the ADP and ADEP, this kind of distribution is commonly used for sending test builds to the clients. Prerequisites in the developer portal are:
-
-1. generated App ID
-2. generated Distribution Provisioning Profile (select in-house distribution when prompted)
-3. provisioning profile downloaded and opened in XCode
-4. in the Build Settings, under Code Signing, select the created provisioning profile under the Release section
+With a regular Apple Developer Program account, the provisioning profile types that can be generated are development, ad hoc and App Store.
 
 #### Ad hoc
-
-For the regular ADP, the provisioning profile types which can be chosen are: development, ad hoc and App Store.
 
 Ad hoc profiles are used to distribute the app to the devices which are chosen while generating the certificate. So, the devices on which the app should run are predetermined and should be pre-added to the developer portal.
 

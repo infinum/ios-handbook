@@ -157,7 +157,7 @@ PRODUCT_NAME = $(TARGET_NAME)
 - _Info tab_
 - _Configurations_
 - Always duplicate an existing one (choose between __debug__ and __release__).
-	- Use case: we are currently using our enterprise account for develop, but the client wants to use their account for release to the Store.
+	- Use case: we are using the Infinum d.o.o. account for develop, but the client wants to use their account for release to the Store.
 	- Basically, we would have to change certificates, provisioning profiles, and bundle identifiers before each submission. This is both cumbersome and error-prone!
 	- That is why we will create copies of both __debug__ and __release__ build configurations.
     - If you have a lot of configurations that you need to add, maybe it's a good idea to start with one or two configurations, and go through all of the steps. That way you can check if you've done everything correctly, and Xcode will be faster when you're updating target related configurations :)
