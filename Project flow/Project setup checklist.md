@@ -164,7 +164,7 @@ Use the [Developer portal](https://developer.apple.com/) to create app IDs, prov
 
 ## 15. Set up your CI
 
-We run CI on [GitHub Actions](https://docs.github.com/en/actions), with the workflow files in the project's repo. Every pull request is built and tested before it's merged, and a tag deploys the app to TestFlight. Automatic deploys save the time you'd spend on manual builds, so set CI up early.
+We run CI on [GitHub Actions](https://docs.github.com/en/actions), with the workflow files in the project's repo. Every pull request is built and tested before it's merged, and a tag builds the app and uploads it to App Store Connect. Automatic deploys save the time you'd spend on manual builds, so set CI up early.
 
 Keep the build logic in [Fastlane](https://docs.fastlane.tools) lanes and let the workflow files only call them. Then the same lanes work on your machine and on CI.
 
