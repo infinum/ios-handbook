@@ -168,7 +168,7 @@ We run CI on [GitHub Actions](https://docs.github.com/en/actions), with the work
 
 Keep the build logic in [Fastlane](https://docs.fastlane.tools) lanes and let the workflow files only call them. Then the same lanes work on your machine and on CI.
 
-At Infinum, the CI chapter of the private handbook has the full setup.
+To set one up, check the CI chapter in the handbook.
 
 ## 16. Get them fingers busy
 
